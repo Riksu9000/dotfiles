@@ -1,0 +1,22 @@
+#!/bin/bash
+
+DEVICE="Wacom Intuos S"
+
+STYLUS="$DEVICE Pen stylus"
+ERASER="$DEVICE Pen eraser"
+PAD="$DEVICE Pad pad"
+
+## Stylus
+xsetwacom set "$STYLUS" Suppress 1
+xsetwacom set "$STYLUS" RawSample 1
+
+## Eraser
+
+## Pad
+#xsetwacom set "$PAD" Button 1 "key shift ctrl n"  # New layer
+#xsetwacom set "$PAD" Button 2 "key p"  # Paintbrush
+#xsetwacom set "$PAD" AbsWheelDown "key minus"  # Zoom out
+#xsetwacom set "$PAD" AbsWheelUp "key shift plus"  # Zoom in
+#xsetwacom set "$PAD" Button 3 "key a"  # Airbrush
+#xsetwacom set "$PAD" Button 4 "key control z"  # Undo
+

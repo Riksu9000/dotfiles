@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo "1. gnome-session"
+echo "2. i3wm"
+echo "other: cancel"
+while true; do
+read -p "Choose your wm." -n 1 -r
+case $REPLY in
+	1) 
+		export GDK_BACKEND=x11
+		gnome-keyring-daemon &
+		startx /bin/gnome-session &
+		break
+	;;
+	2)
+		startx /bin/i3 &
+		break
+	;;
+	*)
+		clear
+		neofetch
+		break
+	;;
+esac
+done
