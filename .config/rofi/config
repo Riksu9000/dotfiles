@@ -1,0 +1,13 @@
+rofi.font: DejaVu Sans 32
+rofi.lines: 3
+rofi.padding: 100
+rofi.hide-scrollbar: true
+rofi.fake-transparency: true
+rofi.fullscreen: true
+rofi.bw: 0
+rofi.separator-style: solid
+
+#State:			bg	    fg		bgalt		hlbg		hlgf
+rofi.color-window:	#AA000000,    #FFFFFF,    #FFFFFF,	#FFFFFF,	#000000
+rofi.color-normal:	#00000000,    #FFFFFF,    #00000000,	#FFFFFF,	#000000
+
