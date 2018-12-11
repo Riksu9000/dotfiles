@@ -1,0 +1,26 @@
+#!/bin/sh
+
+colors=30
+
+for i in {0..7}; do
+
+echo -e "\e[${colors}mcolor$i"\
+"\t\e[0;$((colors+10))m color$i "\
+"\e[39;49m"
+
+colors=$((colors + 1))
+
+done
+
+colors=90
+echo ""
+
+for i in {8..15}; do
+
+echo -e "\e[$((colors))mcolor$i"\
+"\t\e[0;30;$((colors+10))m color$i "\
+"\e[30;49m"
+
+colors=$((colors + 1))
+
+done
