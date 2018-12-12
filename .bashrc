@@ -5,12 +5,13 @@
 # | |_) | (_| \__ \ | | | | | (__
 # |_.__/ \__,_|___/_| |_|_|  \___|
 
-stty -ixon # Disable ctrl-s and ctrl-q
+[[ $- == *i* ]] && stty -ixon # Disable ctrl-s and ctrl-q
 
 shopt -s autocd # cd by just typing the name of the directory
 
 # Aliases
 alias ls="ls --color -hN --group-directories-first"
+alias la="ls -lA"
 alias sudo="sudo "
 alias make="make -j9"
 alias p="pacman"
