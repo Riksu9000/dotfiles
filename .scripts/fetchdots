@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cp Asiakirjat/GitHub/dotfiles/.Xresources ~/.
+cp Asiakirjat/GitHub/dotfiles/.bashrc ~/.
+cp Asiakirjat/GitHub/dotfiles/.profle ~/.
+cp -r Asiakirjat/GitHub/dotfiles/.config/i3  ~/.config/i3
+cp -r Asiakirjat/GitHub/dotfiles/.  ~/.scripts
+

@@ -17,6 +17,7 @@ export LESS_TERMCAP_se=$'\e[0m'
 [ -f ~/.bashrc ] && source ~/.bashrc
 
 PATH="$PATH:$HOME/.scripts"
+PATH="$PATH:$HOME/binaries"
 #PATH=$PATH:/home/riku/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/
 
 export QT_QPA_PLATFORMTHEME="qt5ct"

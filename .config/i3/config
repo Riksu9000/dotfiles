@@ -24,6 +24,8 @@ set $mod Mod4
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 13
+#font pango:curie 12
+#font pango:scientifica 11
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -62,10 +64,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+v split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+c split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -172,6 +174,7 @@ bar {
 		#<colorclass>		<border>	<background>	<text>
 		focused_workspace	$white		$white		$black
 		inactive_workspace	$darkblue	$darkblue	$white
+		urgent_workspace	$darkred	$darkred	$white
 	}
 }
 
@@ -184,23 +187,20 @@ bindsym $mod+x exec i3lock -c 000000
 #exec feh --bg-scale /usr/share/backgrounds/gnome/adwaita-day.jpg
 exec_always xrdb ~/.Xresources
 exec --no-startup-id udiskie -ans2 &
-#exec xrandr --dpi 96
 exec --no-startup-id gnome-flashback
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 
 ### Colours ###
-
+# For i3-gaps, only <indicator> and <child_border> can be seen
 #<colorclass>		<border>	<background>	<text>		<indicator>	<child_border>
-client.focused		$black		$black		$black		$red		$white	
-client.focused_inactive	$black		$black		$black		$black		$black
-client.unfocused	$black		$black		$black		$black		$black
-
+client.focused		$black		$black		$black		$green		$blue
+client.focused_inactive	$black		$black		$black		$green		$darkgray
+client.unfocused	$black		$black		$black		$green		$darkgray
+client.urgent		$black		$black		$black		$white		$red
 
 ### i3-gaps ###
-gaps inner 10
-gaps outer 5
+gaps inner 20
 for_window [class="^.*"] border pixel 3
 smart_gaps on
 #smart_borders on
-
