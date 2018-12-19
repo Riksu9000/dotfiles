@@ -1,0 +1,8 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) gnome-calendar ;;
+	3) notify-send "$(cal -w)" ;;
+esac
+
+date '+%a %d.%b %H:%M'

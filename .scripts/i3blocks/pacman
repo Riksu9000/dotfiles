@@ -1,0 +1,8 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) $TERMINAL -e sudo pacman -Syu --ignore linux* ;;
+	3) notify-send "$(pacman -Qu)" ;;
+esac
+
+echo -e "$(pacman -Qu --ignore *linux | wc -l | sed -e 's/^0$//g')"

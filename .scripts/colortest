@@ -1,26 +1,29 @@
 #!/bin/sh
 
-colors=30
-
+# Output numbers in all dark colours
 for i in {0..7}; do
-
-echo -e "\e[${colors}mcolor$i"\
-"\t\e[0;$((colors+10))m color$i "\
-"\e[39;49m"
-
-colors=$((colors + 1))
-
+echo -en "\e[$((30 + i))m  $((i))  "
 done
 
-colors=90
-echo ""
+echo -e "\e[0m" # New line and reset colours
 
+# Output bars in all dark colours
+for i in {0..7}; do
+echo -en "\e[$((40 + i))m     "
+done
+
+echo -e "\e[0m"
+
+# Output bars in all bright colours
 for i in {8..15}; do
-
-echo -e "\e[$((colors))mcolor$i"\
-"\t\e[0;30;$((colors+10))m color$i "\
-"\e[30;49m"
-
-colors=$((colors + 1))
-
+echo -en "\e[$((i + 92))m$(echo "     " | cut -c 1-5)"
 done
+
+echo -e "\e[0m"
+
+# Output numbers in all bright colours
+for i in {8..15}; do
+echo -en "\e[$((82 + i))m$(echo "  $i  " | cut -c 1-5)"
+done
+
+echo -e "\e[0m"

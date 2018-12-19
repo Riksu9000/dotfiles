@@ -14,6 +14,8 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
 
+export TERMINAL="urxvt"
+
 [ -f ~/.bashrc ] && source ~/.bashrc
 
 PATH="$PATH:$HOME/.scripts"
