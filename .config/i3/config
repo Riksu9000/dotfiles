@@ -93,7 +93,7 @@ set $ws5 " 5 "
 set $ws6 " 6 "
 set $ws7 " 7 "
 set $ws8 " 8 "
-set $ws9 " 9 "
+set $ws9 " 9.Spotify  "
 set $ws10 " 10.Steam  "
 
 # switch to workspace
@@ -120,8 +120,9 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-assign [class="Steam"] $ws10
 assign [class="Firefox"] $ws1
+assign [class="spotify"] $ws9
+assign [class="Steam"] $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -178,13 +179,20 @@ bar {
 bindsym $mod+x exec i3lock -ec 000000
 
 ### Execute on startup ###
-#exec feh --bg-scale /usr/share/backgrounds/gnome/adwaita-day.jpg
-exec_always xrdb ~/.Xresources
+exec feh --bg-scale /usr/share/backgrounds/gnome/adwaita-morning.jpg
+exec --no-startup-id xrandr --dpi 96
 exec --no-startup-id udiskie -ans2 &
-exec --no-startup-id gnome-flashback
+#exec --no-startup-id gnome-flashback
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id dunst
+
+# Run these apps on startup
+exec --no-startup-id firefox
+
+# Execute on each load
+exec_always xrdb ~/.Xresources
+
 
 ### Colours ###
 # For i3-gaps, only <indicator> and <child_border> can be seen
@@ -199,3 +207,10 @@ gaps inner 20
 for_window [class="^.*"] border pixel 3
 smart_gaps on
 #smart_borders on
+
+# XF86 keyboard bindings
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioLowerVolume exec amixer sset Master 5%- && exec pkill -SIGRTMIN+12 i3blocks 
+bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+ && exec pkill -SIGRTMIN+12 i3blocks

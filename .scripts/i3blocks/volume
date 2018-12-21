@@ -1,0 +1,22 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	2) amixer -q sset Master toggle ;;
+	4) amixer -q sset Master 5%+ ;;
+	5) amixer -q sset Master 5%- ;;
+esac
+
+volume=$(amixer sget Master | awk '/Front Left:/ {print substr($5,2)}' | sed 's/%.*//')
+output=$(amixer sget Master | awk '/Front Left:/ {print substr($6,2)}' | sed 's/]//')
+
+if [ $output = "off" ]; then
+	echo -n ""
+elif [ $volume -eq 0 ]; then
+	echo -n ""
+elif [ $volume -lt 40 ]; then
+	echo -n ""
+else
+	echo -n ""
+fi
+
+echo " $volume"
