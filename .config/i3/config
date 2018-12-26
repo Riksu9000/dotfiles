@@ -163,6 +163,7 @@ bindsym $mod+r mode "resize"
 bar {
 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	position top
+	separator_symbol "<"
 	colors {
 		background	$black
 		statusline	$white
@@ -198,8 +199,8 @@ exec_always xrdb ~/.Xresources
 # For i3-gaps, only <indicator> and <child_border> can be seen
 #<colorclass>		<border>	<background>	<text>		<indicator>	<child_border>
 client.focused		$black		$black		$black		$green		$magenta
-client.focused_inactive	$black		$black		$black		$darkgreen		$darkgray
-client.unfocused	$black		$black		$black		$darkgreen		$black
+client.focused_inactive	$black	$black		$black		$darkgreen	$darkgray
+client.unfocused	$black		$black		$black		$darkgreen	$black
 client.urgent		$black		$black		$black		$white		$red
 
 ### i3-gaps ###

@@ -5,6 +5,5 @@ case $BLOCK_BUTTON in
 	3) notify-send "$(pacman -Qu)" ;;
 esac
 
-echo -n $(pacman -Qu |grep "nvidia" | wc -l | awk '!/0/ {print "Restart required"}')
+echo -n $(pacman -Qu |grep "nvidia" | awk '/nvidia/ {print "Restart required"}') && echo -n " " && echo -n "$(pacman -Qu | wc -l | sed -e 's/^0$//g')"
 
-echo -e " $(pacman -Qu | wc -l | sed -e 's/^0$//g')"

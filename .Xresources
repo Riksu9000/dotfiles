@@ -1,29 +1,51 @@
-// __  __                                            
-// \ \/ /_ __ ___  ___  ___  _   _ _ __ ___ ___  ___ 
+// __  __
+// \ \/ /_ __ ___  ___  ___  _   _ _ __ ___ ___  ___
 //  \  /| '__/ _ \/ __|/ _ \| | | | '__/ __/ _ \/ __|
 //  /  \| | |  __/\__ \ (_) | |_| | | | (_|  __/\__ \
 // /_/\_\_|  \___||___/\___/ \__,_|_|  \___\___||___/
-                                                  
-// Colors
-*background: #000000
-*foreground: #C6C6C6
-*color0: #000000
-*color1: #cc0000
-*color2: #4e9a06
-*color3: #c4a000
-*color4: #3465a4
-*color5: #75507b
-*color6: #06989a
-*color7: #d3d7cf
 
-*color8: #555753
-*color9: #ef2929
-*color10: #8ae234
-*color11: #fce94f
-*color12: #729fcf
-*color13: #ad7fa8
-*color14: #34e2e2
-*color15: #eeeeec
+// Colors
+#define bg #000000
+#define fg #C6C6C6
+
+#define c0 #000000
+#define c1 #cc0000
+#define c2 #4e9a06
+#define c3 #c4a000
+#define c4 #3465a4
+#define c5 #75507b
+#define c6 #06989a
+#define c7 #d3d7cf
+
+#define c8 #555753
+#define c9 #ef2929
+#define c10 #8ae234
+#define c11 #fce94f
+#define c12 #729fcf
+#define c13 #ad7fa8
+#define c14 #34e2e2
+#define c15 #eeeeec
+
+*background: bg
+*foreground: fg
+
+*color0: c0
+*color1: c1
+*color2: c2
+*color3: c3
+*color4: c4
+*color5: c5
+*color6: c6
+*color7: c7
+
+*color8: c8
+*color9: c9
+*color10: c10
+*color11: c11
+*color12: c12
+*color13: c13
+*color14: c14
+*color15: c15
 
 // URxvt
 URxvt.font: xft:Terminus (TTF):style=Bold:size=15, xft:monospace:size=13, xft:FontAwesome:size=13
@@ -33,7 +55,7 @@ URxvt.internalBorder: 0
 URxvt.transparent: true
 URxvt.shading: 30
 URxvt.iso14755: false
-URxvt.iso14755_52: false
+//URxvt.iso14755_52: false
 
 URxvt.perl-ext-common: default,matcher
 
@@ -54,6 +76,6 @@ rofi.disable-history: true
 rofi.sort: true
 
 //State:			bg			fg			bgalt		hlbg		hlgf
-rofi.color-window:	#AA000000,	#FFFFFF,	#FFFFFF,	#FFFFFF,	#000000
-rofi.color-normal:	#00000000,	#FFFFFF,	#00000000,	#FFFFFF,	#000000
+rofi.color-window:	#AA000000,	fg,	fg,	fg,	bg
+rofi.color-normal:	#00000000,	fg,	#00000000,	fg,	bg
 

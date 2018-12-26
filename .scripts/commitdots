@@ -3,7 +3,8 @@
 cp ~/.Xresources ~/Asiakirjat/GitHub/dotfiles/.
 cp ~/.bashrc ~/Asiakirjat/GitHub/dotfiles/.
 cp ~/.profile ~/Asiakirjat/GitHub/dotfiles/.
+cp ~/.nanorc ~/Asiakirjat/GitHub/dotfiles/.
 cp -r ~/.config/i3 ~/Asiakirjat/GitHub/dotfiles/.config/
 cp -r ~/.config/dunst ~/Asiakirjat/GitHub/dotfiles/.config/
 cp -r ~/.scripts ~/Asiakirjat/GitHub/dotfiles/.
-
+cp -r ~/.nanofiles ~/Asiakirjat/GitHub/dotfiles/.
