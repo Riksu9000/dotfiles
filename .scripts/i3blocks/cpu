@@ -4,4 +4,11 @@ case $BLOCK_BUTTON in
 	1) notify-send "$(ps axch -o cmd,%cpu --sort -%cpu | sed 11q)" ;;
 esac
 
+# FULL_TEXT
 cat /proc/loadavg | awk '{print $1}'
+
+# SHORT_TEXT
+echo
+
+# FOREGROUND COLOR
+echo "$(xrdb -q | awk '/color13/ {print $2}')"

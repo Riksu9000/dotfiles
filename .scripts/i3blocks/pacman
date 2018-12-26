@@ -1,9 +1,15 @@
 #!/bin/sh
 
 case $BLOCK_BUTTON in
-	1) $TERMINAL -e sudo pacman -Syu ;;
+	1) $TERMINAL -e sudo pacman -Syu --noconfirm ;;
 	3) notify-send "$(pacman -Qu)" ;;
 esac
 
-echo -n $(pacman -Qu |grep "nvidia" | awk '/nvidia/ {print "Restart required"}') && echo -n " " && echo -n "$(pacman -Qu | wc -l | sed -e 's/^0$//g')"
+# FULL_TEXT
+echo -n $(pacman -Qu |grep "nvidia" | awk '/nvidia/ {print "Restart required "}') && echo "$(pacman -Qu | wc -l | sed -e 's/^0$//g')"
 
+# SHORT_TEXT
+echo
+
+# FOREGROUND COLOR
+echo "$(xrdb -q | awk '/color14/ {print $2}')"

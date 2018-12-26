@@ -1,0 +1,14 @@
+include /usr/share/nano/c.nanorc
+include /usr/share/nano/html.nanorc
+include /usr/share/nano/sh.nanorc
+include /usr/share/nano/css.nanorc
+include /usr/share/nano/nanorc.nanorc
+include /usr/share/nano/default.nanorc
+include ~/.nanofiles/xresources.nanorc
+
+set nowrap
+set linenumbers
+set zap
+set atblanks
+set tabsize 4
+set nonewlines

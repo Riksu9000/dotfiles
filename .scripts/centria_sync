@@ -1,0 +1,2 @@
+rsync -urtv -e ssh ~/Asiakirjat/Centria sambauser@192.168.8.202:/share/disk1/Riku/
+rsync -urtv -e ssh sambauser@192.168.8.202:/share/disk1/Riku/Centria ~/Asiakirjat/

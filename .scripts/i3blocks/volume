@@ -9,6 +9,7 @@ esac
 volume=$(amixer sget Master | awk '/Front Left:/ {print substr($5,2)}' | sed 's/%.*//')
 output=$(amixer sget Master | awk '/Front Left:/ {print substr($6,2)}' | sed 's/]//')
 
+# FULL_TEXT
 if [ $output = "off" ]; then
 	echo -n ""
 elif [ $volume -eq 0 ]; then
@@ -20,3 +21,9 @@ else
 fi
 
 echo " $volume"
+
+# SHORT_TEXT
+echo
+
+# FOREGROUND COLOR
+echo "$(xrdb -q | awk '/color11/ {print $2}')"
