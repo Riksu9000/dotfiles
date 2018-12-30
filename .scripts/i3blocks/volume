@@ -26,4 +26,4 @@ echo " $volume"
 echo
 
 # FOREGROUND COLOR
-echo "$(xrdb -q | awk '/color11/ {print $2}')"
+#echo "$(xrdb -q | awk '/color11/ {print $2}')"

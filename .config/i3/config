@@ -1,6 +1,9 @@
-# i3 config file (v4)
-#
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+#  _ _____                  __ _       
+# (_)___ /  ___ ___  _ __  / _(_) __ _ 
+# | | |_ \ / __/ _ \| '_ \| |_| |/ _` |
+# | |___) | (_| (_) | | | |  _| | (_| |
+# |_|____/ \___\___/|_| |_|_| |_|\__, |
+#                                |___/ 
 
 set_from_resource $black	color0	#000000
 set_from_resource $darkred	color1	#000000
@@ -19,13 +22,12 @@ set_from_resource $magenta	color13	#000000
 set_from_resource $cyan		color14	#000000
 set_from_resource $white	color15	#000000
 
+set_from_resource $bg $black #000000
+
 set $mod Mod4
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono Book 13
+# The font used in the i3bar (i3-gaps)
 font pango:Terminus (TTF) Bold 15
-#font pango:curie 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -39,43 +41,27 @@ bindsym $mod+Shift+q kill
 # start (a program launcher)
 bindsym $mod+d exec rofi -show run
 
-# change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+odiaeresis focus right
+# Lock screen
+bindsym $mod+x exec i3lock -ec 000000
 
-# alternatively, you can use the cursor keys:
+# change focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+odiaeresis move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
+# split orientation
 bindsym $mod+v split h
-
-# split in vertical orientation
 bindsym $mod+c split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -93,7 +79,7 @@ set $ws5 " 5 "
 set $ws6 " 6 "
 set $ws7 " 7 "
 set $ws8 " 8 "
-set $ws9 " 9.Spotify  "
+set $ws9 " 9 "
 set $ws10 " 10.Steam  "
 
 # switch to workspace
@@ -108,6 +94,10 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+# Alternatively switch to next or previous workspace with tab
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -121,93 +111,84 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 assign [class="Firefox"] $ws1
-assign [class="spotify"] $ws9
 assign [class="Steam"] $ws10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+#bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Show power actions
+bindsym $mod+Shift+e exec "~/.scripts/powersel"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-	# These bindings trigger as soon as you enter the resize mode
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
 
-	# Pressing left will shrink the window’s width.
-	# Pressing right will grow the window’s width.
-	# Pressing up will shrink the window’s height.
-	# Pressing down will grow the window’s height.
-	bindsym j resize shrink width 10 px or 10 ppt
-	bindsym k resize grow height 10 px or 10 ppt
-	bindsym l resize shrink height 10 px or 10 ppt
-	bindsym odiaeresis resize grow width 10 px or 10 ppt
+	bindsym $mod+Left resize shrink width 1 px or 1 ppt
+	bindsym $mod+Down resize grow height 1 px or 1 ppt
+	bindsym $mod+Up resize shrink height 1 px or 1 ppt
+	bindsym $mod+Right resize grow width 1 px or 1 ppt
 
-	# same bindings, but for the arrow keys
-	bindsym Left resize shrink width 10 px or 8 ppt
-	bindsym Down resize grow height 10 px or 8 ppt
-	bindsym Up resize shrink height 10 px or 8 ppt
-	bindsym Right resize grow width 10 px or 8 ppt
-
-	# back to normal: Enter or Escape or $mod+r
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 	bindsym $mod+r mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
 bar {
 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	position top
-	separator_symbol "<"
+	separator_symbol " "
+	tray_padding 0
 	colors {
-		background	$black
+		background	$bg
 		statusline	$white
+		
 		#<colorclass>		<border>	<background>	<text>
-		focused_workspace	$white		$white		$black
-		inactive_workspace	$darkblue	$darkblue	$white
-		urgent_workspace	$darkred	$darkred	$white
+		focused_workspace	$bg			$bg				$white
+		inactive_workspace	$bg			$bg				$darkgray
+		urgent_workspace	$darkred	$darkred		$white
 	}
 }
-
 #exec_always polybar -r example
-
-### Custom bindings ###
-bindsym $mod+x exec i3lock -ec 000000
-
-### Execute on startup ###
-exec feh --bg-scale /usr/share/backgrounds/gnome/adwaita-morning.jpg
-exec --no-startup-id xrandr --dpi 96
-exec --no-startup-id udiskie -ans2 &
-#exec --no-startup-id gnome-flashback
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
-exec --no-startup-id dunst
-
-# Run these apps on startup
-exec --no-startup-id firefox
 
 # Execute on each load
 exec_always xrdb ~/.Xresources
 
+### Execute on startup ###
+exec feh --bg-center ~/Kuvat/bg.png
+exec --no-startup-id xrandr --dpi 96
+exec --no-startup-id udiskie -ans2 &
+#exec --no-startup-id gnome-flashback
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec --no-startup-id dunst
+exec --no-startup-id firefox
 
 ### Colours ###
-# For i3-gaps, only <indicator> and <child_border> can be seen
-#<colorclass>		<border>	<background>	<text>		<indicator>	<child_border>
-client.focused		$black		$black		$black		$green		$magenta
-client.focused_inactive	$black	$black		$black		$darkgreen	$darkgray
-client.unfocused	$black		$black		$black		$darkgreen	$black
-client.urgent		$black		$black		$black		$white		$red
+# For i3-gaps, only <indicator> and <child_border> colours can be seen
+#<colorclass>											<indicator>	<child_border>
+#Custom colors
+client.focused		$black		$black		$black		#00acc8		#e06a83
+client.focused_inactive	$black	$black		$black		#175f6b		#993e51
+client.unfocused	$black		$black		$black		#175f6b		$black
+client.urgent		$black		$black		$black		#6ae0c7		#c81c00
+
+# Xresources colours
+#client.focused		$black		$black		$black		$green		$magenta
+#client.focused_inactive $black	$black		$black		$darkgreen	$darkgray
+#client.unfocused	$black		$black		$black		$darkgreen	$black
+#client.urgent		$black		$black		$black		$white		$red
 
 ### i3-gaps ###
 gaps inner 20
 for_window [class="^.*"] border pixel 3
 smart_gaps on
-#smart_borders on
+#smart_borders off
 
 # XF86 keyboard bindings
 bindsym XF86AudioPause exec playerctl play-pause
@@ -215,3 +196,4 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioLowerVolume exec amixer sset Master 5%- && exec pkill -SIGRTMIN+12 i3blocks 
 bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+ && exec pkill -SIGRTMIN+12 i3blocks
+bindsym XF86AudioMute exec amixer sset Master toggle && exec pkill -SIGRTMIN+12 i3blocks

@@ -4,11 +4,17 @@ case $BLOCK_BUTTON in
 	1) notify-send "$(ps axch -o cmd,%cpu --sort -%cpu | sed 11q)" ;;
 esac
 
+load=$(cat /proc/loadavg | awk '{print $1}')
+
 # FULL_TEXT
-cat /proc/loadavg | awk '{print $1}'
+echo $load
 
 # SHORT_TEXT
 echo
 
 # FOREGROUND COLOR
-echo "$(xrdb -q | awk '/color13/ {print $2}')"
+#if [ $(echo "$load>$(nproc)" | bc) -eq 1 ]; then	# If load is greater than the number of cpu cores
+#	echo "$(xrdb -q | awk '/color9/ {print $2}')"
+#else
+#	echo "$(xrdb -q | awk '/color13/ {print $2}')"
+#fi

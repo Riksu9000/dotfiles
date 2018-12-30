@@ -28,7 +28,7 @@
 VERSION=1.3.0
 
 M=32768  # Bash RANDOM maximum + 1
-p=1      # number of pipes
+p=2      # number of pipes
 f=60     # frame rate
 s=13     # probability of straight fitting
 r=2000   # characters limit

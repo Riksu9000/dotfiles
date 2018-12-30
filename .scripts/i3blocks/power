@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo ""
+
+echo
+
+echo
+
+case  $BLOCK_BUTTON in
+	1) exec "~/.scripts/powersel" ;;
+esac

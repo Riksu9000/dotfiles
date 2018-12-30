@@ -5,10 +5,10 @@ case $BLOCK_BUTTON in
 esac
 
 # FULL_TEXT
-echo -e "$(free -h | awk '/Mem:/ { print $3 "/" $2 }' | tr '\n' ' ' | head -c-1)"
+echo -e "$(free -h | awk '/Swap:/ && $3!="0B" {print $3" "}' | tr '\n' ' ' | head -c-1)"
 
 # SHORT_TEXT
 echo
 
 # FOREGROUND COLOR
-#echo "$(xrdb -q | awk '/color10/ {print $2}')"
+#echo "$(xrdb -q | awk '/color11/ {print $2}')"

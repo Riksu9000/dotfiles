@@ -6,10 +6,14 @@ case $BLOCK_BUTTON in
 esac
 
 # FULL_TEXT
-echo -n $(pacman -Qu |grep "nvidia" | awk '/nvidia/ {print "Restart required "}') && echo "$(pacman -Qu | wc -l | sed -e 's/^0$//g')"
+#echo -n $(pacman -Qu |grep "nvidia" | awk '/nvidia/ {print "Restart required "}') && echo "$(pacman -Qu | wc -l | sed -e 's/^0$//g')"
+
+if [ $(p -Qu) ]; then
+	echo
+fi
 
 # SHORT_TEXT
 echo
 
 # FOREGROUND COLOR
-echo "$(xrdb -q | awk '/color14/ {print $2}')"
+#echo "$(xrdb -q | awk '/color14/ {print $2}')"
