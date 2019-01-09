@@ -1,6 +1,6 @@
 #!/bin/bash
 
-aurman -Syu --ignore linux*
+yay -Syu --ignore linux*
 
 read -p 'Would you like to remove orphans? ' -n 1 -r
 echo

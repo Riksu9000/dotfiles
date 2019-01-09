@@ -1,0 +1,21 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) notify-send "$(playerctl metadata title)" "$(playerctl metadata album)\n$(playerctl metadata artist)" ;;
+	2) playerctl play-pause ;;
+	3) playerctl next ;;
+esac
+
+status=$(playerctl status)
+
+if [ $status = "Playing" ]; then
+	echo -n " "
+elif [ $status = "Paused" ]; then
+	echo -n " "
+fi
+
+playerctl metadata title
+
+echo
+
+echo

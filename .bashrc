@@ -10,7 +10,7 @@
 shopt -s autocd # cd by just typing the name of the directory
 
 # Aliases
-alias ls="ls --color -hN --group-directories-first"
+alias ls="ls --color -hNv --group-directories-first"
 alias sudo="sudo "
 alias make="make -j$(nproc)"
 alias p="pacman"

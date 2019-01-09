@@ -8,8 +8,10 @@ esac
 # FULL_TEXT
 #echo -n $(pacman -Qu |grep "nvidia" | awk '/nvidia/ {print "Restart required "}') && echo "$(pacman -Qu | wc -l | sed -e 's/^0$//g')"
 
-if [ $(p -Qu) ]; then
-	echo
+if [ $(pacman -Qu | wc -l) -gt 0 ]; then
+	echo ""
+else
+	echo ""
 fi
 
 # SHORT_TEXT

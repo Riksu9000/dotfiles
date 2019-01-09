@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cat ~/.emoji | rofi -dmenu | awk '{print $1}' | xclip -selection clipboard
+
