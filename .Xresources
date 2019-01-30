@@ -27,35 +27,28 @@
 //*color14: #34e2e2
 
 // Gruvbox
-#define bg #282828
-#define fg #ebdbb2
-#define c0 #282828
-#define c7 #a89984
-#define c8 #928374
-#define c15 #ebdbb2
-
 ! hard contrast: *background: #1d2021
 ! soft contrast: *background: #32302f
+*color0: #282828
 *color1:  #cc241d
 *color2:  #98971a
 *color3:  #d79921
 *color4:  #458588
 *color5:  #b16286
 *color6:  #689d6a
+*color7: #a89984
+*color8: #928374
 *color9:  #fb4934
 *color10: #b8bb26
 *color11: #fabd2f
 *color12: #83a598
 *color13: #d3869b
 *color14: #8ec07c
+*color15: #ebdbb2
 
-*background: bg
-*foreground: fg
-
-*color0: c0
-*color7: c7
-*color8: c8
-*color15: c15
+*cursorColor: #ebdbb2
+*background: #282828
+*foreground: #ebdbb2
 
 // Christmas Linux
 //*color0: #000000
@@ -66,7 +59,6 @@
 //*color5: #008C00
 //*color6: #006000
 //*color7: #d3d7cf
-
 //*color8: #555753
 //*color9: #FFBFBF
 //*color10: #FF7373
@@ -77,14 +69,12 @@
 //*color15: #eeeeec
 
 // URxvt
-URxvt.font: xft:Terminus (TTF):style=Bold:size=15, xft:monospace:size=13, xft:FontAwesome:size=13
-URxvt.scrollBar: 0
+URxvt.font: xft:Terminus (TTF):style=Bold:size=15, xft:Font Awesome 5 Free Regular:size=13
+URxvt.scrollBar: false
+//URxvt.fading: 10
 URxvt.externalBorder: 0
 URxvt.internalBorder: 0
-URxvt.transparent: false
-URxvt.shading: 30
 URxvt.iso14755: false // Disable ctrl+shift dumbness
-URxvt.fading: 16
 
 // URxvt modules
 URxvt.perl-ext-common: default,matcher
@@ -95,22 +85,3 @@ URxvt.matcher.rend.0: Uline Bold fg6
 // Bindings to move one word in URxvt
 URxvt.keysym.Control-Left: \033[1;5D
 URxvt.keysym.Control-Right: \033[1;5C
-
-// ST
-st.font: Terminus (TTF)-15:style=Bold
-
-// Rofi config
-rofi.font: Terminus (TTF) 24
-rofi.lines: 3
-rofi.padding: 200
-rofi.hide-scrollbar: true
-rofi.fake-transparency: true
-rofi.fullscreen: true
-rofi.bw: 0
-rofi.separator-style: solid
-rofi.disable-history: true
-rofi.sort: true
-
-//State:			bg			fg			bgalt		hlbg		hlgf
-rofi.color-window:	#A0282828,	c15,		c15,		c15,		bg
-rofi.color-normal:	#00000000,	c15,		#00000000,	c15,		bg

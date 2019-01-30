@@ -1,10 +1,10 @@
 #!/bin/sh
-#                   __ _ _      
-#  _ __  _ __ ___  / _(_) | ___ 
+#                   __ _ _
+#  _ __  _ __ ___  / _(_) | ___
 # | '_ \| '__/ _ \| |_| | |/ _ \
 # | |_) | | | (_) |  _| | |  __/
 # | .__/|_|  \___/|_| |_|_|\___|
-# |_|                           
+# |_|
 
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
@@ -21,5 +21,3 @@ export TERMINAL="urxvt"
 PATH="$PATH:$HOME/.scripts"
 PATH="$PATH:$HOME/binaries"
 #PATH=$PATH:/home/riku/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/
-
-export QT_QPA_PLATFORMTHEME="qt5ct"

@@ -6,27 +6,23 @@
 #                                |___/ 
 
 set $mod Mod4
+floating_modifier $mod
 
 # The font used in the i3bar (i3-gaps)
 font pango:Terminus (TTF) Bold 20px
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $TERMINAL
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start (a program launcher)
-bindsym $mod+d exec rofi -show run
-
-# Lock screen
-bindsym $mod+x exec i3lock -ec 000000
+# program launcher
+#bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec dmenu_run -fn "Terminus (TTF):size=18:style=Bold" -nb "#282828" -nf "#ebdbb2" -sb "#ebdbb2" -sf "#282828" -i
 
 # Rofi emoji
-bindsym $mod+e exec cat ~/.emoji | rofi -dmenu -p "Copy emoji to clipboard" | awk '{print $1}' | xclip -selection clipboard
+bindsym $mod+e exec ~/.scripts/emoji
 
 # change focus
 bindsym $mod+Left focus left
@@ -35,23 +31,22 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left move left 30
+bindsym $mod+Shift+Down move down 30
+bindsym $mod+Shift+Up move up 30
+bindsym $mod+Shift+Right move right 30
 
 # split orientation
 bindsym $mod+v split h
 bindsym $mod+c split v
 
-# enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+
+bindsym $mod+s exec ~/.scripts/speaktome
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -96,13 +91,8 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 assign [class="Steam"] $ws10
 
-# reload the configuration file
-#bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-
-# Show power actions
-bindsym $mod+Shift+e exec "~/.scripts/powersel"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -121,6 +111,23 @@ mode "resize" {
 	bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
+
+# System controls in bar
+set $mode_system System (l)ock, (e)xit, (s)uspend, (r)eboot, (p)ower-off
+mode "$mode_system" {
+	bindsym l exec --no-startup-id i3lock -ec 000000, mode "default"
+	bindsym e exec --no-startup-id i3-msg exit, mode "default"
+	bindsym s exec --no-startup-id systemctl suspend, mode "default"
+	bindsym r exec --no-startup-id systemctl reboot, mode "default"
+	bindsym p exec --no-startup-id systemctl poweroff, mode "default"
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym m mode "default"
+	bindsym $mod+m mode "default"
+}
+bindsym $mod+m mode "$mode_system"
 
 # Get colors from .Xresources
 set_from_resource $black	color0	#000000
@@ -141,26 +148,21 @@ set_from_resource $cyan		color14	#000000
 set_from_resource $white	color15	#000000
 set_from_resource $bg background #000000
 
-# For i3-gaps, only <indicator> and <child_border> colours can be seen
-#<colorclass>											<indicator>	<child_border>
-#Custom colors
-#client.focused		$black		$black		$black		#00acc8		#e06a83
-#client.focused_inactive	$black	$black		$black		#175f6b		#993e51
-#client.unfocused	$black		$black		$black		#175f6b		$black
-#client.urgent		$black		$black		$black		#6ae0c7		#c81c00
-
 # Xresources colours
-client.focused		$black		$black		$black		$magenta		$lightgray
-client.focused_inactive $black	$black		$black		$darkmagenta	$black
-client.unfocused	$black		$black		$black		$darkmagenta	$black
-client.urgent		$black		$black		$black		$white		$red
+# <colorclass>		<border>	<background><text>		<indicator>		<child_border>
+client.focused		$black		$white		$black		$magenta		$white
+client.focused_inactive $black	$black		$darkgray	$darkmagenta	$darkgray
+client.unfocused	$black		$black		$darkgray	$darkmagenta	$darkgray
+client.urgent		$black		$black		$black		$white			$red
 
 bar {
 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+
 	position top
 	separator_symbol " "
 	tray_padding 0
 	strip_workspace_numbers yes
+	#tray_output none
 	colors {
 		background	$bg
 		statusline	$white
@@ -171,27 +173,19 @@ bar {
 		urgent_workspace	$darkred	$darkred	$white
 	}
 }
-#exec_always polybar -r example
 
 # Execute on each load
 exec_always xrdb ~/.Xresources
 
 ### Execute on startup ###
-#exec feh --bg-center ~/Kuvat/bg.png
 exec --no-startup-id xrandr --dpi 96
 exec --no-startup-id udiskie -ans2 &
-#exec --no-startup-id gnome-flashback
-#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id dunst
+#exec --no-startup-id setxkbmap -layout us,fi -option 'grp:switch'
 exec --no-startup-id firefox
 
-for_window [class="^.*"] border pixel 3
-
-### i3-gaps ###
-#gaps inner 0
-#smart_gaps on
-#smart_borders off
+for_window [class="Firefox"] border pixel 3
+for_window [class=".*"] border pixel 3
 
 # XF86 keyboard bindings
 bindsym XF86AudioPause exec playerctl play-pause && exec pkill -SIGRTMIN+13 i3blocks
@@ -200,3 +194,6 @@ bindsym XF86AudioNext exec playerctl next && exec pkill -SIGRTMIN+13 i3blocks
 bindsym XF86AudioLowerVolume exec amixer sset Master 5%- && exec pkill -SIGRTMIN+12 i3blocks 
 bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+ && exec pkill -SIGRTMIN+12 i3blocks
 bindsym XF86AudioMute exec amixer sset Master toggle && exec pkill -SIGRTMIN+12 i3blocks
+bindsym XF86HomePage exec firefox
+#bindsym XF86Tools
+#bindsym XF86Mail

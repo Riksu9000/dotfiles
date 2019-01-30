@@ -1,0 +1,11 @@
+#!/bin/sh
+
+language=${1:-en-us}
+
+if [ "$(ps -e |grep espeak)" != "" ]; then
+	killall espeak
+else
+	xclip -o > ~/.espeaktemp
+	$TERMINAL -e nano ~/.espeaktemp
+	espeak -a 200 -v $language -s 160 -g 1 -f ~/.espeaktemp
+fi

@@ -18,7 +18,7 @@ echo -e "\e[0m"
 
 # Output bars in all bright colours
 for i in {8..15}; do
-echo -en "\e[$((i + 92))m$(echo "     " | cut -c 1-5)"
+echo -en "\e[$((i + 92))m     "
 done
 
 echo -e "\e[0m"

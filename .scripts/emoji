@@ -1,4 +1,7 @@
 #!/bin/sh
 
-cat ~/.emoji | rofi -dmenu | awk '{print $1}' | xclip -selection clipboard
+symbol=$(cat ~/.emoji | rofi -columns 2 -dmenu -p "Copy emoji to clipboard" | awk '{print $1}')
 
+echo $symbol | xclip -selection primary
+echo $symbol | xclip -selection clipboard
+notify-send "$symbol copied to primary selction and clipboard"
