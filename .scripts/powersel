@@ -1,3 +1,0 @@
-#!/bin/sh
-
-i3-nagbar -f "pango:Terminus (TTF) Bold 15" -t warning -m "Please make a selection" -B "Shutdown" "shutdown +0" -B "Reboot" "reboot" -B "Exit i3" "i3-msg exit"

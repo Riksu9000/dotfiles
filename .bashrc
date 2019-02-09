@@ -16,7 +16,6 @@ alias make="make -j$(nproc)"
 alias p="pacman"
 alias mkdir="mkdir -pv"
 alias i3conf="nano ~/.config/i3/config"
-alias i3bl="nano ~/.config/i3/i3blocks.conf"
 alias c="clear"
 
 function cd {

@@ -7,5 +7,5 @@ echo
 echo
 
 case  $BLOCK_BUTTON in
-	1) exec "~/.scripts/powersel" ;;
+	1) exec i3-nagbar -f "pango:Terminus (TTF) Bold 15" -t warning -m "Please make a selection" -B "Shutdown" "shutdown +0" -B "Reboot" "reboot" -B "Exit i3" "i3-msg exit" ;;
 esac
