@@ -15,6 +15,7 @@ export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
 
 export TERMINAL="urxvt"
+#export TERMINAL="termite"
 
 [ -f ~/.bashrc ] && source ~/.bashrc
 

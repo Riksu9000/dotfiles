@@ -1,0 +1,8 @@
+#!/bin/sh
+
+URL=$(cat ~/.bookmarks | rofi -config ~/.config/rofi/roficonf -dmenu -p "Open bookmark in new tab")
+
+# Exit if nothing was selected
+if [[ $URL -eq "" ]]; then exit; fi;
+
+firefox --new-tab $URL

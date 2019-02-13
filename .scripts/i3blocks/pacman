@@ -1,17 +1,15 @@
 #!/bin/sh
 
 case $BLOCK_BUTTON in
-	1) $TERMINAL -e sudo pacman -Syu --noconfirm ;;
+	1) urxvt -e sudo pacman -Syu --noconfirm ;;
 	3) notify-send "$(pacman -Qu)" ;;
 esac
 
 # FULL_TEXT
-#echo -n $(pacman -Qu |grep "nvidia" | awk '/nvidia/ {print "Restart required "}') && echo "$(pacman -Qu | wc -l | sed -e 's/^0$//g')"
+#echo "$(pacman -Qu | wc -l | sed -e 's/^0$//g')"
 
 if [ $(pacman -Qu | wc -l) -gt 0 ]; then
 	echo ""
-else
-	echo ""
 fi
 
 # SHORT_TEXT

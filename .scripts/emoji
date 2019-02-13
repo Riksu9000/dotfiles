@@ -1,7 +1,8 @@
 #!/bin/sh
 
-symbol=$(cat ~/.emoji | rofi -columns 2 -dmenu -p "Copy emoji to clipboard" | awk '{printf $1}')
+symbol=$(cat ~/.emoji | rofi -config ~/.config/rofi/roficonf -columns 2 -dmenu -p "Copy emoji to clipboard" | awk '{printf $1}')
 
+# Exit if nothing was selected
 if [[ $symbol -eq "" ]]; then exit; fi;
 
 echo -n $symbol | xclip -selection primary

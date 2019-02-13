@@ -48,6 +48,8 @@ bindsym $mod+space focus mode_toggle
 
 bindsym $mod+s exec ~/.scripts/speaktome
 
+bindsym $mod+t exec ~/.scripts/newtab
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1  "
@@ -187,6 +189,8 @@ exec --no-startup-id firefox
 for_window [class="Firefox"] border pixel 3
 for_window [class=".*"] border pixel 3
 
+smart_borders on
+
 # XF86 keyboard bindings
 bindsym XF86AudioPause exec playerctl play-pause && exec pkill -SIGRTMIN+13 i3blocks
 bindsym XF86AudioPrev exec playerctl previous && exec pkill -SIGRTMIN+13 i3blocks
@@ -195,5 +199,6 @@ bindsym XF86AudioLowerVolume exec amixer sset Master 5%- && exec pkill -SIGRTMIN
 bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+ && exec pkill -SIGRTMIN+12 i3blocks
 bindsym XF86AudioMute exec amixer sset Master toggle && exec pkill -SIGRTMIN+12 i3blocks
 bindsym XF86HomePage exec firefox
+bindsym Print exec gnome-screenshot -c
 #bindsym XF86Tools
 #bindsym XF86Mail

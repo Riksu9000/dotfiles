@@ -4,9 +4,11 @@ include /usr/share/nano/sh.nanorc
 include /usr/share/nano/css.nanorc
 include /usr/share/nano/nanorc.nanorc
 include /usr/share/nano/default.nanorc
+include /usr/share/nano/tex.nanorc
+
 include ~/.nanofiles/xresources.nanorc
 include ~/.nanofiles/csharp.nanorc
-include /usr/share/nano/tex.nanorc
+include ~/.nanofiles/arduino.nanorc
 
 set nowrap
 set linenumbers
