@@ -18,10 +18,10 @@ bindsym $mod+Return exec $TERMINAL
 bindsym $mod+Shift+q kill
 
 # program launcher
-#bindsym $mod+d exec rofi -show run
+#bindsym $mod+d exec rofi -config "~/.config/rofi/roficonf" -show run
 bindsym $mod+d exec dmenu_run -fn "Terminus (TTF):size=18:style=Bold" -nb "#282828" -nf "#ebdbb2" -sb "#ebdbb2" -sf "#282828" -i
 
-# Rofi emoji
+# Emoji selector
 bindsym $mod+e exec ~/.scripts/emoji
 
 # change focus
@@ -52,6 +52,7 @@ bindsym $mod+c split v
 
 bindsym $mod+f fullscreen toggle
 
+# Toggle floating and change borders depending on the mode
 bindsym $mod+Shift+space floating toggle; [floating] border normal; [tiling] border pixel 3
 
 bindsym $mod+space focus mode_toggle
@@ -143,38 +144,36 @@ mode "$mode_system" {
 	bindsym r exec --no-startup-id systemctl reboot, mode "default"
 	bindsym p exec --no-startup-id systemctl poweroff, mode "default"
 
-	# back to normal: Enter or Escape
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
-	bindsym m mode "default"
+	bindsym m	   mode "default"
 	bindsym $mod+m mode "default"
 }
 bindsym $mod+m mode "$mode_system"
 
+
 # Get colors from .Xresources
 set_from_resource $black	color0	#000000
-set_from_resource $darkred	color1	#000000
-set_from_resource $darkgreen	color2	#000000
-set_from_resource $darkyellow	color3	#000000
-set_from_resource $darkblue	color4	#000000
-set_from_resource $darkmagenta	color5	#000000
-set_from_resource $darkcyan	color6	#000000
-set_from_resource $lightgray	color7	#000000
-set_from_resource $darkgray	color8	#000000
-set_from_resource $red		color9	#000000
-set_from_resource $green	color10	#000000
-set_from_resource $yellow	color11	#000000
-set_from_resource $blue		color12	#000000
-set_from_resource $magenta	color13	#000000
-set_from_resource $cyan		color14	#000000
-set_from_resource $white	color15	#000000
-set_from_resource $bg background #000000
+set_from_resource $darkred	color1	#800000
+set_from_resource $darkgreen	color2	#008000
+set_from_resource $darkyellow	color3	#808000
+set_from_resource $darkblue	color4	#000080
+set_from_resource $darkmagenta	color5	#800080
+set_from_resource $darkcyan	color6	#008080
+set_from_resource $lightgray	color7	#c0c0c0
+set_from_resource $darkgray	color8	#808080
+set_from_resource $red		color9	#ff0000
+set_from_resource $green	color10	#00ff00
+set_from_resource $yellow	color11	#ffff00
+set_from_resource $blue		color12	#0000ff
+set_from_resource $magenta	color13	#ff00ff
+set_from_resource $cyan		color14	#00ffff
+set_from_resource $white	color15	#ffffff
 
-# Xresources colours
 # <colorclass>		<border>	<background><text>		<indicator>		<child_border>
 client.focused		$white		$white		$black		$magenta		$white
-client.focused_inactive $black	$black		$darkgray	$darkmagenta	$darkgray
-client.unfocused	$darkgray	$black		$darkgray	$darkmagenta	$darkgray
+client.focused_inactive $darkgray $darkgray	$black		$darkmagenta	$darkgray
+client.unfocused	$darkgray	$darkgray	$black		$darkmagenta	$darkgray
 client.urgent		$black		$black		$black		$white			$red
 
 bar {
@@ -184,14 +183,16 @@ bar {
 	separator_symbol " "
 	tray_padding 0
 	strip_workspace_numbers yes
-	#tray_output none
+
+	#tray_output none	# Find a udiskie replacement first
+
 	colors {
-		background	$bg
+		background	$black
 		statusline	$white
 		
 		#<colorclass>		<border>	<background><text>
-		focused_workspace	$bg			$bg			$white
-		inactive_workspace	$bg			$bg			$darkgray
+		focused_workspace	$black			$black			$white
+		inactive_workspace	$black			$black			$darkgray
 		urgent_workspace	$darkred	$darkred	$white
 	}
 }
@@ -199,18 +200,23 @@ bar {
 # Execute on each load
 exec_always xrdb ~/.Xresources
 
-### Execute on startup ###
+# Execute on startup
 exec --no-startup-id xrandr --dpi 96
 exec --no-startup-id udiskie -ans2 &
-exec --no-startup-id dunst
-#exec --no-startup-id setxkbmap -layout us,fi -option 'grp:switch'
 exec --no-startup-id firefox
 
-for_window [class="Firefox" tiling] border pixel 3
-for_window [class=".*" tiling] border pixel 3
-for_window [floating] border normal
+# There seems to be some issue here
+#exec --no-startup-id setxkbmap -layout us,fi -option 'grp:switch'
 
+
+# Border settings
+# Firefox should always be without the header bar
+for_window [class="Firefox" tiling] border pixel 3
+
+for_window [floating] border normal 3
+for_window [tiling] border pixel 3
 hide_edge_borders smart
+
 
 # XF86 keyboard bindings
 bindsym XF86AudioPause exec playerctl play-pause && exec pkill -SIGRTMIN+13 i3blocks

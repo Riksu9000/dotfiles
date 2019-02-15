@@ -4,29 +4,7 @@
 //  /  \| | |  __/\__ \ (_) | |_| | | | (_|  __/\__ \
 // /_/\_\_|  \___||___/\___/ \__,_|_|  \___\___||___/
 
-// Colors
-
-// Tango
-//#define bg #000000
-//#define fg #C6C6C6
-//#define c0 #000000
-//#define c7 #d3d7cf
-//#define c8 #555753
-//#define c15 #eeeeec
-//*color1: #cc0000
-//*color2: #4e9a06
-//*color3: #c4a000
-//*color4: #3465a4
-//*color5: #75507b
-//*color6: #06989a
-//*color9: #ef2929
-//*color10: #8ae234
-//*color11: #fce94f
-//*color12: #729fcf
-//*color13: #ad7fa8
-//*color14: #34e2e2
-
-// Gruvbox
+// Gruvbox colors
 ! hard contrast: *background: #1d2021
 ! soft contrast: *background: #32302f
 *color0: #282828
@@ -50,29 +28,9 @@
 *background: #282828
 *foreground: #ebdbb2
 
-// Christmas Linux
-//*color0: #000000
-//*color1: #D90000
-//*color2: #8C0000
-//*color3: #600000
-//*color4: #00D900
-//*color5: #008C00
-//*color6: #006000
-//*color7: #d3d7cf
-//*color8: #555753
-//*color9: #FFBFBF
-//*color10: #FF7373
-//*color11: #FF2626
-//*color12: #BFFFBF
-//*color13: #73FF73
-//*color14: #26FF26
-//*color15: #eeeeec
-
 // URxvt
-URxvt.font: xft:Terminus (TTF):style=Bold:size=15, xft:Font Awesome 5 Free Regular:size=13
+URxvt.font: xft:Terminus (TTF):style=Bold:size=15
 URxvt.scrollBar: false
-//URxvt.fading: 10
-URxvt.externalBorder: 0
 URxvt.internalBorder: 0
 URxvt.iso14755: false // Disable ctrl+shift dumbness
 
