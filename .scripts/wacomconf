@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ -z $(xsetwacom list devices) ]; then
+	notify-send "Tablet was not detected"
+	exit
+fi
+
 DEVICE="Wacom Intuos S"
 
 STYLUS="$DEVICE Pen stylus"
@@ -7,9 +12,15 @@ ERASER="$DEVICE Pen eraser"
 PAD="$DEVICE Pad pad"
 
 ## Stylus
-xsetwacom set "$STYLUS" Suppress 1
-xsetwacom set "$STYLUS" RawSample 1
-
+if [ $(xsetwacom get "$STYLUS" Suppress) == 2 ]; then
+	notify-send "Setting tablet to pefromance mode"
+	xsetwacom set "$STYLUS" Suppress 1
+	xsetwacom set "$STYLUS" RawSample 1
+else
+	notify-send "Setting tablet to quality mode"
+	xsetwacom set "$STYLUS" Suppress 2
+	xsetwacom set "$STYLUS" RawSample 4
+fi
 ## Eraser
 
 ## Pad

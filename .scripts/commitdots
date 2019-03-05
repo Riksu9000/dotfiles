@@ -1,12 +1,19 @@
 #!/bin/sh
 
-cp ~/.Xresources ~/Asiakirjat/GitHub/dotfiles/.
-cp ~/.bashrc ~/Asiakirjat/GitHub/dotfiles/.
-cp ~/.profile ~/Asiakirjat/GitHub/dotfiles/.
-cp ~/.nanorc ~/Asiakirjat/GitHub/dotfiles/.
-cp ~/.xinitrc ~/Asiakirjat/GitHub/dotfiles/.
-cp -r ~/.config/i3 ~/Asiakirjat/GitHub/dotfiles/.config/
-cp -r ~/.config/dunst ~/Asiakirjat/GitHub/dotfiles/.config/
-cp -r ~/.config/rofi ~/Asiakirjat/GitHub/dotfiles/.config/
-cp -r ~/.scripts ~/Asiakirjat/GitHub/dotfiles/.
-cp -r ~/.nanofiles ~/Asiakirjat/GitHub/dotfiles/.
+DEST="$HOME/Asiakirjat/GitHub/dotfiles"
+
+FILE[0]=".Xresources"
+FILE[1]=".bashrc"
+FILE[2]=".profile"
+FILE[3]=".nanorc"
+FILE[4]=".xinitrc"
+FILE[5]=".config/i3/"
+FILE[6]=".config/dunst/"
+FILE[7]=".config/rofi/"
+FILE[8]=".scripts/"
+FILE[9]=".nanofiles/"
+
+for filename in "${FILE[@]}"; do
+	rm -r "$DEST"/"$filename"
+	cp -r "$HOME"/"$filename" "$DEST"/"$filename"
+done
