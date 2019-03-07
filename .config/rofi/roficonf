@@ -1,9 +1,10 @@
-rofi.location: 2
 rofi.font: Terminus (TTF) Bold 18
-rofi.yoffset: -23
-rofi.separator-style: solid
+rofi.separator-style: none
 rofi.bw: 3
 rofi.padding: 20
+rofi.disable-history: true
+rofi.sidebar-mode: true
+rofi.hide-scrollbar: true
 
-rofi.color-normal: #282828, #ebdbb2, #282828, #ebdbb2, #282828
-rofi.color-window: #282828
+rofi.color-normal: #ebdbb2, #282828, #ebdbb2, #458588,  #ebdbb2
+rofi.color-window: #ebdbb2

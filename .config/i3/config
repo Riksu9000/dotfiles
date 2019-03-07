@@ -9,7 +9,7 @@ set $mod Mod4
 floating_modifier $mod
 
 # The font used in the i3bar (i3-gaps)
-font pango:Terminus (TTF) Bold 20px
+font pango:Terminus (TTF) Medium 20px
 
 # start a terminal
 bindsym $mod+Return exec $TERMINAL
@@ -18,8 +18,8 @@ bindsym $mod+Return exec $TERMINAL
 bindsym $mod+Shift+q kill
 
 # program launcher
-#bindsym $mod+d exec rofi -config "~/.config/rofi/roficonf" -show run
-bindsym $mod+d exec dmenu_run -fn "Terminus (TTF):size=18:style=Bold" -nb "#282828" -nf "#ebdbb2" -sb "#ebdbb2" -sf "#282828" -i
+#bindsym $mod+d exec "rofi -lines 3 -columns 3 -modi run,ssh -config \\"~/.config/rofi/roficonf\\" -show"
+bindsym $mod+d exec dmenu_run -fn "Terminus (TTF):size=18:style=Regular" -nf "#282828" -nb "#ebdbb2" -sf "#ebdbb2" -sb "#282828" -i
 
 # Emoji selector
 bindsym $mod+e exec ~/.scripts/emoji
@@ -138,7 +138,7 @@ bindsym $mod+r mode "resize"
 # System controls in bar
 set $mode_system System (l)ock, (e)xit, (s)uspend, (r)eboot, (p)ower-off
 mode "$mode_system" {
-	bindsym l exec --no-startup-id i3lock -ec 000000, mode "default"
+	bindsym l exec --no-startup-id i3lock -ec 282828, mode "default"
 	bindsym e exec --no-startup-id i3-msg exit, mode "default"
 	bindsym s exec --no-startup-id systemctl suspend, mode "default"
 	bindsym r exec --no-startup-id systemctl reboot, mode "default"
@@ -176,34 +176,36 @@ client.focused_inactive $darkgray $darkgray	$black		$darkmagenta	$darkgray
 client.unfocused	$darkgray	$darkgray	$black		$darkmagenta	$darkgray
 client.urgent		$black		$black		$black		$white			$red
 
-bar {
-	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#bar {
+#	#status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#	position top
+#	separator_symbol " "
+#	tray_padding 0
+#	strip_workspace_numbers yes
+#
+#	#tray_output none	# Find a udiskie replacement first
+#
+#	colors {
+#		background	$black
+#		statusline	$white
+#		
+#		#<colorclass>		<border>	<background><text>
+#		focused_workspace	$black			$black			$white
+#		inactive_workspace	$black			$black			$darkgray
+#		urgent_workspace	$darkred	$darkred	$white
+#	}
+#}
 
-	position top
-	separator_symbol " "
-	tray_padding 0
-	strip_workspace_numbers yes
 
-	#tray_output none	# Find a udiskie replacement first
-
-	colors {
-		background	$black
-		statusline	$white
-		
-		#<colorclass>		<border>	<background><text>
-		focused_workspace	$black			$black			$white
-		inactive_workspace	$black			$black			$darkgray
-		urgent_workspace	$darkred	$darkred	$white
-	}
-}
+# Execute on startup
+exec_always pkill -USR1 polybar
+exec --no-startup-id sleep 1 && polybar top
+exec --no-startup-id xrandr --dpi 96
+exec --no-startup-id udiskie -ans2
+exec --no-startup-id firefox
 
 # Execute on each load
 exec_always xrdb ~/.Xresources
-
-# Execute on startup
-exec --no-startup-id xrandr --dpi 96
-exec --no-startup-id udiskie -ans2 &
-exec --no-startup-id firefox
 
 # There seems to be some issue here
 #exec --no-startup-id setxkbmap -layout us,fi -option 'grp:switch'

@@ -1,4 +1,3 @@
-#!/bin/bash
 #  _               _
 # | |__   __ _ ___| |__  _ __ ___
 # | '_ \ / _` / __| '_ \| '__/ __|
@@ -20,10 +19,11 @@ alias c="clear"
 
 function cd {
 	builtin cd "$@" && ls
-	}
+}
 
 # Prompt
-PS1="\[\033[1;32m\]\u@\H \[\033[34m\]\w \[\033[0m\]\$ "
+PS1="\[\033[92m\]\u@\H \[\033[94m\]\w \[\033[0m\]\$ "
+#PS1="\[\033[1;92m\]\u@\H \[\033[94m\]\w \[\033[0m\]\$ "
 
 # if running tilix
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then

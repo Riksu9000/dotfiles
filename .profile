@@ -20,5 +20,5 @@ export TERMINAL="urxvt"
 [ -f ~/.bashrc ] && source ~/.bashrc
 
 PATH="$PATH:$HOME/.scripts"
-PATH="$PATH:$HOME/binaries"
+PATH="$PATH:$HOME/applications"
 #PATH=$PATH:/home/riku/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/
