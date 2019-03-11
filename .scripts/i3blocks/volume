@@ -11,7 +11,10 @@ output=$(amixer sget Master | awk '/Front Left:/ {print substr($6,2)}' | sed 's/
 
 # FULL_TEXT
 if [ $output = "off" ]; then
-	echo -n ""
+	echo -n " $volume"
+	echo
+	echo "$(xrdb -q | awk '/color8/ {print $2}')"
+	return
 elif [ $volume -eq 0 ]; then
 	echo -n ""
 elif [ $volume -lt 40 ]; then
@@ -21,9 +24,3 @@ else
 fi
 
 echo " $volume"
-
-# SHORT_TEXT
-echo
-
-# FOREGROUND COLOR
-#echo "$(xrdb -q | awk '/color11/ {print $2}')"
