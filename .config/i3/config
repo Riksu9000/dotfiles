@@ -19,7 +19,7 @@ bindsym $mod+Shift+q kill
 
 # program launcher
 #bindsym $mod+d exec "rofi -lines 3 -columns 3 -modi run,ssh -config \\"~/.config/rofi/roficonf\\" -show"
-bindsym $mod+d exec dmenu_run -fn "Terminus (TTF):size=18:style=Regular" -nf "#282828" -nb "#ebdbb2" -sf "#ebdbb2" -sb "#282828" -i
+bindsym $mod+d exec dmenu_run -fn "Terminus (TTF):size=18:style=Bold" -nb "$green" -nf "$black" -sb "$white" -sf "$black" -i
 
 # Emoji selector
 bindsym $mod+e exec ~/.scripts/emoji
@@ -63,16 +63,16 @@ bindsym $mod+t exec ~/.scripts/newtab
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1  "
-set $ws2 " 2 "
-set $ws3 " 3 "
-set $ws4 " 4 "
-set $ws5 " 5 "
-set $ws6 " 6 "
-set $ws7 " 7 "
-set $ws8 " 8 "
-set $ws9 " 9 "
-set $ws10 "10  "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10:0"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -176,30 +176,30 @@ client.focused_inactive $darkgray $darkgray	$black		$darkmagenta	$darkgray
 client.unfocused	$darkgray	$darkgray	$black		$darkmagenta	$darkgray
 client.urgent		$black		$black		$black		$white			$red
 
-#bar {
-#	#status_command i3blocks -c ~/.config/i3/i3blocks.conf
-#	position top
-#	separator_symbol " "
-#	tray_padding 0
-#	strip_workspace_numbers yes
-#
-#	#tray_output none	# Find a udiskie replacement first
-#
-#	colors {
-#		background	$black
-#		statusline	$white
-#		
-#		#<colorclass>		<border>	<background><text>
-#		focused_workspace	$black			$black			$white
-#		inactive_workspace	$black			$black			$darkgray
-#		urgent_workspace	$darkred	$darkred	$white
-#	}
-#}
+bar {
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	position top
+	separator_symbol " "
+	tray_padding 0
+	strip_workspace_numbers yes
+
+	#tray_output none	# Find a udiskie replacement first
+
+	colors {
+		background	$black
+		statusline	$white
+		
+		#<colorclass>		<border><background><text>
+		focused_workspace	$black	$black	$white
+		inactive_workspace	$black	$black	$darkgray
+		urgent_workspace	$black	$black	$red
+	}
+}
 
 
 # Execute on startup
-exec_always pkill -USR1 polybar
-exec --no-startup-id sleep 1 && polybar top
+#exec_always pkill -USR1 polybar
+#exec --no-startup-id sleep 1 && polybar top
 exec --no-startup-id xrandr --dpi 96
 exec --no-startup-id udiskie -ans2
 exec --no-startup-id firefox
