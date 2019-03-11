@@ -6,5 +6,6 @@ rofi.disable-history: true
 rofi.sidebar-mode: true
 rofi.hide-scrollbar: true
 
-rofi.color-normal: #ebdbb2, #282828, #ebdbb2, #458588,  #ebdbb2
+# bg, fg, bgalt, hlbg, hlfg
+rofi.color-normal: #ebdbb2, #282828, #ebdbb2, #b8bb26, #282828
 rofi.color-window: #ebdbb2
