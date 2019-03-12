@@ -1,4 +1,9 @@
 #!/bin/sh
 
-notify-send "Primary selection: $(xclip -o -selection primary)"
-notify-send "Clipboard: $(xclip -o -selection clipboard)"
+PRIMARY=$(xclip -o -selection primary)
+CLIPBOARD=$(xclip -o -selection clipboard)
+
+if [[ $PRIMARY != "" ]]; then
+	notify-send "Primary selection: $(xclip -o -selection primary)"
+	notify-send "Clipboard: $(xclip -o -selection clipboard)"
+fi
