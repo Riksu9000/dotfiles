@@ -1,31 +1,21 @@
 #!/bin/sh
 
-echo "Dark colors"
+echo -e "\
+\e[0mEscape 0 (Reset)\n\
+\e[0;1mEscape 1 (Bold)\n\
+\e[0;4mEscape 4 (Underline)\n\
+\e[0;5mEscape 5 (Blink)\n\
+\e[0;7mEscape 7 (Reverse)\n\
 
-# Output numbers in all dark colours
+\e[0;4mColor num|Escape codes\e[0m"
+
 for i in {0..7}; do
-echo -en "\e[$((30 + i))m  $((i))  "
+	echo -e "    $i    |\e[$((i+30))m  $((i+30))  \e[97;$((i+40))m  $((i+40))  \e[0m"
 done
 
-echo -e "\e[0m" # New line and reset colours
+echo "–––-------------------"
 
-# Output bars in all dark colours
 for i in {0..7}; do
-echo -en "\e[$((40 + i))m     "
+	echo -en "    $((i+8))    " | cut -z -c 1-9
+	echo -e "|\e[$((i+90))m  $((i+90))  \e[30;$((i+100))m  $((i+100)) \e[0m"
 done
-
-echo -e "\e[0m"
-
-# Output bars in all bright colours
-for i in {8..15}; do
-echo -en "\e[$((i + 92))m     "
-done
-
-echo -e "\e[0m"
-
-# Output numbers in all bright colours
-for i in {8..15}; do
-echo -en "\e[$((82 + i))m$(echo "  $i  " | cut -c 1-5)"
-done
-
-echo -e "\n\e[0mLight colors"
