@@ -5,5 +5,12 @@ CLIPBOARD=$(xclip -o -selection clipboard)
 
 if [[ $PRIMARY != "" ]]; then
 	notify-send "Primary selection: $(xclip -o -selection primary)"
+else
+	notify-send "Primary selection is empty."
+fi
+
+if [[ $CLIPBOARD != "" ]]; then
 	notify-send "Clipboard: $(xclip -o -selection clipboard)"
+else
+	notify-send "Clipboard is empty."
 fi
