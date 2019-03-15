@@ -16,14 +16,37 @@ alias p="pacman"
 alias mkdir="mkdir -pv"
 alias i3conf="nano ~/.config/i3/config"
 alias c="clear"
+alias now="date '+%a %e.%b %H:%M' | figlet -t -f big | lolcat -F 0.2"
+alias gg="cd ~/Asiakirjat/GitHub/"
+alias nf="neofetch"
 
 function cd {
 	builtin cd "$@" && ls
 }
 
+function make_prompt {
+	local EXIT="$?"
+
+	PS1=""
+
+#	if [ $EXIT -ne 0 ]; then
+#		PS1+="\[\033[97;101m\] $EXIT \[\033[0m\]"
+#	fi
+
+	if [ "$(git branch 2> /dev/null)" != "" ]; then
+		PS1+="\[\033[98;45m\] $(basename $(git remote get-url origin 2> /dev/null) .git)$(pwd | sed "s|$(git rev-parse --show-toplevel 2> /dev/null)||") \[\033[30;107m\] $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //')"
+	else
+		PS1+="\[\033[98;44m\] \w"
+	fi
+
+	PS1+=" \[\033[97;42m\] \$ \[\033[0m\] "
+
+}
+
 # Prompt
-PS1="\[\033[92m\]\u@\H \[\033[94m\]\w \[\033[0m\]\$ "
-#PS1="\[\033[1;92m\]\u@\H \[\033[94m\]\w \[\033[0m\]\$ "
+#PS1="\[\033[92m\]\u@\H \[\033[94m\]\w \[\033[0m\]\$ "
+#PS1="\[\033[98;44m\] \w \[\033[42m\] \$ \[\033[0m\] "
+PROMPT_COMMAND=make_prompt
 
 # if running tilix
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
@@ -31,10 +54,11 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 fi
 
 if [ "$TERM" = "linux" ]; then
-	# Set virtual console colors from Xresources
-	#	for i in $(sed -e 's/\/\/.*$//' -ne 's/.*\*color\([0-9]\{1,\}\).*#\([0-9a-fA-F]\{6\}\).*/\1 \2/p' $HOME/.Xresources | awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
-	#		echo -en "$i"
-	#	done
-
+	#Set virtual console colors from Xresources
+	for i in $(sed -e 's/\/\/.*$//' -ne 's/.*\*color\([0-9]\{1,\}\).*#\([0-9a-fA-F]\{6\}\).*/\1 \2/p' $HOME/.Xresources | awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
+		echo -en "$i"
+	done
+	clear
+	now
 	alias x="startx"
 fi
