@@ -5,6 +5,7 @@
 # |_.__/ \__,_|___/_| |_|_|  \___|
 
 [[ $- == *i* ]] && stty -ixon # Disable ctrl-s and ctrl-q
+[ $VTE_VERSION ] && source /etc/profile.d/vte.sh #Source vte.sh if in Virtual Terminal Environment
 
 shopt -s autocd # cd by just typing the name of the directory
 
@@ -20,23 +21,19 @@ alias now="date '+%a %e.%b %H:%M' | figlet -t -f big | lolcat -F 0.2"
 alias gg="cd ~/Asiakirjat/GitHub/"
 alias nf="neofetch"
 
-function cd {
+cd() {
 	builtin cd "$@" && ls
 }
 
-function make_prompt {
+__make_prompt() {
 	local EXIT="$?"
 
 	PS1=""
 
-#	if [ $EXIT -ne 0 ]; then
-#		PS1+="\[\033[97;101m\] $EXIT \[\033[0m\]"
-#	fi
-
 	if [ "$(git branch 2> /dev/null)" != "" ]; then
-		PS1+="\[\033[98;45m\] $(basename $(git remote get-url origin 2> /dev/null) .git)$(pwd | sed "s|$(git rev-parse --show-toplevel 2> /dev/null)||") \[\033[30;107m\] $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //')"
+		PS1+="\[\033[97;45m\] $(basename $(git remote get-url origin 2> /dev/null) .git)$(pwd | sed "s|$(git rev-parse --show-toplevel 2> /dev/null)||") \[\033[30;107m\] $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //')"
 	else
-		PS1+="\[\033[98;44m\] \w"
+		PS1+="\[\033[97;44m\] \w"
 	fi
 
 	PS1+=" \[\033[97;42m\] \$ \[\033[0m\] "
@@ -46,12 +43,8 @@ function make_prompt {
 # Prompt
 #PS1="\[\033[92m\]\u@\H \[\033[94m\]\w \[\033[0m\]\$ "
 #PS1="\[\033[98;44m\] \w \[\033[42m\] \$ \[\033[0m\] "
-PROMPT_COMMAND=make_prompt
+PROMPT_COMMAND=__make_prompt
 
-# if running tilix
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-	source /etc/profile.d/vte.sh
-fi
 
 if [ "$TERM" = "linux" ]; then
 	#Set virtual console colors from Xresources
