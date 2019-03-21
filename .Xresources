@@ -29,7 +29,7 @@
 *foreground: #ebdbb2
 
 // URxvt
-URxvt.font: xft:Terminus (TTF):style=Medium:size=15
+URxvt.font: xft:xos4 Terminus:size=14
 URxvt.scrollBar: false
 URxvt.internalBorder: 0
 URxvt.iso14755: false // Disable ctrl+shift dumbness

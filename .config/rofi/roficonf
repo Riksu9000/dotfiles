@@ -1,4 +1,4 @@
-rofi.font: Terminus (TTF) Bold 18
+rofi.font: xos4 Terminus Bold 18
 rofi.separator-style: none
 rofi.bw: 3
 rofi.padding: 20
