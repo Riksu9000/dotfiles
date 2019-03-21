@@ -9,21 +9,22 @@
 
 shopt -s autocd # cd by just typing the name of the directory
 
-# Aliases
+# Shorter command
+alias p="pacman"
+alias nf="neofetch"
+
+# Add options to commands
+alias nano="nano --nowrap --linenumbers --zap --atblanks --tabsize=4 --nonewlines --smooth --noconvert --morespace --afterends"
 alias ls="ls --color -hNv --group-directories-first"
 alias sudo="sudo "
 alias make="make -j$(nproc)"
-alias p="pacman"
 alias mkdir="mkdir -pv"
+
+# "Functions"
 alias i3conf="nano ~/.config/i3/config"
-alias c="clear"
 alias now="date '+%a %e.%b %H:%M' | figlet -t -f big | lolcat -F 0.2"
 alias gg="cd ~/Asiakirjat/GitHub/"
-alias nf="neofetch"
-
-cd() {
-	builtin cd "$@" && ls
-}
+cd() { builtin cd "$@" && ls; }
 
 __make_prompt() {
 	local EXIT="$?"
@@ -37,7 +38,6 @@ __make_prompt() {
 	fi
 
 	PS1+=" \[\033[97;42m\] \$ \[\033[0m\] "
-
 }
 
 # Prompt
