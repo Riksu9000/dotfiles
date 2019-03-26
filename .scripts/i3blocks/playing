@@ -3,19 +3,15 @@
 case $BLOCK_BUTTON in
 	1) notify-send "$(playerctl metadata title)" "$(playerctl metadata album)\n$(playerctl metadata artist)" ;;
 	2) playerctl play-pause ;;
-	3) playerctl next ;;
+	3) playerctl next && pkill --SIGRTMIN+13 i3blocks ;;
 esac
 
 status=$(playerctl status)
 
 if [ $status = "Playing" ]; then
-	echo -n " "
+	echo -n "▶ "
 elif [ $status = "Paused" ]; then
-	echo -n " "
+	echo -n "⏸ "
 fi
 
 playerctl metadata title
-
-echo
-
-echo

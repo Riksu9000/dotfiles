@@ -14,11 +14,12 @@ alias p="pacman"
 alias nf="neofetch"
 
 # Add options to commands
-alias nano="nano --nowrap --linenumbers --zap --atblanks --tabsize=4 --nonewlines --smooth --noconvert --morespace --afterends"
+alias nano="nano --nowrap --linenumbers --zap --atblanks --tabsize=4 --nonewlines --noconvert --afterends"
 alias ls="ls --color -hNv --group-directories-first"
 alias sudo="sudo "
 alias make="make -j$(nproc)"
 alias mkdir="mkdir -pv"
+alias pacman="pacman --color always"
 
 # "Functions"
 alias i3conf="nano ~/.config/i3/config"

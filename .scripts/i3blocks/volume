@@ -10,16 +10,7 @@ volume=$(amixer sget Master | awk '/Front Left:/ {print substr($5,2)}' | sed 's/
 output=$(amixer sget Master | awk '/Front Left:/ {print substr($6,2)}' | sed 's/]//')
 
 if [ $output = "off" ]; then
-	echo " $volume"
-	echo
-	echo "$(xrdb -q | awk '/color8/ {print $2}')"
+	echo -e "muted $volume%\n\n$(xrdb -q | awk '/color8/ {print $2}')"
 else
-	if [ $volume -eq 0 ]; then
-		echo -n ""
-	elif [ $volume -lt 40 ]; then
-		echo -n ""
-	else
-		echo -n ""
-	fi
-	echo " $volume"
+	echo -n "VOL $volume%"
 fi
