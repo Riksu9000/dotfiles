@@ -23,7 +23,7 @@ alias pacman="pacman --color always"
 
 # "Functions"
 alias i3conf="nano ~/.config/i3/config"
-alias now="date '+%a %e.%b %H:%M' | figlet -t -f big | lolcat -F 0.2"
+alias now="date '+%a %e.%b %H:%M' | figlet -t -f big"
 alias gg="cd ~/Asiakirjat/GitHub/"
 cd() { builtin cd "$@" && ls; }
 
