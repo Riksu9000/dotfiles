@@ -23,7 +23,6 @@ alias pacman="pacman --color always"
 
 # "Functions"
 alias i3conf="nano ~/.config/i3/config"
-alias now="date '+%a %e.%b %H:%M' | figlet -t -f big"
 alias gg="cd ~/Asiakirjat/GitHub/"
 cd() { builtin cd "$@" && ls; }
 
@@ -53,6 +52,7 @@ if [ "$TERM" = "linux" ]; then
 		echo -en "$i"
 	done
 	clear
-	now
+	date '+%a %e.%b %H:%M'
+	echo "$(p -Qu | wc -l) packages can be upgraded."
 	alias x="startx"
 fi

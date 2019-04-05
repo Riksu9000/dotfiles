@@ -6,6 +6,7 @@
 # | .__/|_|  \___/|_| |_|_|\___|
 # |_|
 
+export LESS=-R
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 export LESS_TERMCAP_mb=$'\e[1;31m'
@@ -16,6 +17,8 @@ export LESS_TERMCAP_se=$'\e[0m'
 
 export TERMINAL="urxvt"
 #export TERMINAL="termite"
+
+
 
 [ -f ~/.bashrc ] && source ~/.bashrc
 
