@@ -110,7 +110,7 @@ color brightyellow start=""(\\.|[^"])*\\[[:space:]]*$" end="^(\\.|[^"])*""
 
 ## Comments
 color brightblue "//.*"
-color brightblue start="/\*" end="\*/"
+color brightblue start="^\ */\*" end="\*/"
 
 ## Trailing whitespace
 color ,green "[[:space:]]+$"
