@@ -11,6 +11,10 @@ color brightblue "\<(cat|cd|chmod|chown|cp|echo|env|export|grep|install|let|ln|m
 icolor brightgreen "^\s+[0-9A-Z_]+\s+\(\)"
 icolor brightred "\$\{?[0-9A-Z_!@#$*?-]+\}?"
 color brightyellow ""(\\.|[^"])*"" "'(\\.|[^'])*'"
-color cyan "(^|[[:space:]])#.*$"
-color ,green "[[:space:]]+$"
 color brightmagenta "bindsym"
+
+## Comments
+color cyan "(^|[[:space:]])#.*$"
+
+## Show whitespace
+color ,green "[[:space:]]+$"
