@@ -41,11 +41,13 @@ set_from_resource $dred		color1	#800000
 # start a terminal
 bindsym $mod+Return exec $TERMINAL
 
+# start a file manager
+bindsym $mod+t exec nemo
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # program launcher
-#bindsym $mod+d exec "rofi -lines 3 -columns 3 -modi run,ssh -config \\"~/.config/rofi/roficonf\\" -show"
 bindsym $mod+d exec dmenu_run -fn "xos4 Terminus:size=16:style=Bold" -nb "$white" -nf "$black" -sb "$green" -sf "$black" -i
 
 # Emoji selector
@@ -139,18 +141,8 @@ bindsym XF86HomePage exec firefox
 bindsym Print exec scrot
 
 
-# Mouse support
-# The middle button and a modifer over any part of the window kills the window
-# Until issue github.com/i3/i3/issues/3459 is fixed, this will have to do
-bindsym --whole-window $mod+button2 kill
-# bindsym --release --whole-window $mod+button2 kill
-
-# The right button toggles floating
-bindsym button3 floating toggle
-bindsym $mod+button3 floating toggle
-
-
 # resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
 mode "resize" {
 	bindsym Left resize shrink width 100 px or 10 ppt
 	bindsym Down resize grow height 100 px or 10 ppt
@@ -176,23 +168,23 @@ mode "resize" {
 	bindsym Escape mode "default"
 	bindsym $mod+r mode "default"
 }
-bindsym $mod+r mode "resize"
 
 # System controls in bar
-set $mode_system System (l)ock, (e)xit, (s)uspend, (r)eboot, (p)ower-off
+bindsym $mod+m mode "$mode_system"
+set $mode_system System (l)ock, (e)xit, (s)uspend, (r)eboot, (p)ower-off, (f)irmware-setup
 mode "$mode_system" {
 	bindsym l exec i3lock -ec 141414, mode "default"
-	bindsym e exec i3-msg exit, mode "default"
+	bindsym e exec i3-msg exit
 	bindsym s exec i3lock -ec 141414 && systemctl suspend, mode "default"
-	bindsym r exec systemctl reboot, mode "default"
-	bindsym p exec systemctl poweroff, mode "default"
+	bindsym r exec systemctl reboot
+	bindsym p exec systemctl poweroff
+	bindsym f exec systemctl reboot --firmware-setup
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 	bindsym m	   mode "default"
 	bindsym $mod+m mode "default"
 }
-bindsym $mod+m mode "$mode_system"
 
 
 # <colorclass>		<border><background><text>	<indicator>	<child_border>
@@ -222,7 +214,6 @@ bar {
 }
 
 # Execute on startup
-exec udiskie -ans2
 exec firefox
 
 # Execute on each load
