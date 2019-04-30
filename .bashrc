@@ -3,6 +3,7 @@
 # | '_ \ / _` / __| '_ \| '__/ __|
 # | |_) | (_| \__ \ | | | | | (__
 # |_.__/ \__,_|___/_| |_|_|  \___|
+# Run on bash start
 
 [[ $- == *i* ]] && stty -ixon # Disable ctrl-s and ctrl-q
 [ $VTE_VERSION ] && source /etc/profile.d/vte.sh #Source vte.sh if in Virtual Terminal Environment
@@ -20,6 +21,7 @@ alias sudo="sudo "
 alias make="make -j$(nproc)"
 alias mkdir="mkdir -pv"
 alias pacman="pacman --color always"
+alias neofetch="neofetch --block_range 0 15"
 
 # "Functions"
 alias i3conf="nano ~/.config/i3/config"
@@ -44,15 +46,3 @@ __make_prompt() {
 #PS1="\[\033[92m\]\u@\H \[\033[94m\]\w \[\033[0m\]\$ "
 #PS1="\[\033[98;44m\] \w \[\033[42m\] \$ \[\033[0m\] "
 PROMPT_COMMAND=__make_prompt
-
-
-if [ "$TERM" = "linux" ]; then
-	#Set virtual console colors from Xresources
-	for i in $(sed -e 's/\/\/.*$//' -ne 's/.*\*color\([0-9]\{1,\}\).*#\([0-9a-fA-F]\{6\}\).*/\1 \2/p' $HOME/.Xresources | awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
-		echo -en "$i"
-	done
-	clear
-	date '+%a %e.%b %H:%M'
-	echo "$(p -Qu | wc -l) packages can be upgraded."
-	alias x="startx"
-fi
