@@ -1,9 +1,7 @@
 #!/bin/sh
 
-if [ -z $(xsetwacom list devices) ]; then
-	notify-send "Tablet was not detected"
-	exit
-fi
+[ -z $(command -v xsetwacom) ] && notify-send "You need to install xsetwacom!" && exit
+[ -z $(xsetwacom list devices) ] && notify-send "Tablet was not detected" && exit
 
 DEVICE="Wacom Intuos S"
 

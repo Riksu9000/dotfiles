@@ -1,10 +1,10 @@
 #!/bin/sh
 
+# Show a list of emoji
 symbol=$(cat ~/.emoji | rofi -config ~/.config/rofi/roficonf -columns 2 -dmenu -p "Copy emoji to clipboard" | awk '{printf $1}')
 
-# Exit if nothing was selected
-if [[ $symbol -eq "" ]]; then exit; fi;
+# If nothing was selected
+[ -z "$symbol" ] && exit
 
-echo -n $symbol | xclip -selection primary
-echo -n $symbol | xclip -selection clipboard
-notify-send "$symbol copied to primary selction and clipboard"
+# Otherwise send a notification
+echo -n $symbol | xclip && notify-send "$symbol copied"

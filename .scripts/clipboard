@@ -3,12 +3,10 @@
 PRIMARY=$(xclip -o -selection primary)
 CLIPBOARD=$(xclip -o -selection clipboard)
 
-if [[ $PRIMARY != "" && $PRIMARY != $CLIPBOARD ]]; then
-	notify-send "Primary selection: $(xclip -o -selection primary)"
-fi
+[ $PRIMARY != "" ] && [ $PRIMARY != $CLIPBOARD ] && notify-send "Primary selection: $PRIMARY"
 
 if [[ $CLIPBOARD != "" ]]; then
-	notify-send "Clipboard: $(xclip -o -selection clipboard)"
+	notify-send "Clipboard: $CLIPBOARD"
 else
 	notify-send "Clipboard is empty."
 fi
