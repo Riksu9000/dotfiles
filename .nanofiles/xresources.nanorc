@@ -1,5 +1,0 @@
-syntax "xresources" "X(defaults|resources)$"
-comment "//"
-
-color cyan "(^|[[:space:]])//([^{].*)?$"
-color brightblue "(^|[[:space:]])#([^{].*)?$"
