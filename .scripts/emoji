@@ -1,10 +1,18 @@
 #!/bin/sh
 
-# Show a list of emoji
-symbol=$(cat ~/.emoji | rofi -config ~/.config/rofi/roficonf -columns 2 -dmenu -p "Copy emoji to clipboard" | awk '{printf $1}')
+rofifont="xos4 Terminus Bold 18"
+roficonf="-separator-style none -columns 2 -dmenu -bw 3 -padding 20 -hide-scrollbar 1"
+#roficolors="-color-normal #ebdbb2,#282828,#ebdbb2,#d65d0e,#282828 -color-window #ebdbb2"
+roficolors="-color-normal #282828,#928374,#282828,#d65d0e,#ebdbb2 -color-window #282828,#d65d0e"
+
+# Location of emoji file
+EMOJIFILE="$HOME/.scripts/emojis"
+
+# Show a list of emoji and put awk the selected emoji to variable $SYMBOL
+SYMBOL=$(cat $EMOJIFILE | rofi -font "$rofifont" $roficolors $roficonf -p "Copy emoji to clipboard" | awk '{printf $1}')
 
 # If nothing was selected
-[ -z "$symbol" ] && exit
+[ -z "$SYMBOL" ] && exit
 
 # Otherwise send a notification
-echo -n $symbol | xclip && notify-send "$symbol copied"
+echo -n $SYMBOL | xclip && notify-send "$SYMBOL copied"
