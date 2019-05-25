@@ -20,6 +20,7 @@ alias x=startx
 [ -f ~/.bashrc ] && source ~/.bashrc
 
 # Export options
+export EDITOR=vim
 export LESS=-R
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
@@ -29,7 +30,7 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
 
-export TERMINAL="urxvt"
+export TERMINAL="st"
 
 
 PATH="$PATH:$HOME/.scripts"
