@@ -1,15 +1,19 @@
 #!/bin/sh
 
-rofifont="xos4 Terminus Bold 18"
-roficonf="-separator-style none -columns 2 -dmenu -bw 3 -padding 20 -hide-scrollbar 1"
+#rofifont="xos4 Terminus Bold 18"
+#roficonf="-separator-style none -columns 2 -dmenu -bw 3 -padding 20 -hide-scrollbar 1"
 #roficolors="-color-normal #ebdbb2,#282828,#ebdbb2,#d65d0e,#282828 -color-window #ebdbb2"
-roficolors="-color-normal #282828,#928374,#282828,#d65d0e,#ebdbb2 -color-window #282828,#d65d0e"
+#roficolors="-color-normal #282828,#928374,#282828,#d65d0e,#ebdbb2 -color-window #282828,#d65d0e"
+
+font="xos4 Terminus-18"
+dmenuconf="-nb "#282828" -nf "#ebdbb2" -sb "#d65d0e" -sf "#ebdbb2" -l 30 "
 
 # Location of emoji file
 EMOJIFILE="$HOME/.scripts/emojis"
 
 # Show a list of emoji and put awk the selected emoji to variable $SYMBOL
-SYMBOL=$(cat $EMOJIFILE | rofi -font "$rofifont" $roficolors $roficonf -p "Copy emoji to clipboard" | awk '{printf $1}')
+#SYMBOL=$(cat $EMOJIFILE | rofi -font "$rofifont" $roficolors $roficonf -p "Copy emoji to clipboard" | awk '{printf $1}')
+SYMBOL=$(cat $EMOJIFILE | dmenu -fn "$font" $dmenuconf -l 30 -p "Copy emoji to clipboard" | awk '{printf $1}')
 
 # If nothing was selected
 [ -z "$SYMBOL" ] && exit
