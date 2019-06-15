@@ -6,10 +6,8 @@
 # |_|
 # Run on login
 
-#Set virtual console colors from Xresources
-for i in $(sed -e 's/\/\/.*$//' -ne 's/.*\*color\([0-9]\{1,\}\).*#\([0-9a-fA-F]\{6\}\).*/\1 \2/p' $HOME/.Xresources | awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
-	echo -en "$i"
-done
+# Gruvbox colorscheme
+echo -e "\\e]P01d2021\\e]P1cc241d\\e]P298971a\\e]P3d79921\\e]P4458588\\e]P5b16286\\e]P6689d6a\\e]P7a89984\\e]P8928374\\e]P9fb4934\\e]Pab8bb26\\e]Pbfabd2f\\e]Pc83a598\\e]Pdd3869b\\e]Pe8ec07c\\e]Pfebdbb2"
 clear
 date '+%a %e.%b %H:%M'
 echo "$(pacman -Qu | wc -l) packages can be upgraded."
@@ -20,18 +18,19 @@ alias x=startx
 [ -f ~/.bashrc ] && source ~/.bashrc
 
 # Export options
-export EDITOR=vim
-export LESS=-R
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
-export LESS_TERMCAP_mb=$'\e[1;31m'
-export LESS_TERMCAP_so=$'\e[1;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-
-export TERMINAL="st"
-
+export EDITOR=nvim \
+TERMINAL="st" \
+BROWSER="firefox" \
+_JAVA_AWT_WM_NONREPARENTING=1 \
+vblank_mode=0 \
+LESS=-R \
+LESS_TERMCAP_md=$'\e[1;32m' \
+LESS_TERMCAP_us=$'\e[1;4;31m' \
+LESS_TERMCAP_mb=$'\e[1;31m' \
+LESS_TERMCAP_so=$'\e[1;33m' \
+LESS_TERMCAP_ue=$'\e[0m' \
+LESS_TERMCAP_me=$'\e[0m' \
+LESS_TERMCAP_se=$'\e[0m' \
 
 PATH="$PATH:$HOME/.scripts"
 PATH="$PATH:$HOME/applications"
