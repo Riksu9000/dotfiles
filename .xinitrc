@@ -1,17 +1,9 @@
-# Start authentication daemons
-dbus-update-activation-environment --systemd DISPLAY
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export SSH_AUTH_SOCK
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-
-# Source files
-[ -f ~/.Xresources ] && xrdb ~/.Xresources
-
-
 # Background programs
+dbus-update-activation-environment --systemd DISPLAY
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &  # for merging PRIMARY and CLIPBOARD
+dunst &
 $HOME/.scripts/dwmstatus.sh &  # DWM status bar script
 
 
