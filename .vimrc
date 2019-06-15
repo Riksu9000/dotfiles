@@ -15,6 +15,8 @@ Plug 'scrooloose/syntastic'
 " Completion engine
 Plug 'ervandew/supertab'
 
+Plug 'sirtaj/vim-openscad'
+
 call plug#end()
 
 " Set gruvbox as colorscheme
