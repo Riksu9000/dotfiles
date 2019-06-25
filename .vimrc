@@ -2,6 +2,8 @@ set number relativenumber
 set cursorline
 set listchars+=tab:\|\ ,trail:~,extends:>,precedes:<
 set list
+set tabstop=4
+set shiftwidth=4
 syntax on
 
 call plug#begin()
@@ -15,6 +17,7 @@ Plug 'scrooloose/syntastic'
 " Completion engine
 Plug 'ervandew/supertab'
 
+" Openscad syntax highlighting
 Plug 'sirtaj/vim-openscad'
 
 call plug#end()
@@ -35,3 +38,4 @@ let g:syntastic_check_on_wq = 0
 
 vmap <C-c> "+y
 map <C-p> "+p
+
