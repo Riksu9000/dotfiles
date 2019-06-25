@@ -5,44 +5,28 @@
 # |_.__/ \__,_|___/_| |_|_|  \___|
 # Run on bash start
 
-[[ $- == *i* ]] && stty -ixon # Disable ctrl-s and ctrl-q
-[ $VTE_VERSION ] && source /etc/profile.d/vte.sh #Source vte.sh if in Virtual Terminal Environment
-
 shopt -s autocd # cd by just typing the name of the directory
 
-# Shorter command
-alias p="pacman"
-alias nf="neofetch"
-
-# Add options to commands
-alias nano="nano --nowrap --linenumbers --zap --atblanks --tabsize=4 --nonewlines --noconvert --afterends"
-alias ls="ls --color -hNv --group-directories-first"
-alias sudo="sudo "
-alias make="make -j$(nproc)"
-alias mkdir="mkdir -pv"
-alias pacman="pacman --color always"
-alias neofetch="neofetch --block_range 0 15"
+# Aliases
+alias p="pacman" \
+nf="neofetch" \
+v="nvim" \
+ls="ls --color -hNv --group-directories-first" \
+sudo="sudo " \
+make="make -j$(nproc)" \
+mkdir="mkdir -pv" \
+pacman="pacman --color always" \
+neofetch="neofetch --block_range 0 15" \
+gg="cd ~/Asiakirjat/GitHub/" \
 
 # "Functions"
-alias i3conf="nano ~/.config/i3/config"
-alias gg="cd ~/Asiakirjat/GitHub/"
 cd() { builtin cd "$@" && ls; }
 
-__make_prompt() {
-	local EXIT="$?"
-
-	PS1=""
-
-	if [ "$(git branch 2> /dev/null)" != "" ]; then
-		PS1+="\[\033[97;45m\] $(basename $(git remote get-url origin 2> /dev/null) .git)$(pwd | sed "s|$(git rev-parse --show-toplevel 2> /dev/null)||") \[\033[30;107m\] $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //')"
-	else
-		PS1+="\[\033[97;44m\] \w"
-	fi
-
-	PS1+=" \[\033[97;42m\] \$ \[\033[0m\] "
+uz() {
+	unzip -q $1 -d $(basename -s ".zip" $1)
+	rm $1
 }
 
 # Prompt
-#PS1="\[\033[92m\]\u@\H \[\033[94m\]\w \[\033[0m\]\$ "
-#PS1="\[\033[98;44m\] \w \[\033[42m\] \$ \[\033[0m\] "
-PROMPT_COMMAND=__make_prompt
+PS1="\[\033[97;44m\] \w \[\033[42m\] \$ \[\033[0m\] "
+
