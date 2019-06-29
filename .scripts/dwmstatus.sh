@@ -18,11 +18,11 @@ update() {
 }
 
 backlight() {
-	BAR=$BAR$SEP$(cat /sys/class/backlight/*/actual_brightness)
+	BAR=$BAR$SEP"BL "$(cat /sys/class/backlight/*/actual_brightness)
 }
 
 bat() {
-	BAR=$BAR$SEP$(cat /sys/class/power_supply/BAT0/capacity)
+	BAR=$BAR$SEP"BAT "$(cat /sys/class/power_supply/BAT0/capacity)"%"
 }
 
 vol() {
