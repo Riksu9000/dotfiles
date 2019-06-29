@@ -23,7 +23,9 @@ gg="cd ~/Asiakirjat/GitHub/" \
 cd() { builtin cd "$@" && ls; }
 
 uz() {
-	unzip -q $1 -d $(basename -s ".zip" $1)
+	BN=$(basename -s ".zip" $1)
+	mkdir $BN
+	bsdtar -xf $1 -C $BN
 	rm $1
 }
 
