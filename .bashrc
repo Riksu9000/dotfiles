@@ -15,7 +15,6 @@ ls="ls --color -hNv --group-directories-first" \
 sudo="sudo " \
 make="make -j$(nproc)" \
 mkdir="mkdir -pv" \
-pacman="pacman --color always" \
 neofetch="neofetch --block_range 0 15" \
 gg="cd ~/Asiakirjat/GitHub/" \
 
@@ -30,5 +29,9 @@ uz() {
 }
 
 # Prompt
-PS1="\[\033[97;44m\] \w \[\033[42m\] \$ \[\033[0m\] "
-
+if [ -n "$SSH_CLIENT" ]
+then
+	PS1="\[\033[97;41m\] \H \[\033[44m\] \w \[\033[42m\] \$ \[\033[0m\] "
+else
+	PS1="\[\033[97;44m\] \w \[\033[42m\] \$ \[\033[0m\] "
+fi
