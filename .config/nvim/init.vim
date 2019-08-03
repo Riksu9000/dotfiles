@@ -20,6 +20,9 @@ Plug 'ervandew/supertab'
 " Openscad syntax highlighting
 Plug 'sirtaj/vim-openscad'
 
+" Automatically close html tags
+Plug 'alvan/vim-closetag'
+
 call plug#end()
 
 " Set gruvbox as colorscheme
