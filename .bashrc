@@ -15,19 +15,24 @@ ls="ls --color -hNv --group-directories-first" \
 sudo="sudo " \
 make="make -j$(nproc)" \
 mkdir="mkdir -pv" \
-neofetch="neofetch --block_range 0 15" \
-gg="cd ~/Asiakirjat/GitHub/" \
+neofetch="neofetch --block_range 0 15 --colors 4 15 15 4 15 15 --ascii_colors 4 4" \
+gg="cd ~/docs/github/" \
+gots='git --git-dir=/home/riku/docs/github/dotfiles --work-tree=/home/riku/ ' \
 
 # "Functions"
 cd() { builtin cd "$@" && ls; }
 
-uz() {
-	BN=$(basename -s ".zip" $1)
-	mkdir $BN
-	bsdtar -xf $1 -C $BN
+# Unarchive
+# Automatically extract archives into folders with the same name
+# removes the original file
+ua() {
+	BN=$(basename $1)
+	EXT=${BN##*.}
+	DN=$(basename -s .$EXT $BN)
+	mkdir $DN
+	bsdtar -xf $1 -C $DN || return 1
 	rm $1
 }
-
 # Prompt
 if [ -n "$SSH_CLIENT" ]
 then
