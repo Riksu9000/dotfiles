@@ -13,6 +13,8 @@ CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
 	dmenu -i -l 5 -fn "$FONT" -nb $BLACK -nf $GRAY -sb $SEL -sf $WHITE -p "Mount which drive?" | \
 	awk '{print $1}')
 
+[ -z $CHOSEN ] && exit 0
+
 # Get the label for the partition
 LABEL=$(lsblk $CHOSEN -npro "LABEL")
 
