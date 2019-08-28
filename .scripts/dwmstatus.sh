@@ -3,6 +3,8 @@
 # Separator put in between modules
 SEP="  "
 
+BATCRIT="false"
+
 # Update the status bar
 update() {
 	# Clear statusbar of old data
@@ -18,11 +20,17 @@ update() {
 }
 
 backlight() {
-	BAR=$BAR$SEP"BL "$(cat /sys/class/backlight/*/actual_brightness)
+	BAR=$BAR$SEP"BL "$(cat /sys/class/backlight/*/brightness)
 }
 
 bat() {
-	BAR=$BAR$SEP"BAT "$(cat /sys/class/power_supply/BAT0/capacity)"%"
+	BATSTAT=$(cat /sys/class/power_supply/BAT0/capacity)
+
+	# Display warning when battery charge goes below 10%
+	[ $BATCRIT == "false" ] && [ $BATSTAT -lt 10 ] && BATCRIT="true" && notify-send -u critical "Battery critical!"
+	[ $BATCRIT == "true" ] && [ $BATSTAT -gt 10 ] && BATCRIT="false"
+
+	BAR=$BAR$SEP"BAT $BATSTAT%"
 }
 
 vol() {
