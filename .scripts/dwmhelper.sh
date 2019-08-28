@@ -22,6 +22,10 @@ case $1 in
 	playpause)
 		playerctl play-pause
 		;;
+	screenshot)
+		FILENAME=$(scrot '%F_%H%M%S.png' -e 'echo $f')
+		xclip -selection clipboard -t image/png -i $HOME/$FILENAME
+		notify-send "Screenshot saved to file $FILENAME"
 esac
 
 # Refresh statusbar
