@@ -3,12 +3,13 @@
 # Touch-screen-menu
 
 FONT="xos4 Terminus 22"
-BLACK="#000000"; GREY="#bbbbbb"; WHITE="#eeeeee"; SEL="#005577"
-
+#BG="#282828"; FG="#928374"; HLFG="#ebdbb2"; HLBG="#d65d0e"
+#BG="#000000"; FG="#bbbbbb"; HLBG="#005577"; HLFG="#eeeeee"
+BG="#ffffff"; FG="#000000"; HLBG="#5c5cff"; HLFG="#000000"
 
 rofi -font "$FONT" \
-	-color-normal $BLACK,$GREY,$BLACK,$SEL,$WHITE \
-	-color-window $BLACK,$SEL \
+	-color-normal $BG,$FG,$BG,$HLBG,$HLFG \
+	-color-window $BG,$HLBG \
 	-show drun \
 	-lines 30 \
 	-bw 4 \

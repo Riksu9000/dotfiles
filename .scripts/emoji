@@ -1,13 +1,17 @@
 #!/bin/sh
 
+# Emoji selector
+
 FONT="xos4 Terminus 18"
 EMOJIFILE="$HOME/.scripts/emojis"
-BLACK="#282828"; GRAY="#928374"; WHITE="#ebdbb2"; SEL="#d65d0e"
+BG="#282828"; FG="#928374"; HLFG="#ebdbb2"; HLBG="#d65d0e"
+#BG="#000000"; FG="#bbbbbb"; HLBG="#005577"; HLFG="#eeeeee"
+#BG="#ffffff"; FG="#000000"; HLBG="#5c5cff"; HLFG="#000000"
 
 # Show a list of emoji and awk the selected emoji to variable $SYMBOL
 SYMBOL=$(cat $EMOJIFILE | rofi -font "$FONT" \
-	-color-normal $BLACK,$GRAY,$BLACK,$SEL,$WHITE \
-	-color-window $BLACK,$SEL \
+	-color-normal $BG,$FG,$BG,$HLBG,$HLFG \
+	-color-window $BG,$HLBG \
 	-separator-style none \
 	-hide-scrollbar 1 \
 	-padding 20 \
