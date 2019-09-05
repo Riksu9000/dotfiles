@@ -34,7 +34,8 @@ bat() {
 }
 
 vol() {
-	BAR=$BAR$SEP"VOL "$(amixer sget Master | awk '/Front Left:/ {print substr($5,2)}' | sed 's/%.*//')"%"
+	STATUS=$(amixer sget Master | awk '/Front Left:/ {print $5 $6}' | sed -e 's/.*off.*/muted/; s/\]\[on\]//; s/^\[/VOL /')
+	BAR=$BAR$SEP$STATUS
 }
 
 clock() {
