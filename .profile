@@ -20,10 +20,9 @@ alias x=startx
 export EDITOR=nvim \
 TERMINAL="st" \
 BROWSER="firefox" \
-_JAVA_AWT_WM_NONREPARENTING=1 \
-vblank_mode=0 \
-MOZ_USE_XINPUT2=1 \
-LESS=-R \
+_JAVA_AWT_WM_NONREPARENTING=1 \ # fixes weird scaling on some java applications
+MOZ_USE_XINPUT2=1 \ # Touch screen support on firefox
+LESS=-R \ # Options beginning with LESS add color to programs using less
 LESS_TERMCAP_md=$'\e[1;32m' \
 LESS_TERMCAP_us=$'\e[1;4;31m' \
 LESS_TERMCAP_mb=$'\e[1;31m' \
@@ -31,14 +30,11 @@ LESS_TERMCAP_so=$'\e[1;33m' \
 LESS_TERMCAP_ue=$'\e[0m' \
 LESS_TERMCAP_me=$'\e[0m' \
 LESS_TERMCAP_se=$'\e[0m' \
-QT_QPA_PLATFORMTHEME=gtk2 \
+QT_QPA_PLATFORMTHEME=gtk2 \ # Apply gtk theme to QT applications
 SUDO_ASKPASS=~/.scripts/askpass \
 
-# Autostart desktop
-#if [ "$TERM" == linux ]
-#then
-#	startx &> /dev/null
-#fi
+PATH="$PATH:$HOME/.scripts:$HOME/apps"
 
-PATH="$PATH:$HOME/.scripts:$HOME/applications"
+# Autostart desktop
+#[ "$TERM" == "linux" ] && [ -z "$SSH_CLIENT" ] && startx &> /dev/null
 
