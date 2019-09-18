@@ -33,7 +33,7 @@ LESS_TERMCAP_se=$'\e[0m' \
 QT_QPA_PLATFORMTHEME=gtk2 \
 SUDO_ASKPASS=~/.scripts/askpass \
 
-PATH="$PATH:$HOME/.scripts:$HOME/apps"
+PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 # Autostart desktop
 #[ "$TERM" == "linux" ] && [ -z "$SSH_CLIENT" ] && startx &> /dev/null

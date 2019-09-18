@@ -7,11 +7,14 @@ case $1 in
 	voldown)
 		amixer sset Master 5%-
 		;;
+	volmute)
+		amixer sset Master toggle
+		;;
 	blup)
-		light -A 10
+		light -A 4
 		;;
 	bldown)
-		light -U 10
+		light -U 4
 		;;
 	playnext)
 		playerctl next
