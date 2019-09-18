@@ -3,7 +3,7 @@
 # Emoji selector
 
 FONT="xos4 Terminus 18"
-EMOJIFILE="$HOME/.scripts/emojis"
+EMOJIFILE="$HOME/.local/bin/emojis"
 BG="#282828"; FG="#928374"; HLFG="#ebdbb2"; HLBG="#d65d0e"
 #BG="#000000"; FG="#bbbbbb"; HLBG="#005577"; HLFG="#eeeeee"
 #BG="#ccffffff"; FG="#000000"; HLBG="#5c5cff"; HLFG="#000000"
