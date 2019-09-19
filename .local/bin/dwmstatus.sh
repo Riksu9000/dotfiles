@@ -43,7 +43,7 @@ clock() {
 }
 
 song() {
-	case "$(playerctl status)" in
+	case "$(playerctl status 2> /dev/null)" in
 		"Paused")
 			ICON="⏸"
 			;;
