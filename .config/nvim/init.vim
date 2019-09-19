@@ -1,3 +1,10 @@
+"  _       _ _         _
+" (_)_ __ (_) |___   _(_)_ __ ___
+" | | '_ \| | __\ \ / / | '_ ` _ \
+" | | | | | | |_ \ V /| | | | | | |
+" |_|_| |_|_|\__(_)_/ |_|_| |_| |_|
+" Run on nvim start
+
 set number relativenumber
 set cursorline
 set listchars+=tab:\|\ ,trail:~,extends:>,precedes:<
@@ -28,6 +35,7 @@ call plug#end()
 " Set gruvbox as colorscheme
 set termguicolors
 colorscheme gruvbox
+hi Normal guibg=NONE ctermbg=NONE
 
 " Syntastic options
 set statusline+=%#warningmsg#
