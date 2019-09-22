@@ -9,5 +9,5 @@ set keymap vi-insert
 Control-l: clear-screen
 
 set show-mode-in-prompt
-set vi-cmd-mode-string "\e[1 q"
-set vi-ins-mode-string "\e[5 q"
+set vi-cmd-mode-string "\1\e[1 q\2"
+set vi-ins-mode-string "\1\e[5 q\2"
