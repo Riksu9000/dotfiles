@@ -24,5 +24,5 @@ LABEL=$(lsblk $CHOSEN -npro "LABEL")
 # Make a directory for mounting the drive
 mkdir -p $HOME/mounts/$LABEL
 
-sudo -A mount $CHOSEN $HOME/mounts/$LABEL && notify-send "Successfully mounted $LABEL" || notify-send "There was an error mounting drive $LABEL"
+sudo -A mount -w -o uid=$UID $CHOSEN $HOME/mounts/$LABEL && notify-send "Successfully mounted $LABEL" || notify-send "There was an error mounting drive $LABEL"
 
