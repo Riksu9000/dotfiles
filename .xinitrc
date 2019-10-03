@@ -11,7 +11,7 @@ dbus-update-activation-environment --systemd DISPLAY
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &  # for merging PRIMARY and CLIPBOARD
 dunst &                                # Notification daemon
-synergys
+barriers &
 $HOME/.local/bin/dwmstatus.sh &          # DWM status bar script
 #compton &
 
