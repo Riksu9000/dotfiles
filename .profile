@@ -12,9 +12,14 @@ clear
 
 alias x=startx
 
-
 # Run bashrc for login shell
 [ -f ~/.bashrc ] && source ~/.bashrc
+
+PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+# Stop here if login via SSH
+[ -n "$SSH_CLIENT" ] && return 0
+
 
 # Export options
 export EDITOR=nvim \
@@ -30,11 +35,13 @@ LESS_TERMCAP_so=$'\e[1;33m' \
 LESS_TERMCAP_ue=$'\e[0m' \
 LESS_TERMCAP_me=$'\e[0m' \
 LESS_TERMCAP_se=$'\e[0m' \
+LESSHISTFILE="-" \
 QT_QPA_PLATFORMTHEME=gtk2 \
-SUDO_ASKPASS=~/.scripts/askpass \
-
-PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+SUDO_ASKPASS=~/.local/bin/askpass \
+PF_COL1=6 \
+PF_COL3=6 \
+PF_INFO="ascii title os kernel uptime pkgs memory palette" \
 
 # Autostart desktop
-#[ "$TERM" == "linux" ] && [ -z "$SSH_CLIENT" ] && startx &> /dev/null
+#[ "$TERM" == "linux" ] && startx &> /dev/null
 
