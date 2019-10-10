@@ -4,7 +4,7 @@ FONT="xos4 Terminus:pixelsize=18"
 BLACK=#282828; GRAY=#928374; WHITE=#ebdbb2; SEL=#d65d0e
 
 # Look for all mountable drives
-DRIVES=$(lsblk -npro "NAME,TYPE,PTTYPE,RM,MOUNTPOINT" | sed '/ 1 /!d; /disk [a-z]/d' | awk '{print $1}')
+DRIVES=$(lsblk -npro "NAME,TYPE,PTTYPE,RM,MOUNTPOINT" | sed '/ 1 $/!d; /disk [a-z]/d' | awk '{print $1}')
 
 [ -z $DRIVES ] && notify-send "No mountable drives detected" && exit 0
 
@@ -24,5 +24,5 @@ LABEL=$(lsblk $CHOSEN -npro "LABEL")
 # Make a directory for mounting the drive
 mkdir -p $HOME/mounts/$LABEL
 
-sudo -A mount -w -o uid=$UID $CHOSEN $HOME/mounts/$LABEL && notify-send "Successfully mounted $LABEL" || notify-send "There was an error mounting drive $LABEL"
-
+sudo -A mount -w $CHOSEN $HOME/mounts/$LABEL && notify-send "Successfully mounted $LABEL" || notify-send "There was an error mounting drive $LABEL"
+sudo -A chown "$USER" $HOME/mounts/$LABEL
