@@ -9,7 +9,7 @@ BG="#282828"; FG="#928374"; HLFG="#ebdbb2"; HLBG="#d65d0e"
 #BG="#ccffffff"; FG="#000000"; HLBG="#5c5cff"; HLFG="#000000"
 
 # Show a list of emoji and awk the selected emoji to variable $SYMBOL
-SYMBOL=$(cat $EMOJIFILE | rofi -font "$FONT" \
+SYMBOL=$(rofi -font "$FONT" \
 	-color-normal 0,$FG,0,$HLBG,$HLFG \
 	-color-window $BG,$HLBG \
 	-separator-style none \
@@ -17,10 +17,10 @@ SYMBOL=$(cat $EMOJIFILE | rofi -font "$FONT" \
 	-columns 2 \
 	-dmenu \
 	-bw 4 \
-	-p "Copy emoji to clipboard" | awk '{printf $1}')
+	-p "Copy emoji to clipboard" < "$EMOJIFILE" | awk '{printf $1}')
 
 # If nothing was selected
 [ -z "$SYMBOL" ] && exit
 
 # Otherwise send a notification
-echo -n $SYMBOL | xclip && notify-send "$SYMBOL copied"
+printf "%s" "$SYMBOL" | xclip && notify-send "$SYMBOL copied"
