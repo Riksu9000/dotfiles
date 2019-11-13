@@ -6,10 +6,6 @@
 # |_|
 # Run on login
 
-# Gruvbox colorscheme
-echo -e "\\e]P01d2021\\e]P1cc241d\\e]P298971a\\e]P3d79921\\e]P4458588\\e]P5b16286\\e]P6689d6a\\e]P7a89984\\e]P8928374\\e]P9fb4934\\e]Pab8bb26\\e]Pbfabd2f\\e]Pc83a598\\e]Pdd3869b\\e]Pe8ec07c\\e]Pfebdbb2"
-clear
-
 alias x=startx
 
 # Run bashrc for login shell
@@ -17,9 +13,15 @@ alias x=startx
 
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
-# Stop here if login via SSH
+##############################
+# Stop here if login via SSH #
+##############################
 [ -n "$SSH_CLIENT" ] && return 0
 
+
+# Gruvbox colorscheme
+echo -e "\\e]P01d2021\\e]P1cc241d\\e]P298971a\\e]P3d79921\\e]P4458588\\e]P5b16286\\e]P6689d6a\\e]P7a89984\\e]P8928374\\e]P9fb4934\\e]Pab8bb26\\e]Pbfabd2f\\e]Pc83a598\\e]Pdd3869b\\e]Pe8ec07c\\e]Pfebdbb2"
+clear
 
 # Export options
 export EDITOR=nvim \
