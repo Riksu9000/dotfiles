@@ -1,7 +1,7 @@
 #!/bin/sh
 
-PRIMARY=$(xclip -o -selection primary)
-CLIPBOARD=$(xclip -o -selection clipboard)
+PRIMARY=$(xclip -o -selection primary 2> /dev/null)
+CLIPBOARD=$(xclip -o -selection clipboard 2> /dev/null)
 
 [ -n "$PRIMARY" ] && [ "$PRIMARY" != "$CLIPBOARD" ] && notify-send "Primary selection: $PRIMARY"
 
