@@ -10,7 +10,7 @@ DRIVES=$(lsblk -npro "NAME,RM,MOUNTPOINT" | sed '/ [0-9] \//!d' | awk '{print $1
 [ -z "$DRIVES" ] && notify-send "No drives to unmount" && exit
 
 # Show a menu of unmountable drives and put the full path to the variable $CHOSEN
-CHOSEN=$(lsblk "$DRIVES" -npro "NAME,LABEL,SIZE" | \
+CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
 	dmenu -i -l 5 -fn "$FONT" -nb "$BLACK" -nf "$GRAY" -sb "$SEL" -sf "$WHITE" -p "Umount which drive?" | \
 	awk '{print $1}')
 
