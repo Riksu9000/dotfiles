@@ -12,7 +12,7 @@ autocutsel -selection PRIMARY -fork &  # for merging PRIMARY and CLIPBOARD
 dunst &                                # Notification daemon
 barriers &
 #$HOME/.local/bin/dwmstatus.sh &        # DWM status bar script
-#compton &
+#picom &
 
 
 # Set settings
