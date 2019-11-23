@@ -46,7 +46,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_c_compiler_options = '-include stdint.h -include stdbool.h'
 
 vmap <C-c> "+y
 map <C-p> "+p
-
