@@ -11,6 +11,7 @@ set listchars+=tab:\|\ ,trail:~,extends:>,precedes:<
 set list
 set tabstop=4
 set shiftwidth=4
+set backspace=start,indent
 syntax on
 
 call plug#begin()
@@ -30,6 +31,9 @@ Plug 'sirtaj/vim-openscad'
 " Automatically close html tags
 Plug 'alvan/vim-closetag'
 
+" Git control through vim
+Plug 'airblade/vim-gitgutter'
+
 call plug#end()
 
 " Set gruvbox as colorscheme
@@ -47,6 +51,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_c_compiler_options = '-include stdint.h -include stdbool.h'
+
+" vim-gitgutter options
+set updatetime=100
 
 vmap <C-c> "+y
 map <C-p> "+p
