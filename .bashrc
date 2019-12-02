@@ -40,8 +40,7 @@ ua() {
 kp() {
 	keepassxc-cli clip "$HOME/docs/Database.kdbx" "$1" || return "$?"
 	#echo "You have 5 seconds to paste the password"
-	sleep 5
-	echo | xclip
+	sleep 5 && echo | xclip &
 }
 
 PROMPT_COMMAND=prompt_command
