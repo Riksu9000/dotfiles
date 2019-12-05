@@ -10,7 +10,6 @@ alias p="pacman" \
 v="nvim" \
 ls="ls --color -hNv --group-directories-first" \
 sudo="sudo " \
-gg="cd ~/docs/github/" \
 make="make -j\$(nproc)" \
 gots='git --git-dir=/home/riku/docs/github/dotfiles --work-tree=/home/riku/ ' \
 qc="git add -A && git commit -a -m \"\$(date +'%d.%m.%y %H:%M')\"" \
@@ -35,6 +34,10 @@ ua() {
 		bsdtar -xf "$1" -C "$DN" || return 1
 	fi
 	rm "$1"
+}
+
+gg() {
+	cd ~/docs/github/$1
 }
 
 kp() {
