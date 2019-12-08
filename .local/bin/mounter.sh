@@ -6,6 +6,8 @@ BLACK=#282828; GRAY=#928374; WHITE=#ebdbb2; SEL=#d65d0e
 
 err() {
 	notify-send "There was an error mounting drive $LABEL"
+	[ -d "$HOME/mounts/$LABEL" ] && rm -r "$HOME/mounts/$LABEL"
+	exit
 }
 
 # Look for all mountable drives
