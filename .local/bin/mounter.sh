@@ -16,7 +16,7 @@ DRIVES=$(lsblk -npro "NAME,TYPE,PTTYPE,RM,MOUNTPOINT" | sed '/ [0-9] $/!d; /disk
 [ -z "$DRIVES" ] && notify-send "No mountable drives detected" && exit 0
 
 # Show a menu of mountable drives and put the full path to the variable $CHOSEN
-CHOSEN=$(lsblk "$DRIVES" -npro "NAME,LABEL,SIZE" | \
+CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
 	dmenu -i -l 5 -fn "$FONT" -nb "$BLACK" -nf "$GRAY" -sb "$SEL" -sf "$WHITE" -p "Mount which drive?" | \
 	awk '{print $1}')
 
@@ -40,7 +40,7 @@ then
 	sudo -A mount -o uid="$UID" -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
 else
 	sudo -A mount -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
-	sudo -A chown "$USER" "$HOME/mounts/$LABEL"
+	sudo -A chown -R "$USER" "$HOME/mounts/$LABEL"
 fi
 
 notify-send "Successfully mounted $LABEL"
