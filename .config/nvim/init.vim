@@ -12,7 +12,13 @@ set list
 set tabstop=4
 set shiftwidth=4
 set backspace=start,indent
+tab ball
 syntax on
+
+" Fix some keys on finnish keyboard layout
+map ¤ $
+map Ö :
+map & ^
 
 call plug#begin()
 
