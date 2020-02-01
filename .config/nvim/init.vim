@@ -12,6 +12,7 @@ set list
 set tabstop=4
 set shiftwidth=4
 set backspace=start,indent
+set mouse=a
 tab ball
 syntax on
 
