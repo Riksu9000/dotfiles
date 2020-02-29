@@ -2,13 +2,16 @@
 
 case $1 in
 	volup)
-		amixer sset Master 5%+
+		pactl set-sink-volume @DEFAULT_SINK@ +5%
+		#amixer sset Master 5%+
 		;;
 	voldown)
-		amixer sset Master 5%-
+		pactl set-sink-volume @DEFAULT_SINK@ -5%
+		#amixer sset Master 5%-
 		;;
 	volmute)
-		amixer sset Master toggle
+		pactl set-sink-mute @DEFAULT_SINK@ toggle
+		#amixer sset Master toggle
 		;;
 	blup)
 		light -A 4
