@@ -43,6 +43,7 @@ SUDO_ASKPASS=~/.local/bin/askpass \
 PF_COL1=6 \
 PF_COL3=6 \
 PF_INFO="ascii title os kernel uptime pkgs memory palette" \
+INPUTRC="~/.config/inputrc" \
 
 # Autostart desktop
 #[ "$TERM" == "linux" ] && startx &> /dev/null
