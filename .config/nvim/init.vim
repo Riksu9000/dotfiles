@@ -49,9 +49,11 @@ colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 
 " Syntastic options
+set statusline=
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set statusline+=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
