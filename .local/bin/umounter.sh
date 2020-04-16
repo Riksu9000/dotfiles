@@ -40,8 +40,13 @@ LABEL=$(lsblk "$CHOSEN" -npro "LABEL")
 # If there is no label, get UUID
 [ -z "$LABEL" ] && LABEL=$(lsblk "$CHOSEN" -npro "UUID")
 
-# TODO: If sync takes more than 2 seconds, notify the user
-sync
+# This seems to work but is it correct?
+sync &
+PID=$!
+# Check if sync is still running after a second has passed
+sleep 1
+[ -d "/proc/$PID" ] && notify-send -u critical "Sync in progress. Do not remove drive"
+wait "$PID"
 
 sudo -A umount "$CHOSEN" || error mount
 
