@@ -40,7 +40,6 @@ then
 	sudo -A mount -o uid="$UID" -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
 else
 	sudo -A mount -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
-	sudo -A chown -R "$USER" "$HOME/mounts/$LABEL"
 fi
 
 notify-send "Successfully mounted $LABEL"
