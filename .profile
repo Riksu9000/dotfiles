@@ -11,7 +11,7 @@ alias x=startx
 # Run bashrc for login shell
 [ -f ~/.bashrc ] && source ~/.bashrc
 
-PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.local/bin/blocks"
 
 ##############################
 # Stop here if login via SSH #
@@ -24,7 +24,10 @@ echo -e "\\e]P01d2021\\e]P1cc241d\\e]P298971a\\e]P3d79921\\e]P4458588\\e]P5b1628
 clear
 
 # Export options
-export EDITOR=nvim \
+export XDG_DATA_HOME="$HOME/.local/share" \
+XDG_CONFIG_HOME="$HOME/.config" \
+XDG_CACHE_HOME="$HOME/.cache" \
+EDITOR="nvim" \
 TERMINAL="st" \
 BROWSER="firefox" \
 _JAVA_AWT_WM_NONREPARENTING=1 \
@@ -37,13 +40,23 @@ LESS_TERMCAP_so=$'\e[1;33m' \
 LESS_TERMCAP_ue=$'\e[0m' \
 LESS_TERMCAP_me=$'\e[0m' \
 LESS_TERMCAP_se=$'\e[0m' \
-LESSHISTFILE="-" \
 QT_QPA_PLATFORMTHEME=gtk2 \
 SUDO_ASKPASS=~/.local/bin/askpass \
 PF_COL1=6 \
 PF_COL3=6 \
 PF_INFO="ascii title os kernel uptime pkgs memory palette" \
+
+# Declutter home
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc \
+WGETRC="$XDG_CONFIG_HOME/wgetrc" \
+WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default \
+XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority \
+CARGO_HOME="$XDG_DATA_HOME"/cargo \
+GNUPGHOME="$XDG_DTA_HOME"/gnupg \
+ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority \
+HISTFILE="$XDG_DATA_HOME"/bash/history \
 INPUTRC="~/.config/inputrc" \
+LESSHISTFILE="-" \
 
 # Autostart desktop
 #[ "$TERM" == "linux" ] && startx &> /dev/null
