@@ -6,22 +6,15 @@
 # Run on startx
 
 # Background programs
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &  # for merging PRIMARY and CLIPBOARD
 dunst &                                # Notification daemon
-barriers &
-#$HOME/.local/bin/dwmstatus.sh &        # DWM status bar script
-#picom &
-
+~/bin/dwmblocks/dwmblocks &
 
 # Set settings
 kb.sh           # Keyboard settings script
 xrandr --dpi 96
-#feh --bg-fill wallpaper.jpg --no-fehbg
-
 
 # Start the window manager
-exec twm
-#exec dwm
-
+exec ~/bin/dwm/dwm
