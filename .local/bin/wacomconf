@@ -6,7 +6,11 @@
 DEVICE="Wacom Intuos S"
 STYLUS="$DEVICE Pen stylus"
 
-if [ $(xsetwacom get "$STYLUS" Suppress) -eq 2 ]; then
+xsetwacom set "$STYLUS" Area 0 0 15200 6363
+#xsetwacom set "$STYLUS" Area 0 3137 15200 9500
+
+if [ $(xsetwacom get "$STYLUS" Suppress) -eq 2 -o "$1" = "perf" ]
+then
 	notify-send "Setting tablet to pefromance mode"
 	xsetwacom set "$STYLUS" Suppress 1
 	xsetwacom set "$STYLUS" RawSample 1
