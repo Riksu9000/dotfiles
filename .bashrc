@@ -7,12 +7,15 @@
 
 # Aliases
 alias p="pacman" \
+pa="pacaur" \
 v="nvim" \
 ls="ls --color -hNv --group-directories-first" \
 sudo="sudo " \
 make="make -j\$(nproc)" \
 gots='git --git-dir=/home/riku/docs/github/dotfiles --work-tree=/home/riku/ ' \
 qc="git add -A && git commit -a -m \"\$(date +'%d.%m.%y %H:%M')\"" \
+wget="wget --no-hsts " \
+.="cdback" \
 
 # "Functions"
 cd() { builtin cd "$@" && ls; }
@@ -38,6 +41,17 @@ ua() {
 
 gg() {
 	cd ~/docs/github/$1
+}
+
+cdback() {
+	IFS=' '
+
+	for i in $*
+	do
+		builtin cd ..
+	done
+
+	cd ..
 }
 
 PROMPT_COMMAND=prompt_command
