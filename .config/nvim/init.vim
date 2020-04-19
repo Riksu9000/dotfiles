@@ -16,6 +16,8 @@ set mouse=a
 tab ball
 syntax on
 
+let mapleader=' '
+
 " Fix some keys on finnish keyboard layout
 map ¤ $
 map Ö :
@@ -46,7 +48,11 @@ call plug#end()
 " Set gruvbox as colorscheme
 set termguicolors
 colorscheme gruvbox
-hi Normal guibg=NONE ctermbg=NONE
+"highlight Normal guibg=NONE ctermbg=NONE
+
+" Highlight text over 80 columns
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#402828
+match OverLength /\%81v.\+/
 
 " Syntastic options
 set statusline=
