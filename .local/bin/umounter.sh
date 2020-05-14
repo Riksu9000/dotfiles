@@ -1,7 +1,7 @@
 #!/bin/sh
 
 FONT="xos4 Terminus:pixelsize=18"
-BLACK=#282828; GRAY=#928374; WHITE=#ebdbb2; SEL=#d65d0e
+BG="#282828"; FG="#a89984"; SBG="#d65d0e"; SFG="#ebdbb2"
 
 error() {
 	EXIT=$?
@@ -29,7 +29,7 @@ DRIVES=$(lsblk -npro "NAME,RM,MOUNTPOINT" | sed '/ [0-9] \//!d' | awk '{print $1
 
 # Show a menu of unmountable drives and put the full path to the variable $CHOSEN
 CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
-	dmenu -i -l 5 -fn "$FONT" -nb "$BLACK" -nf "$GRAY" -sb "$SEL" -sf "$WHITE" -p "Umount which drive?" | \
+	dmenu -i -l 5 -fn "$FONT" -nb "$BG" -nf "$FG" -sb "$SBG" -sf "$SFG" -p "Umount which drive?" | \
 	awk '{print $1}')
 
 [ -z "$CHOSEN" ] && exit
@@ -50,8 +50,8 @@ wait "$PID"
 
 sudo -A umount "$CHOSEN" || error mount
 
+notify-send "Successfully unmounted $LABEL"
+
 # Remove the mounting directory
 rm -r "$HOME/mounts/$LABEL" || error rem
-
-notify-send "Successfully unmounted $LABEL" && exit 0
 
