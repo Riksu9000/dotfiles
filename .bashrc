@@ -15,10 +15,18 @@ make="make -j\$(nproc)" \
 gots='git --git-dir=/home/riku/docs/github/dotfiles --work-tree=/home/riku/ ' \
 qc="git add -A && git commit -a -m \"\$(date +'%d.%m.%y %H:%M')\"" \
 wget="wget --no-hsts " \
-.="cdback" \
 
 # "Functions"
 cd() { builtin cd "$@" && ls; }
+
+up() {
+	COUNT=$*
+	while [ "$COUNT" -gt 0 ]
+	do
+		builtin cd ..
+		let "COUNT=$COUNT-1"
+	done
+}
 
 # Unarchive
 # Automatically extract archives into folders with the same name
@@ -41,17 +49,6 @@ ua() {
 
 gg() {
 	cd ~/docs/github/$1
-}
-
-cdback() {
-	IFS=' '
-
-	for i in $*
-	do
-		builtin cd ..
-	done
-
-	cd ..
 }
 
 PROMPT_COMMAND=prompt_command
