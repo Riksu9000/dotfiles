@@ -53,5 +53,8 @@ sudo -A umount "$CHOSEN" || error mount
 notify-send "Successfully unmounted $LABEL"
 
 # Remove the mounting directory
-rm -r "$HOME/mounts/$LABEL" || error rem
+if [ -d "$HOME/mounts/$LABEL" ]
+then
+	rm -r "$HOME/mounts/$LABEL" || error rem
+fi
 
