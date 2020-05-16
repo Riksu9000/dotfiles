@@ -20,12 +20,17 @@ wget="wget --no-hsts " \
 cd() { builtin cd "$@" && ls; }
 
 up() {
-	COUNT=$*
-	while [ "$COUNT" -gt 0 ]
-	do
+	if [ -n "$1" ]
+	then
+		COUNT=$1
+		while [ "$COUNT" -gt 0 ]
+		do
+			builtin cd ..
+			let "COUNT=$COUNT-1"
+		done
+	else
 		builtin cd ..
-		let "COUNT=$COUNT-1"
-	done
+	fi
 }
 
 # Unarchive
