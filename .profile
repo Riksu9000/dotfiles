@@ -28,6 +28,7 @@ export XDG_DATA_HOME="$HOME/.local/share" \
 XDG_CONFIG_HOME="$HOME/.config" \
 XDG_CACHE_HOME="$HOME/.cache" \
 EDITOR="nvim" \
+VISUAL="nvim" \
 TERMINAL="st" \
 BROWSER="firefox" \
 _JAVA_AWT_WM_NONREPARENTING=1 \
@@ -54,7 +55,7 @@ XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority \
 CARGO_HOME="$XDG_DATA_HOME"/cargo \
 GNUPGHOME="$XDG_DATA_HOME"/gnupg \
 ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority \
-HISTFILE="$XDG_DATA_HOME"/bash/history \
+HISTFILE="$XDG_DATA_HOME"/bash_history \
 INPUTRC="~/.config/inputrc" \
 LESSHISTFILE="-" \
 
