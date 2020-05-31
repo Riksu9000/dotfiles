@@ -25,7 +25,7 @@ BW=4
 PADDING=0
 LINEMARGIN=0
 
-# Show a list of emoji and awk the selected emoji to variable $SYMBOL
+# Show a list of emoji and put the selected emoji to variable $SYMBOL
 SYMBOL=$(rofi -dmenu -font "$FONT" -separator-style none -columns 1 \
 -bw "$BW" \
 -color-normal "0,$FG,0,$HLBG,$HLFG" \
@@ -36,7 +36,7 @@ SYMBOL=$(rofi -dmenu -font "$FONT" -separator-style none -columns 1 \
 -p "Copy emoji to clipboard" \
 -padding "$PADDING" \
 -width "$WIDTH" \
-< "$EMOJIFILE" | awk '{printf $1}')
+< "$EMOJIFILE" | cut -d ' ' -f 1)
 
 # If nothing was selected
 [ -z "$SYMBOL" ] && exit

@@ -23,14 +23,14 @@ error() {
 
 # Look for all mountable drives
 # TODO: Separate external and internal HDDs somehow?
-DRIVES=$(lsblk -npro "NAME,RM,MOUNTPOINT" | sed '/ [0-9] \//!d' | awk '{print $1}')
+DRIVES=$(lsblk -npro "NAME,RM,MOUNTPOINT" | sed '/ [0-9] \//!d;/\/boot$/d;/\/home$/d;/\/$/d;s/ .*$//')
 
 [ -z "$DRIVES" ] && notify-send "No drives to unmount" && exit
 
 # Show a menu of unmountable drives and put the full path to the variable $CHOSEN
 CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
 	dmenu -i -l 5 -fn "$FONT" -nb "$BG" -nf "$FG" -sb "$SBG" -sf "$SFG" -p "Umount which drive?" | \
-	awk '{print $1}')
+	cut -d ' ' -f 1)
 
 [ -z "$CHOSEN" ] && exit
 

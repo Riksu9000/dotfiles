@@ -10,14 +10,14 @@ err() {
 }
 
 # Look for all mountable drives
-DRIVES=$(lsblk -npro "NAME,TYPE,PTTYPE,RM,MOUNTPOINT" | sed '/ [0-9] $/!d; /disk [a-z]/d' | awk '{print $1}')
+DRIVES=$(lsblk -npro "NAME,TYPE,PTTYPE,RM,MOUNTPOINT" | sed '/ [0-9] $/!d;/disk [a-z]/d;s/ .*//')
 
 [ -z "$DRIVES" ] && notify-send "No mountable drives detected" && exit 0
 
 # Show a menu of mountable drives and put the full path to the variable $CHOSEN
 CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
 	dmenu -i -l 5 -fn "$FONT" -nb "$BG" -nf "$FG" -sb "$SBG" -sf "$SFG" -p "Mount which drive?" | \
-	awk '{print $1}')
+	cut -d ' ' -f 1)
 
 [ -z "$CHOSEN" ] && exit 0
 
