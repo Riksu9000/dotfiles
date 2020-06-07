@@ -28,7 +28,8 @@ notify-send -t 1 -h string:x-canonical-private-synchronous:updatecheck " "
 UPDATABLE=$(pacman -Qu | sed '/\[ignored\]/d')
 
 OPTIONS=""
-[ -n "$UPDATABLE" ] && OPTIONS+="Upgrade and reboot
+[ -n "$UPDATABLE" ] && OPTIONS+="Install updates
+Upgrade and reboot
 Upgrade and poweroff
 "
 
@@ -39,7 +40,7 @@ Poweroff"
 
 LINECOUNT=$(echo "$OPTIONS" | wc -l)
 
-CHOSEN=$(printf "%s" "$OPTIONS" | rofi -dmenu -separator-style none -columns 1 -hide-scrollbar \
+CHOSEN=$(printf "%s" "$OPTIONS" | rofi -dmenu -i -separator-style none -columns 1 -hide-scrollbar \
 -lines "$LINECOUNT" \
 -bw "$BW" \
 -color-normal "0,$FG,0,$HLBG,$HLFG" \
@@ -52,8 +53,9 @@ CHOSEN=$(printf "%s" "$OPTIONS" | rofi -dmenu -separator-style none -columns 1 -
 -width "$WIDTH")
 
 case $CHOSEN in
-	"Upgrade and reboot")   setsid "$TERMINAL" -e sudo -A pacman -Syu && reboot ;;
-	"Upgrade and poweroff") setsid "$TERMINAL" -e sudo -A pacman -Syu && poweroff ;;
+	"Install updates")      setsid "$TERMINAL" -e sudo pacman -Syu ;;
+	"Upgrade and reboot")   setsid "$TERMINAL" -e sudo pacman -Syu; reboot ;;
+	"Upgrade and poweroff") setsid "$TERMINAL" -e sudo pacman -Syu; poweroff ;;
 	"Restart dwm") pkill -SIGHUP dwm ;;
 	"Exit dwm") pkill -SIGTERM dwm ;;
 	"Reboot") reboot ;;
