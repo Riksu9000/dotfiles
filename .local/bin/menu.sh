@@ -5,7 +5,7 @@ WIDTH=300
 LINES=20
 
 # Appearance
-FONT="xos4 Terminus 18"
+FONT="Terminus 18"
 
 BG="#282828"; FG="#a89984"; HLBG="#d65d0e"; HLFG="#ebdbb2"
 BORDERCOLOR="#504945"

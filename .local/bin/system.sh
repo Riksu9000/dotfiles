@@ -8,7 +8,7 @@ WIDTH=300
 ##############
 # Appearance #
 ##############
-FONT="xos4 Terminus 18"
+FONT="Terminus 18"
 
 # Linepadding needs to be set depending on the font so the emoji won't get
 # clipped vertically
