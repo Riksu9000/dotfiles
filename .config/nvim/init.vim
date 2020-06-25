@@ -13,7 +13,6 @@ set tabstop=4
 set shiftwidth=4
 set backspace=start,indent
 set mouse=a
-tab ball
 syntax on
 
 let mapleader=' '
@@ -23,6 +22,7 @@ map ¤ $
 map Ö :
 map & ^
 
+"Conflicts with vim-gitgutter
 nnoremap <Leader>h <C-w>h
 nnoremap <Leader>j <C-w>j
 nnoremap <Leader>k <C-w>k
@@ -48,6 +48,8 @@ Plug 'alvan/vim-closetag'
 " Git control through vim
 Plug 'airblade/vim-gitgutter'
 
+Plug 'ap/vim-css-color'
+
 call plug#end()
 
 " Set gruvbox as colorscheme
@@ -57,7 +59,7 @@ colorscheme gruvbox
 
 " Highlight text over 80 columns
 highlight OverLength ctermbg=darkred ctermfg=white guibg=#402828
-match OverLength /\%81v.\+/
+match OverLength /\%101v.\+/
 
 " Syntastic options
 set statusline=
