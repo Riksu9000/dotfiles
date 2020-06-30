@@ -14,7 +14,6 @@ dunst &                                # Notification daemon
 
 # Set settings
 kb.sh           # Keyboard settings script
-xrandr --dpi 96
 xrdb -merge -I$HOME ~/.config/Xresources
 
 # Start the window manager
