@@ -12,6 +12,5 @@ esac
 case "$(playerctl status 2> /dev/null)" in
 	"Paused")  printf "%s" "⏸ " && playerctl metadata -f '{{title}}' ;;
 	"Playing") printf "%s" "▶ " && playerctl metadata -f '{{title}}' ;;
-	*) echo ;;
 esac
 

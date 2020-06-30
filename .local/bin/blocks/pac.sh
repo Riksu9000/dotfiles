@@ -30,7 +30,5 @@ then
 	FULLCOUNT=$(echo "$UPDATABLE" | wc -l)
 	printf "%s" "📦$FULLCOUNT"
 	[ "$FULLCOUNT" -gt "$LIVECOUNT" ] && printf "%s" " Restart required"
-else
-	echo
 fi
 
