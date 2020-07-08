@@ -10,11 +10,13 @@ alias p="pacman" \
 pa="pacaur" \
 v="nvim" \
 ls="ls --color -hNv --group-directories-first" \
+la="ls -la" \
 sudo="sudo " \
 make="make -j\$(nproc)" \
 gots='git --git-dir=/home/riku/docs/github/dotfiles --work-tree=/home/riku/ ' \
 qc="git add -A && git commit -a -m \"\$(date +'%d.%m.%y %H:%M')\"" \
-wget="wget --no-hsts " \
+lb="cd ~/.local/bin" \
+nb="newsboat" \
 
 # "Functions"
 cd() { builtin cd "$@" && ls; }
@@ -31,6 +33,8 @@ up() {
 	else
 		builtin cd ..
 	fi
+
+	ls
 }
 
 # Unarchive
