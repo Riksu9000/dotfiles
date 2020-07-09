@@ -45,12 +45,12 @@ sync &
 PID=$!
 # Check if sync is still running after a second has passed
 sleep 1
-[ -d "/proc/$PID" ] && notify-send -u critical "Sync in progress. Do not remove drive"
+[ -d "/proc/$PID" ] && notify-send -u critical "Sync in progress. Do not remove drive" -h string:x-canonical-private-synchronous:umount
 wait "$PID"
 
 sudo -A umount "$CHOSEN" || error mount
 
-notify-send "Successfully unmounted $LABEL"
+notify-send "Successfully unmounted $LABEL" "$CHOSEN" -h string:x-canonical-private-synchronous:umount
 
 # Remove the mounting directory
 if [ -d "$HOME/mounts/$LABEL" ]

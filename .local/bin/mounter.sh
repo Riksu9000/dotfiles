@@ -41,4 +41,4 @@ else
 	sudo -A mount -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
 fi
 
-notify-send "Successfully mounted $LABEL"
+notify-send "Successfully mounted $LABEL" "$CHOSEN"
