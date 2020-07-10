@@ -43,9 +43,6 @@ LESS_TERMCAP_me=$'\e[0m' \
 LESS_TERMCAP_se=$'\e[0m' \
 QT_QPA_PLATFORMTHEME=gtk2 \
 SUDO_ASKPASS=~/.local/bin/askpass \
-PF_COL1=6 \
-PF_COL3=6 \
-PF_INFO="ascii title os kernel uptime pkgs memory palette" \
 
 # Declutter home
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc \
