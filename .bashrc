@@ -1,11 +1,3 @@
-#  _               _
-# | |__   __ _ ___| |__  _ __ ___
-# | '_ \ / _` / __| '_ \| '__/ __|
-# | |_) | (_| \__ \ | | | | | (__
-# |_.__/ \__,_|___/_| |_|_|  \___|
-# Run on bash start
-
-# Aliases
 alias p="pacman" \
 pa="pacaur" \
 v="nvim" \
@@ -18,7 +10,6 @@ qc="git add -A && git commit -a -m \"\$(date +'%d.%m.%y %H:%M')\"" \
 lb="cd ~/.local/bin" \
 nb="newsboat" \
 
-# "Functions"
 cd() { builtin cd "$@" && ls; }
 
 up() {

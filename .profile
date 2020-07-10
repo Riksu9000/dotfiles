@@ -1,11 +1,3 @@
-#                   __ _ _
-#  _ __  _ __ ___  / _(_) | ___
-# | '_ \| '__/ _ \| |_| | |/ _ \
-# | |_) | | | (_) |  _| | |  __/
-# | .__/|_|  \___/|_| |_|_|\___|
-# |_|
-# Run on login
-
 alias x=startx
 
 # Run bashrc for login shell
@@ -23,7 +15,6 @@ PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.local/bin/blocks"
 echo -e "\\e]P01d2021\\e]P1cc241d\\e]P298971a\\e]P3d79921\\e]P4458588\\e]P5b16286\\e]P6689d6a\\e]P7a89984\\e]P8928374\\e]P9fb4934\\e]Pab8bb26\\e]Pbfabd2f\\e]Pc83a598\\e]Pdd3869b\\e]Pe8ec07c\\e]Pfebdbb2"
 clear
 
-# Export options
 export XDG_DATA_HOME="$HOME/.local/share" \
 XDG_CONFIG_HOME="$HOME/.config" \
 XDG_CACHE_HOME="$HOME/.cache" \
