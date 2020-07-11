@@ -64,8 +64,9 @@ prompt_command() {
 	if [ -n "$GITDIR" ]
 	then
 		DIR=""
-		[ "$(printf "%s" "$GITDIR" | sed -n 2p)" != "master" ] && DIR+="\[\033[97;46m\] $(printf "%s" "$GITDIR" | sed -n 2p) "
-		DIR+="\[\033[97;45m\] $(basename $(printf "%s" "$GITDIR" | sed -n 1p))/$(printf "%s" "$GITDIR" | sed -n 3p) "
+		BRANCH=$(sed -n 2p <<< "$GITDIR")
+		[ "$BRANCH" != "master" ] && DIR+="\[\033[97;46m\] $BRANCH "
+		DIR+="\[\033[97;45m\] $(basename $(head -n 1 <<< "$GITDIR"))/$(tail -n +3 <<< "$GITDIR") "
 	else
 		DIR="\[\033[97;44m\] \w "
 	fi
