@@ -1,0 +1,28 @@
+bind-key j down
+bind-key k up
+
+bind-key h quit articlelist
+bind-key h quit article
+bind-key l open
+bind-key L toggle-show-read-feeds
+
+bind-key u pageup
+bind-key d pagedown
+bind-key U show-urls
+
+bind-key N prev-unread
+
+bind-key g home
+bind-key G end
+
+bind-key a toggle-article-read
+bind-key o open-in-browser-and-mark-read
+
+color info color4 black bold
+color listfocus color15 color4
+color listfocus_unread color15 color4 bold
+
+goto-next-feed no
+reload-threads 5
+text-width 80
+toggleitemread-jumps-to-next-unread true
