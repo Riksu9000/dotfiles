@@ -1,7 +1,7 @@
 #!/bin/sh
 
 FONT="xos4 Terminus:pixelsize=18"
-BG="#282828"; FG="#a89984"; SBG="#d65d0e"; SFG="#ebdbb2"
+BG="#2e3440"; FG="#d8dee9"; SBG="#434c5e"
 
 error() {
 	EXIT=$?
@@ -29,7 +29,7 @@ DRIVES=$(lsblk -npro "NAME,RM,MOUNTPOINT" | sed '/ [0-9] \//!d;/\/boot$/d;/\/hom
 
 # Show a menu of unmountable drives and put the full path to the variable $CHOSEN
 CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
-	dmenu -i -l 5 -fn "$FONT" -nb "$BG" -nf "$FG" -sb "$SBG" -sf "$SFG" -p "Umount which drive?" | \
+	dmenu -i -l 5 -fn "$FONT" -nb "$BG" -nf "$FG" -sb "$SBG" -sf "$FG" -p "Umount which drive?" | \
 	cut -d ' ' -f 1)
 
 [ -z "$CHOSEN" ] && exit

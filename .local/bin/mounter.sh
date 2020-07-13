@@ -1,7 +1,7 @@
 #!/bin/bash
 
 FONT="xos4 Terminus:pixelsize=18"
-BG="#282828"; FG="#a89984"; SBG="#d65d0e"; SFG="#ebdbb2"
+BG="#2e3440"; FG="#d8dee9"; SBG="#434c5e"
 
 err() {
 	notify-send "There was an error mounting drive $LABEL"
@@ -16,7 +16,7 @@ DRIVES=$(lsblk -npro "NAME,TYPE,PTTYPE,RM,MOUNTPOINT" | sed '/ [0-9] $/!d;/disk 
 
 # Show a menu of mountable drives and put the full path to the variable $CHOSEN
 CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
-	dmenu -i -l 5 -fn "$FONT" -nb "$BG" -nf "$FG" -sb "$SBG" -sf "$SFG" -p "Mount which drive?" | \
+	dmenu -i -l 5 -fn "$FONT" -nb "$BG" -nf "$FG" -sb "$SBG" -sf "$FG" -p "Mount which drive?" | \
 	cut -d ' ' -f 1)
 
 [ -z "$CHOSEN" ] && exit 0
