@@ -7,6 +7,7 @@ dunst &
 # Set settings
 kb.sh
 xrdb -merge -I$HOME ~/.config/Xresources
+xsetroot -solid "#242933"
 
 # Window manager
 exec ~/bin/dwm/dwm

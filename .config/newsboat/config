@@ -18,9 +18,13 @@ bind-key G end
 bind-key a toggle-article-read
 bind-key o open-in-browser-and-mark-read
 
-color info color4 black bold
-color listfocus color15 color4
-color listfocus_unread color15 color4 bold
+#color info color4 black bold
+#color listfocus color15 color4
+#color listfocus_unread color15 color4 bold
+
+color info white black bold
+color listfocus color15 color0
+color listfocus_unread color15 color0 bold
 
 goto-next-feed no
 reload-threads 5

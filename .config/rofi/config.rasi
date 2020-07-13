@@ -1,0 +1,71 @@
+configuration {
+	/*drun-display-format: "{icon}{name} <span foreground="#616e88">[({generic})]</span>";*/
+	drun-display-format: "{icon}{name}";
+}
+
+* {
+	nord0: #2E3440;
+	nord1: #3B4252;
+	nord2: #434c5e;
+	nord3: #4C566A;
+	nord4: #D8DEE9;
+	nord5: #E5E9F0;
+	nord6: #ECEFF4;
+	nord7: #8FBCBB;
+	nord8: #88C0D0;
+	nord9: #81A1C1;
+	nord11: #BF616A;
+	nord13: #EBCB8B;
+	nord14: #A3BE8C;
+	nord15: #B48EAD;
+
+	bg: @nord0;
+	bg-top: @nord1;
+	bg-hl: @nord2;
+	text-color: @nord4;
+	border-color: @text-color;
+
+	background-color: @bg;
+
+	font: "Terminus 18";
+}
+
+case-indicator,
+prompt {
+	enabled: false;
+}
+
+window {
+	border: 4;
+}
+
+scrollbar {
+	handle-color: @nord2;
+	handle-width: 8;
+	border-radius: 4;
+}
+
+entry {
+	background-color: @bg-top;
+	padding: 8;
+}
+
+listview {
+	padding: 8;
+	/*scrollbar: true;*/
+}
+
+inputbar {
+	margin: 0 0 -2 0;
+	/*padding: 8;*/
+	padding: 0;
+}
+
+element {
+	padding: 4;
+}
+
+element.selected {
+	background-color: @bg-hl;
+	border-radius: 4;
+}
