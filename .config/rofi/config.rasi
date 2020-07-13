@@ -1,6 +1,8 @@
 configuration {
 	/*drun-display-format: "{icon}{name} <span foreground="#616e88">[({generic})]</span>";*/
 	drun-display-format: "{icon}{name}";
+	display-drun: ">";
+	display-run: ">";
 }
 
 * {
@@ -30,9 +32,14 @@ configuration {
 	font: "Terminus 18";
 }
 
-case-indicator,
-prompt {
+case-indicator {
 	enabled: false;
+}
+
+prompt {
+	background-color: @bg-top;
+	padding: 8 0 8 8;
+	margin: 0 -2 0 0;
 }
 
 window {

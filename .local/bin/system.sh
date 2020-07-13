@@ -21,13 +21,13 @@ Reboot
 Poweroff"
 
 # TODO: Use icons
-# ⍇ ⟲ ⟳ ⥁ ⟳ ↻ ↺ ⭮ ⭯ 🔒 
+# ⍇ ⟲ ⟳ ⥁ ⟳ ↻ ↺ ⭮ ⭯ 🔒⏻
 
 LINECOUNT=$(echo "$OPTIONS" | wc -l)
 
 [ -n "$1" ] && LOCATION=$1 || LOCATION="0"
 
-CHOSEN=$(printf "%s" "$OPTIONS" | rofi -dmenu -i -columns 1 -hide-scrollbar -p "Make a selection" \
+CHOSEN=$(printf "%s" "$OPTIONS" | rofi -dmenu -i -p ">" \
 -location "$LOCATION" \
 -lines "$LINECOUNT" \
 -width "$WIDTH")
