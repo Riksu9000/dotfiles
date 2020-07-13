@@ -5,7 +5,7 @@ SIGNAL=10
 # TODO: Is there a simple way to update output in between running commands?
 
 refresh() {
-	notify-send -t 2000 -h string:x-canonical-private-synchronous:updatecheck "Checking for updates"
+	notify-send -h string:x-canonical-private-synchronous:updatecheck "Checking for updates"
 	sudo -A pacman -Sy > /dev/null
 	notify-send -t 1 -h string:x-canonical-private-synchronous:updatecheck " "
 }

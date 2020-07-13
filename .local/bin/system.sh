@@ -3,11 +3,10 @@
 WIDTH=300
 
 # Check updates
-notify-send -t 2000 -h string:x-canonical-private-synchronous:updatecheck "Checking for updates"
+notify-send -h string:x-canonical-private-synchronous:updatecheck "Checking for updates"
 sudo -A pacman -Sy > /dev/null
-notify-send -t 1 -h string:x-canonical-private-synchronous:updatecheck " "
-
 UPDATABLE=$(pacman -Qu | sed '/\[ignored\]/d')
+notify-send -t 1 -h string:x-canonical-private-synchronous:updatecheck " "
 
 OPTIONS=""
 [ -n "$UPDATABLE" ] && OPTIONS+="Install updates
