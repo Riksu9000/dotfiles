@@ -25,6 +25,7 @@ nnoremap <Leader>k <C-w>k
 nnoremap <Leader>l <C-w>l
 
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :SyntasticToggleMode<CR>
 
 vmap <C-c> "+y
