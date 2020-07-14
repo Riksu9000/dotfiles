@@ -1,7 +1,5 @@
 #!/bin/sh
 
-SIGNAL=10
-
 # TODO: Is there a simple way to update output in between running commands?
 
 refresh() {
@@ -23,10 +21,10 @@ case $BLOCK_BUTTON in
 	3) liveupdate ;;
 esac
 
-UPDATABLE=$(pacman -Qu | sed '/\[ignored\]/d')
+UPDATABLE=$(pacman -Qu | grep -v '\[ignored\]')
 if [ -n "$UPDATABLE" ]
 then
-	LIVECOUNT=$(echo "$UPDATABLE" | sed '/linux/d;/nvidia/d;/^btrfs-progs/d;/.*-dkms/d;/\n/d' | wc -l)
+	LIVECOUNT=$(echo "$UPDATABLE" | grep -v 'linux\|nvidia\|btrfs-progs\|-dkms' | wc -l)
 	FULLCOUNT=$(echo "$UPDATABLE" | wc -l)
 	printf "%s" "📦$FULLCOUNT"
 	[ "$FULLCOUNT" -gt "$LIVECOUNT" ] && printf "%s" " Restart required"
