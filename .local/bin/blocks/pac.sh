@@ -24,7 +24,7 @@ esac
 UPDATABLE=$(pacman -Qu | grep -v '\[ignored\]')
 if [ -n "$UPDATABLE" ]
 then
-	LIVECOUNT=$(echo "$UPDATABLE" | grep -v 'linux\|nvidia\|btrfs-progs\|-dkms' | wc -l)
+	LIVECOUNT=$(echo "$UPDATABLE" | grep -vc 'linux\|nvidia\|btrfs-progs\|-dkms')
 	FULLCOUNT=$(echo "$UPDATABLE" | wc -l)
 	printf "%s" "📦$FULLCOUNT"
 	[ "$FULLCOUNT" -gt "$LIVECOUNT" ] && printf "%s" " Restart required"
