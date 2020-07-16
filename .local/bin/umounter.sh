@@ -1,8 +1,5 @@
 #!/bin/sh
 
-FONT="xos4 Terminus:pixelsize=18"
-BG="#2e3440"; FG="#d8dee9"; SBG="#434c5e"
-
 error() {
 	EXIT=$?
 	case $1 in
@@ -27,9 +24,11 @@ DRIVES=$(lsblk -npro "NAME,RM,MOUNTPOINT" | sed '/ [0-9] \//!d;/\/boot$/d;/\/hom
 
 [ -z "$DRIVES" ] && notify-send "No drives to unmount" && exit
 
+DRIVECOUNT=$(echo "$DRIVES" | wc -l)
+
 # Show a menu of unmountable drives and put the full path to the variable $CHOSEN
 CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
-	dmenu -i -l 5 -fn "$FONT" -nb "$BG" -nf "$FG" -sb "$SBG" -sf "$FG" -p "Umount which drive?" | \
+	rofi -dmenu -p "Umount which drive?" -lines "$DRIVECOUNT" | \
 	cut -d ' ' -f 1)
 
 [ -z "$CHOSEN" ] && exit

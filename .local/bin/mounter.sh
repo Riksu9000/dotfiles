@@ -1,8 +1,5 @@
 #!/bin/bash
 
-FONT="xos4 Terminus:pixelsize=18"
-BG="#2e3440"; FG="#d8dee9"; SBG="#434c5e"
-
 err() {
 	notify-send "There was an error mounting drive $LABEL"
 	[ -d "$HOME/mounts/$LABEL" ] && rm -r "$HOME/mounts/$LABEL"
@@ -14,9 +11,11 @@ DRIVES=$(lsblk -npro "NAME,TYPE,PTTYPE,RM,MOUNTPOINT" | sed '/ [0-9] $/!d;/disk 
 
 [ -z "$DRIVES" ] && notify-send "No mountable drives detected" && exit 0
 
+DRIVECOUNT=$(echo "$DRIVES" | wc -l)
+
 # Show a menu of mountable drives and put the full path to the variable $CHOSEN
 CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
-	dmenu -i -l 5 -fn "$FONT" -nb "$BG" -nf "$FG" -sb "$SBG" -sf "$FG" -p "Mount which drive?" | \
+	rofi -dmenu -p "Mount which drive?" -lines "$DRIVECOUNT" | \
 	cut -d ' ' -f 1)
 
 [ -z "$CHOSEN" ] && exit 0
