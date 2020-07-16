@@ -9,8 +9,7 @@ esac
 
 [ -z $(command -v playerctl) ] && echo "🎵Install playerctl" && exit 1
 
-case "$(playerctl status 2> /dev/null)" in
-	"Paused")  printf "%s" "⏸ " && playerctl metadata -f '{{title}}' ;;
-	"Playing") printf "%s" "▶ " && playerctl metadata -f '{{title}}' ;;
-esac
+# Sleep because resuming playback might take longer than expected
+sleep 0.01s
 
+playerctl metadata -f '{{status}} {{title}}' | sed 's/Playing/▶/;s/Paused/⏸/;s/Stopped/⏹/'
