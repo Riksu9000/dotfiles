@@ -28,6 +28,8 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :SyntasticToggleMode<CR>
 
+command Sudowrite execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
 vmap <C-c> "+y
 map <C-p> "+p
 
