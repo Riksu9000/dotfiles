@@ -21,8 +21,8 @@ BROWSER="firefox" \
 _JAVA_AWT_WM_NONREPARENTING=1 \
 MOZ_USE_XINPUT2=1 \
 LESS=-R \
-LESS_TERMCAP_md=$'\e[1;32m' \
-LESS_TERMCAP_us=$'\e[1;4;31m' \
+LESS_TERMCAP_md=$'\e[1;34m' \
+LESS_TERMCAP_us=$'\e[1;4;36m' \
 LESS_TERMCAP_mb=$'\e[1;31m' \
 LESS_TERMCAP_so=$'\e[1;33m' \
 LESS_TERMCAP_ue=$'\e[0m' \
@@ -42,6 +42,7 @@ ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority \
 HISTFILE="$XDG_DATA_HOME"/bash_history \
 INPUTRC="~/.config/inputrc" \
 LESSHISTFILE="-" \
+NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages \
 
 # Autostart desktop
 #[ "$TERM" == "linux" ] && startx &> /dev/null
