@@ -3,6 +3,7 @@ configuration {
 	drun-display-format: "{icon}{name}";
 	display-drun: ">";
 	display-run: ">";
+	width: 1200;
 }
 
 * {
