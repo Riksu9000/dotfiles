@@ -41,3 +41,4 @@ case $CHOSEN in
 	"Poweroff") poweroff ;;
 esac
 
+pkill -RTMIN+20 dwmblocks &
