@@ -1,23 +1,24 @@
 #!/bin/sh
 
-# TODO: Is there a simple way to update output in between running commands?
+SIGNAL=20
 
 refresh() {
-	notify-send -h string:x-canonical-private-synchronous:updatecheck "Checking for updates"
-	sudo -A pacman -Sy > /dev/null
-	notify-send -t 1 -h string:x-canonical-private-synchronous:updatecheck " "
+	printf "♻"
+	sh -c "sudo -A pacman -Sy; pkill -RTMIN+$SIGNAL dwmblocks" > /dev/null &
+	exit
 }
 
 # TODO: This is probably a bad practice. Find a better solution
 liveupdate() {
-	refresh
-	PACKAGES=$(pacman -Qu | sed '/\[ignored\]/d;/^linux/d;/^nvidia/d;/^btrfs-progs/d;/.*-dkms/d;/\n/d;s/\ .*//')
-	[ -n "$PACKAGES" ] && setsid "$TERMINAL" -e sudo pacman -S --noconfirm $PACKAGES
+	"$TERMINAL" -e sh -c "sudo pacman -Sy
+	PACKAGES=\$(pacman -Qu | sed '/\[ignored\]/d;/^linux/d;/^nvidia/d;/^btrfs-progs/d;/.*-dkms/d;/\n/d;s/\ .*//')
+	[ -n \"\$PACKAGES\" ] && sudo pacman -Su \$PACKAGES
+	pkill -RTMIN+$SIGNAL dwmblocks" > /dev/null &
 }
 
 case $BLOCK_BUTTON in
 	1) refresh ;;
-	2) setsid "$TERMINAL" -e sudo pacman -Syu ;;
+	2) "$TERMINAL" -e sh -c "sudo pacman -Syu; pkill -RTMIN+$SIGNAL dwmblocks" > /dev/null & ;;
 	3) liveupdate ;;
 esac
 
