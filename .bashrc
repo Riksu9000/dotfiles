@@ -51,12 +51,14 @@ gg() {
 	cd ~/docs/github/$1
 }
 
+# background color is intended to be darker than color0
 PROMPT_COMMAND=prompt_command
+#PS1="\[\e[40;34m\] \w \[\e[0;40m\]> \[\e[0m\] "
 prompt_command() {
 	PS1=""
 
 	# SSH server name
-	[ -n "$SSH_CLIENT" ] && PS1+="\[\033[97;41m\] \H "
+	[ -n "$SSH_CLIENT" ] && PS1+="\[\e[40;32m\] \H"
 
 	GITDIR=$(git rev-parse --show-toplevel --abbrev-ref HEAD --show-prefix 2> /dev/null)
 
@@ -65,11 +67,11 @@ prompt_command() {
 	then
 		DIR=""
 		BRANCH=$(sed -n 2p <<< "$GITDIR")
-		[ "$BRANCH" != "master" ] && DIR+="\[\033[97;46m\] $BRANCH "
-		DIR+="\[\033[97;45m\] $(basename $(head -n 1 <<< "$GITDIR"))/$(tail -n +3 <<< "$GITDIR") "
+		[ "$BRANCH" != "master" ] && DIR+="\[\e[40;96m\] $BRANCH"
+		DIR+="\[\e[40;36m\] $(basename $(head -n 1 <<< "$GITDIR"))/$(tail -n +3 <<< "$GITDIR") "
 	else
-		DIR="\[\033[97;44m\] \w "
+		DIR="\[\e[40;34m\] \w "
 	fi
-	PS1+="$DIR\[\033[42m\] \$ \[\033[0m\] "
+	PS1+="$DIR\[\e[0;40m\]> \[\e[0m\] "
 }
 
