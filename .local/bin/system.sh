@@ -9,12 +9,13 @@ UPDATABLE=$(pacman -Qu | sed '/\[ignored\]/d')
 notify-send -t 1 -h string:x-canonical-private-synchronous:updatecheck " "
 
 OPTIONS=""
-[ -n "$UPDATABLE" ] && OPTIONS+="Install updates
+
+[ -n "$UPDATABLE" ] && OPTIONS="Install updates
 Upgrade and reboot
 Upgrade and poweroff
 "
 
-OPTIONS+="Restart dwm
+OPTIONS="$OPTIONS""Restart dwm
 Exit dwm
 Reboot
 Poweroff"
