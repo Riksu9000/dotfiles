@@ -23,8 +23,8 @@ unbind-key D
 unbind-key ^D
 unbind-key $
 
-color info white black
-color listfocus color15 color0
+color info default color0
+color listfocus default color0
 color listfocus_unread default color0 bold
 
 goto-next-feed no
