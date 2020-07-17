@@ -27,6 +27,10 @@ color info default color0
 color listfocus default color0
 color listfocus_unread default color0 bold
 
+itemview-title-format "Article '%T' (%u unread, %t total)"
+articlelist-title-format "Articles in feed '%T' (%u unread, %t total)%?F? matching filter `%F'&? - %U"
+feedlist-title-format "%?F?Feeds&Your feeds? (%u unread, %t total)%?F? matching filter `%F'&?%?T? - tag `%T'&?"
+
 goto-next-feed no
 reload-threads 5
 text-width 80
