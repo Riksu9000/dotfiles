@@ -9,6 +9,8 @@ gots='git --git-dir=/home/riku/docs/github/dotfiles --work-tree=/home/riku/ ' \
 qc="git add -A && git commit -a -m \"\$(date +'%d.%m.%y %H:%M')\"" \
 lb="cd ~/.local/bin" \
 nb="newsboat" \
+gf="git fetch" \
+gp="git pull" \
 
 cd() { builtin cd "$@" && ls; }
 
