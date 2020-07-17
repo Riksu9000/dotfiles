@@ -18,6 +18,11 @@ bind-key G end
 bind-key a toggle-article-read
 bind-key o open-in-browser-and-mark-read
 
+# No accidental deletions
+unbind-key D
+unbind-key ^D
+unbind-key $
+
 color info white black
 color listfocus color15 color0
 color listfocus_unread default color0 bold
