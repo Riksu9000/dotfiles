@@ -1,5 +1,4 @@
 alias p="pacman" \
-pa="pacaur" \
 v="nvim" \
 ls="ls --color -hNv --group-directories-first" \
 la="ls -la" \
