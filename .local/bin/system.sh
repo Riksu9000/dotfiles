@@ -27,10 +27,10 @@ LINECOUNT=$(echo "$OPTIONS" | wc -l)
 
 [ -n "$1" ] && LOCATION=$1 || LOCATION="0"
 
-CHOSEN=$(printf "%s" "$OPTIONS" | rofi -dmenu -i -p ">" \
--location "$LOCATION" \
--lines "$LINECOUNT" \
--width "$WIDTH")
+CHOSEN=$(printf "%s" "$OPTIONS" |
+	rofi -dmenu -i -p ">" -location "$LOCATION" -lines "$LINECOUNT" -width "$WIDTH" \
+	#dmenu -l "$LINECOUNT" \
+)
 
 case $CHOSEN in
 	"Install updates")      setsid "$TERMINAL" -e sudo pacman -Syu ;;

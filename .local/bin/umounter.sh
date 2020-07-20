@@ -17,6 +17,7 @@ DRIVECOUNT=$(echo "$DRIVES" | wc -l)
 # Show a menu of unmountable drives and put the full path to the variable $CHOSEN
 CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
 	rofi -dmenu -p "Umount which drive?" -lines "$DRIVECOUNT" | \
+	#dmenu -p "Umount which drive?" -l "$DRIVECOUNT" | \
 	cut -d ' ' -f 1)
 
 [ -z "$CHOSEN" ] && exit

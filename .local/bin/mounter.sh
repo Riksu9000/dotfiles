@@ -16,6 +16,7 @@ DRIVECOUNT=$(echo "$DRIVES" | wc -l)
 # Show a menu of mountable drives and put the full path to the variable $CHOSEN
 CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
 	rofi -dmenu -p "Mount which drive?" -lines "$DRIVECOUNT" | \
+	#dmenu -p "Mount which drive?" -l "$DRIVECOUNT" | \
 	cut -d ' ' -f 1)
 
 [ -z "$CHOSEN" ] && exit 0
