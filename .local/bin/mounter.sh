@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 err() {
 	notify-send "There was an error mounting drive $LABEL"
@@ -34,8 +34,7 @@ mkdir -p "$HOME/mounts/$LABEL"
 
 if [ "$TYPE" = "vfat" ]
 then
-	# In POSIX sh, UID is undefined
-	sudo -A mount -o uid="$UID" -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
+	sudo -A mount -o uid="$(id -u)" -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
 else
 	sudo -A mount -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
 fi
