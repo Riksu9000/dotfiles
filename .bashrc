@@ -14,17 +14,12 @@ gp="git pull" \
 cd() { builtin cd "$@" && ls; }
 
 up() {
-	if [ -n "$1" ]
-	then
-		COUNT=$1
-		while [ "$COUNT" -gt 0 ]
-		do
-			builtin cd ..
-			let "COUNT=$COUNT-1"
-		done
-	else
+	COUNT=${1:-1}
+	while [ "$COUNT" -gt 0 ]
+	do
 		builtin cd ..
-	fi
+		COUNT=$((COUNT-1))
+	done
 
 	ls
 }
