@@ -1,21 +1,9 @@
 #!/bin/sh
 
-error() {
+err() {
 	EXIT=$?
-	case $1 in
-		"mount")
-			notify-send "There was an error unmounting drive $LABEL"
-			exit $EXIT
-			;;
-		"rem")
-			notify-send "Couldn\'t remove the mounting directory. Remove $HOME/mounts/$LABEL manually."
-			exit $EXIT
-			;;
-		*)
-			notify-send "An unknown error occurred"
-			exit $EXIT
-			;;
-	esac
+	notify-send "$1"
+	exit $EXIT
 }
 
 # Look for all mountable drives
@@ -47,13 +35,10 @@ sleep 1
 [ -d "/proc/$PID" ] && notify-send -u critical "Sync in progress. Do not remove drive" -h string:x-canonical-private-synchronous:umount
 wait "$PID"
 
-sudo -A umount "$CHOSEN" || error mount
+sudo -A umount "$CHOSEN" || err "There was an error unmounting drive $LABEL"
 
 notify-send "Successfully unmounted $LABEL" "$CHOSEN" -h string:x-canonical-private-synchronous:umount
 
 # Remove the mounting directory
-if [ -d "$HOME/mounts/$LABEL" ]
-then
-	rm -r "$HOME/mounts/$LABEL" || error rem
-fi
+[ -d "$HOME/mounts/$LABEL" ] && rm -r "$HOME/mounts/$LABEL" || err "Couldn\'t remove the mounting directory. Remove $HOME/mounts/$LABEL manually."
 
