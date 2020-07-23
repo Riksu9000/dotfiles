@@ -8,6 +8,8 @@ set number relativenumber
 set shiftwidth=4
 set tabstop=4
 set termguicolors
+set wildmode=longest:full,full
+set wildmenu
 
 syntax on
 
