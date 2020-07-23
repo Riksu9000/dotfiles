@@ -70,6 +70,7 @@ inputbar {
 }
 
 element {
+	background-color: transparent;
 	padding: 4;
 }
 
