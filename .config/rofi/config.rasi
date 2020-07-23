@@ -4,6 +4,7 @@ configuration {
 	display-drun: ">";
 	display-run: ">";
 	width: 1200;
+	sort: true;
 }
 
 * {
