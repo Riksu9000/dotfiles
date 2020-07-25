@@ -1,13 +1,9 @@
-# Background programs
-autocutsel -fork &
-autocutsel -selection PRIMARY -fork &  # for merging PRIMARY and CLIPBOARD
-dunst &
-~/bin/dwmblocks/dwmblocks &
+WM=${1:-d}
 
-# Set settings
-kb.sh
-xrdb -merge -I$HOME ~/.config/Xresources
-xsetroot -solid "#242933"
+case $WM in
+	g*) ~/.config/initgnome ;;
+	h*) exec ~/bin/hacking/dwm/dwm ;;
+	d*) ~/.config/initdwm ;;
+	*) exec "$WM" || exit 1 ;;
+esac
 
-# Window manager
-exec ~/bin/dwm/dwm

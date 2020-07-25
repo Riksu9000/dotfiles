@@ -1,4 +1,4 @@
-alias x=startx
+x() { xinit "$1" -- :1 vt"$(fgconsole)"; }
 
 # Run bashrc for login shell
 [ -f ~/.bashrc ] && source ~/.bashrc

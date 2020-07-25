@@ -1,0 +1,13 @@
+#!/bin/sh
+# Background programs
+autocutsel -fork &
+autocutsel -selection PRIMARY -fork &  # for merging PRIMARY and CLIPBOARD
+dunst &
+~/docs/github/dwmblocks/dwmblocks &
+
+# Set settings
+kb.sh
+xrdb -merge -I$HOME ~/.config/Xresources
+xsetroot -solid "#242933"
+
+exec ~/bin/dwm/dwm
