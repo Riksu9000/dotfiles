@@ -7,11 +7,12 @@ case $BLOCK_BUTTON in
 esac
 
 # Requires pulseaudio-alsa
-VOL=$(amixer sget Master | sed '/Front Left:/!d;s/.*off.*/muted/;s/%\]\ \[on\]//;s/^.*\[//')
+VOL=$(amixer sget Master 2> /dev/null | sed '/Front Left:/!d;s/.*off.*/muted/;s/%\]\ \[on\]//;s/^.*\[//')
+[ -z "$VOL" ] && printf "🔇" && exit 1
 
 if [ "$VOL" = "muted" ]
 then
-	printf "%s" "🔇 mute"
+	printf "🔇 mute"
 elif [ "$VOL" -lt 25 ]
 then
 	printf "%s" "🔈 $VOL%"
