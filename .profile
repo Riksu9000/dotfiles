@@ -1,4 +1,4 @@
-x() { xinit "$1" -- :1 vt"$(fgconsole)"; }
+x() { xinit "$1" -- :0 vt"$(fgconsole)"; }
 
 # Run bashrc for login shell
 [ -f ~/.bashrc ] && source ~/.bashrc
