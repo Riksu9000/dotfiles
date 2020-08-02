@@ -4,12 +4,13 @@ ls="ls --color -hNv --group-directories-first" \
 la="ls -la" \
 sudo="sudo " \
 make="make -j\$(nproc)" \
-gots='git --git-dir=/home/riku/docs/github/dotfiles --work-tree=/home/riku/ ' \
+gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/ ' \
 qc="git add -A && git commit -a -m \"\$(date +'%d.%m.%y %H:%M')\"" \
 lb="cd ~/.local/bin" \
-nb="newsboat" \
+nb="newsboat && pkill -RTMIN+4 dwmblocks" \
 gf="git fetch" \
 gp="git pull" \
+rr="rm -rf" \
 
 cd() { builtin cd "$@" && ls; }
 
@@ -41,10 +42,6 @@ ua() {
 		bsdtar -xf "$1" -C "$DN" || return 1
 	fi
 	rm "$1"
-}
-
-gg() {
-	cd ~/docs/github/$1
 }
 
 # background color is intended to be darker than color0
