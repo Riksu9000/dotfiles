@@ -1,6 +1,9 @@
 bind-key j down
 bind-key k up
 
+bind-key e down article
+bind-key y up article
+
 bind-key h quit articlelist
 bind-key h quit article
 bind-key l open
@@ -27,11 +30,20 @@ color info default color0
 color listfocus default color0
 color listfocus_unread default color0 bold
 
-itemview-title-format "Article '%T' (%u unread, %t total)"
-articlelist-title-format "Articles in feed '%T' (%u unread, %t total)%?F? matching filter `%F'&? - %U"
-feedlist-title-format "%?F?Feeds&Your feeds? (%u unread, %t total)%?F? matching filter `%F'&?%?T? - tag `%T'&?"
+articlelist-format "%4i %-80t %> %D "
+feedlist-format "%4i %-80t %> %?n?%U unread ?"
+
+itemview-title-format "%T"
+articlelist-title-format " %T %> %U  [%u/%t] "
+feedlist-title-format " Your feeds %> [%u/%t] "
+
+highlight feedlist "^....." color8 default
+highlight articlelist "^....." color8 default
+highlight article "^(Feed|Title|Author|Link|Date|Links|\[[0-9]*\]): .*" color8 default
 
 goto-next-feed no
 reload-threads 5
+show-keymap-hint no
+swap-title-and-hints yes
 text-width 80
-toggleitemread-jumps-to-next-unread true
+toggleitemread-jumps-to-next-unread yes
