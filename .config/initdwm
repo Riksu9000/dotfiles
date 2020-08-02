@@ -3,7 +3,7 @@
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &  # for merging PRIMARY and CLIPBOARD
 dunst &
-~/docs/github/dwmblocks/dwmblocks &
+~/bin/dwmblocks/dwmblocks &
 
 # Set settings
 kb.sh
