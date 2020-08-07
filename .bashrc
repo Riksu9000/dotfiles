@@ -25,25 +25,6 @@ up() {
 	ls
 }
 
-# Unarchive
-# Automatically extract archives into folders with the same name
-# removes the original file
-ua() {
-	# Check if there is only one file/directory at the root of the archive.
-	# If so, don't make a directory (Extract here)
-	if [ $(bsdtar -tf "$1" | sed '/.*\/./d' | wc -l) -lt 2 ]
-	then
-		bsdtar -xf "$1" || return 1
-	else
-		BN=$(basename "$1")
-		EXT=${BN##*.}
-		DN=$(basename -s ."$EXT" "$BN")
-		mkdir "$DN" || return 1
-		bsdtar -xf "$1" -C "$DN" || return 1
-	fi
-	rm "$1"
-}
-
 # background color is intended to be darker than color0
 PROMPT_COMMAND=prompt_command
 #PS1="\[\e[40;34m\] \w \[\e[0;40m\]> \[\e[0m\] "
