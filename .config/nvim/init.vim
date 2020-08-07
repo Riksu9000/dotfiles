@@ -1,7 +1,7 @@
 set backspace=start,indent
 set cursorline
 set list
-set listchars+=tab:\|\ ,trail:~,extends:>,precedes:<
+set listchars+=tab:\⎢\ ,trail:~,extends:>,precedes:<
 set mouse=a
 set noswapfile
 set number relativenumber
