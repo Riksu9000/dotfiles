@@ -33,9 +33,15 @@ CHOSEN=$(printf "%s" "$OPTIONS" |
 )
 
 case $CHOSEN in
-	"Install updates")      setsid "$TERMINAL" -e sudo pacman -Syu ;;
-	"Upgrade and reboot")   setsid "$TERMINAL" -e sudo pacman -Syu; reboot ;;
-	"Upgrade and poweroff") setsid "$TERMINAL" -e sudo pacman -Syu; poweroff ;;
+	"Install updates") setsid "$TERMINAL" -e sudo pacman -Syu ;;
+	"Upgrade and reboot")
+		setsid "$TERMINAL" -e sudo pacman -Syu --noconfirm && reboot \
+			|| notify-send -u critical "System upgrade failed" "Please fix before shutting down system"
+		;;
+	"Upgrade and poweroff")
+		setsid "$TERMINAL" -e sudo pacman -Syu --noconfirm && poweroff \
+			|| notify-send -u critical "System upgrade failed" "Please fix before shutting down system"
+		;;
 	"Restart dwm") pkill -SIGHUP dwm ;;
 	"Exit dwm") pkill -SIGTERM dwm ;;
 	"Reboot") reboot ;;
