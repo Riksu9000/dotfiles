@@ -31,6 +31,9 @@ PROMPT_COMMAND=prompt_command
 prompt_command() {
 	PS1=""
 
+	# set title of terminal emulator
+	printf "\033]0;%s: %s\007" "${TERM%%-*}" "${PWD/#$HOME/"~"}"
+
 	# SSH server name
 	[ -n "$SSH_CLIENT" ] && PS1+="\[\e[40;32m\] \H"
 
