@@ -8,7 +8,7 @@ err() {
 
 # Look for all mountable drives
 # TODO: Separate external and internal HDDs somehow?
-DRIVES=$(lsblk -npro "NAME,RM,MOUNTPOINT" | sed '/ [0-9] \//!d;/\/boot$/d;/\/home$/d;/\/$/d;s/ .*$//')
+DRIVES=$(lsblk -npro "NAME,MOUNTPOINT" | sed '/ \//!d;/\/boot$/d;/\/home$/d;/\/$/d;s/ .*$//')
 
 [ -z "$DRIVES" ] && notify-send "No drives to unmount" && exit
 

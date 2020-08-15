@@ -7,7 +7,7 @@ err() {
 }
 
 # Look for all mountable drives
-DRIVES=$(lsblk -npro "NAME,TYPE,PTTYPE,RM,MOUNTPOINT" | sed '/ [0-9] $/!d;/disk [a-z]/d;s/ .*//')
+DRIVES=$(lsblk -npro "NAME,TYPE,PTTYPE,MOUNTPOINT" | sed '/ \//d;/disk [a-z]/d;s/ .*//')
 
 [ -z "$DRIVES" ] && notify-send "No mountable drives detected" && exit 0
 
