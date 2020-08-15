@@ -12,7 +12,8 @@ refresh() {
 liveupdate() {
 	"$TERMINAL" -e sh -c "sudo pacman -Sy
 	PACKAGES=\$(pacman -Qu | sed '/\[ignored\]/d;/^linux/d;/^nvidia/d;/^btrfs-progs/d;/.*-dkms/d;/\n/d;s/\ .*//')
-	[ -n \"\$PACKAGES\" ] && sudo pacman -S \$PACKAGES
+	sudo pacman -Syuw
+	[ -n \"\$PACKAGES\" ] && sudo pacman -S --noconfirm \$PACKAGES
 	pkill -RTMIN+$SIGNAL dwmblocks" > /dev/null &
 }
 
