@@ -10,7 +10,10 @@ lb="cd ~/.local/bin" \
 nb="newsboat && pkill -RTMIN+4 dwmblocks" \
 gf="git fetch" \
 gp="git pull" \
-rr="rm -rf" \
+rm="rm -I" \
+rr="rm -rfI" \
+grep="grep --color=auto" \
+cp="cp -i" \
 
 cd() { builtin cd "$@" && ls; }
 
