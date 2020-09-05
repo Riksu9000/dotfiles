@@ -29,6 +29,7 @@ nnoremap <Leader>l <C-w>l
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :SyntasticToggleMode<CR>
+nnoremap <Leader>o :call ToggleOverLength()<CR>
 
 command Sudowrite execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
@@ -65,7 +66,17 @@ call plug#end()
 colorscheme nord
 
 " Highlight text over 100 columns
-highlight OverLength guibg=#bf616a guifg=#d8dee9
+highlight OverLength guibg=#804147
+let s:overlen=1 " TODO: can the current status be read instead of a variable?
+function ToggleOverLength()
+	if s:overlen
+		highlight OverLength guibg= guifg=
+		let s:overlen=0
+	else
+		highlight OverLength guibg=#804147
+		let s:overlen=1
+	endif
+endfunction
 match OverLength /\%101v.\+/
 
 " Syntastic options
