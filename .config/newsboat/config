@@ -27,8 +27,12 @@ unbind-key ^D
 unbind-key $
 
 color info default color0
-color listfocus default color0
-color listfocus_unread default color0 bold
+color listnormal color8 default
+color listnormal_unread default default
+
+# NOTE: Use underline or other bg color if your terminals bg and color0 are the same
+color listfocus color8 color0
+color listfocus_unread default color0
 
 articlelist-format "%4i %-80t %> %D "
 feedlist-format "%4i %-80t %> %?n?%U unread ?"
@@ -37,6 +41,7 @@ itemview-title-format "%T"
 articlelist-title-format " %T %> %U  [%u/%t] "
 feedlist-title-format " Your feeds %> [%u/%t] "
 
+highlight feedlist "-.*-" color4 default
 highlight feedlist "^....." color8 default
 highlight articlelist "^....." color8 default
 highlight article "^(Feed|Title|Author|Link|Date|Links|\[[0-9]*\]): .*" color8 default
