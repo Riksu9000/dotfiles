@@ -42,6 +42,7 @@ articlelist-title-format " %T %> %U  [%u/%t] "
 feedlist-title-format " Your feeds %> [%u/%t] "
 
 highlight feedlist "-.*-" color4 default
+highlight feedlist "--.*--" color6 default
 highlight feedlist "^....." color8 default
 highlight articlelist "^....." color8 default
 highlight article "^(Feed|Title|Author|Link|Date|Links|\[[0-9]*\]): .*" color8 default
