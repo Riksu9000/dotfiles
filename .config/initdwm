@@ -1,4 +1,7 @@
 #!/bin/sh
+
+INIT=${1:-"~/bin/dwm/dwm"}
+
 # Background programs
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &  # for merging PRIMARY and CLIPBOARD
@@ -10,4 +13,4 @@ kb.sh
 xrdb -merge -I$HOME ~/.config/Xresources
 xsetroot -solid "#242933"
 
-exec ~/bin/dwm/dwm
+exec "$INIT"
