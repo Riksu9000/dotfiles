@@ -7,13 +7,13 @@ do
 	[ -f "$a" ] || break
 	if [ "$(bsdtar -tf "$a" | sed '/.*\/./d' | wc -l)" -lt 2 ]
 	then
-		bsdtar -xf "$a" || return 1
+		bsdtar -xf "$a" || break
 	else
 		BN=$(basename "$a")
 		EXT=${BN##*.}
 		DN=$(basename -s ."$EXT" "$BN")
-		mkdir "$DN" || return 1
-		bsdtar -xf "$a" -C "$DN" || return 1
+		mkdir "$DN" || break
+		bsdtar -xf "$a" -C "$DN" || break
 	fi
 	rm "$a"
 done
