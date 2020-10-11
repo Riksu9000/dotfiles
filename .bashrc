@@ -14,6 +14,7 @@ rm="rm -I" \
 rr="rm -rfI" \
 grep="grep --color=auto" \
 cp="cp -i" \
+dd="dd status=progress oflag=direct"
 
 cd() { builtin cd "$@" && ls; }
 
