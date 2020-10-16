@@ -1,11 +1,12 @@
 #!/bin/sh
 
-PRIMARY=$(xclip -o -selection primary 2> /dev/null)
-CLIPBOARD=$(xclip -o -selection clipboard 2> /dev/null)
+PRIMARY=$(xclip -o -selection primary 2> /dev/null | sed 's/-/\\-/')
+CLIPBOARD=$(xclip -o -selection clipboard 2> /dev/null | sed 's/-/\\-/')
 
 [ -n "$PRIMARY" ] && [ "$PRIMARY" != "$CLIPBOARD" ] && notify-send "Primary selection" "$PRIMARY"
 
-if [ -n "$CLIPBOARD" ]; then
+if [ -n "$CLIPBOARD" ]
+then
 	notify-send "Clipboard" "$CLIPBOARD"
 else
 	notify-send "Clipboard is empty"
