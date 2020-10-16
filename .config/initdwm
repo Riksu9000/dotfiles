@@ -3,8 +3,6 @@
 INIT=${1:-"~/bin/dwm/dwm"}
 
 # Background programs
-autocutsel -fork &
-autocutsel -selection PRIMARY -fork &  # for merging PRIMARY and CLIPBOARD
 dunst &
 ~/bin/dwmblocks/dwmblocks &
 
