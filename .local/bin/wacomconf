@@ -1,7 +1,7 @@
 #!/bin/sh
 
-[ -z $(command -v xsetwacom) ] && notify-send "You need to install xsetwacom!" && exit
-[ -z $(xsetwacom list devices) ] && notify-send "Tablet was not detected" && exit
+[ -z "$(command -v xsetwacom)" ] && notify-send "You need to install xsetwacom!" && exit
+[ -z "$(xsetwacom list devices)" ] && notify-send "Tablet was not detected" && exit
 
 DEVICE="Wacom Intuos S"
 STYLUS="$DEVICE Pen stylus"
@@ -9,7 +9,9 @@ STYLUS="$DEVICE Pen stylus"
 xsetwacom set "$STYLUS" Area 0 0 15200 6363
 #xsetwacom set "$STYLUS" Area 0 3137 15200 9500
 
-if [ $(xsetwacom get "$STYLUS" Suppress) -eq 2 -o "$1" = "perf" ]
+xsetwacom set "$STYLUS" MapToOutput HEAD-0
+
+if [ "$(xsetwacom get "$STYLUS" Suppress)" -eq "2" ] || [ "$1" = "perf" ]
 then
 	notify-send "Setting tablet to pefromance mode"
 	xsetwacom set "$STYLUS" Suppress 1
