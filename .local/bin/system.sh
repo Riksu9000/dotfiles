@@ -15,8 +15,8 @@ Upgrade and reboot
 Upgrade and poweroff
 "
 
-OPTIONS="$OPTIONS""Restart dwm
-Exit dwm
+# TODO: First option is dangerous
+OPTIONS="$OPTIONS""Exit dwm
 Reboot
 Poweroff"
 
@@ -27,10 +27,7 @@ LINECOUNT=$(echo "$OPTIONS" | wc -l)
 
 LOCATION=${1:-0}
 
-CHOSEN=$(printf "%s" "$OPTIONS" |
-	rofi -dmenu -i -p ">" -location "$LOCATION" -lines "$LINECOUNT" -width "$WIDTH" \
-	#dmenu -l "$LINECOUNT" \
-)
+CHOSEN=$(printf "%s" "$OPTIONS" | dmenu -l "$LINECOUNT")
 
 case $CHOSEN in
 	"Install updates") setsid "$TERMINAL" -e sudo pacman -Syu ;;
@@ -42,7 +39,6 @@ case $CHOSEN in
 		setsid "$TERMINAL" -e sudo pacman -Syu --noconfirm && poweroff \
 			|| notify-send -u critical "System upgrade failed" "Please fix before shutting down system"
 		;;
-	"Restart dwm") pkill -SIGHUP dwm ;;
 	"Exit dwm") pkill -SIGTERM dwm ;;
 	"Reboot") reboot ;;
 	"Poweroff") poweroff ;;
