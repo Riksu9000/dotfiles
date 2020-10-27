@@ -5,7 +5,7 @@
 if askpass | keepassxc-cli clip "$HOME/docs/Database.kdbx" "$1" > /dev/null 2>&1
 then
 	notify-send -t 5000 "Access granted"
-	sleep 5 && echo | xclip &
+	sleep 5 && echo | xclip -selection CLIPBOARD &
 else
 	notify-send -t 5000 "Access denied"
 fi
