@@ -1,7 +1,5 @@
 #!/bin/sh
 
-WIDTH=300
-
 # Check updates
 notify-send -h string:x-canonical-private-synchronous:updatecheck "Checking for updates"
 sudo -A pacman -Sy > /dev/null
@@ -24,8 +22,6 @@ Poweroff"
 # ⍇ ⟲ ⟳ ⥁ ⟳ ↻ ↺ ⭮ ⭯ 🔒⏻
 
 LINECOUNT=$(echo "$OPTIONS" | wc -l)
-
-LOCATION=${1:-0}
 
 CHOSEN=$(printf "%s" "$OPTIONS" | dmenu -l "$LINECOUNT")
 
