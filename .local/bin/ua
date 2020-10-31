@@ -4,7 +4,7 @@
 # Features smart extract here when archive contains a single file
 for a in "$@"
 do
-	[ -f "$a" ] || break
+	[ -f "$a" ] || >&2 echo "File $a not found" && break
 	if [ "$(bsdtar -tf "$a" | sed '/.*\/./d' | wc -l)" -lt 2 ]
 	then
 		bsdtar -xf "$a" || break
