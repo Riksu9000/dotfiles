@@ -33,6 +33,7 @@ _JAVA_AWT_WM_NONREPARENTING=1 \
 
 # Declutter home
 export CARGO_HOME="$XDG_DATA_HOME"/cargo \
+CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv \
 GNUPGHOME="$XDG_DATA_HOME"/gnupg \
 GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc \
 HISTFILE="$XDG_DATA_HOME"/bash_history \
@@ -40,6 +41,7 @@ ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority \
 INPUTRC="$HOME/.config/inputrc" \
 LESSHISTFILE="-" \
 NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages \
+PLATFORMIO_CORE_DIR="$XDG_DATA_HOME"/platformio \
 WGETRC="$XDG_CONFIG_HOME/wgetrc" \
 WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default \
 XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority \
