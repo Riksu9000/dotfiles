@@ -1,20 +1,21 @@
-alias p="pacman" \
-v="nvim" \
-ls="ls --color -hNv --group-directories-first" \
-la="ls -la" \
-sudo="sudo " \
-make="make -j\$(nproc)" \
-gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/ ' \
-qc="git add -A && git commit -a -m \"\$(date +'%d.%m.%y %H:%M')\"" \
-lb="cd ~/.local/bin" \
-nb="newsboat && pkill -RTMIN+4 dwmblocks" \
+alias cp="cp -i" \
+dd="dd status=progress oflag=direct" \
+doas="doas " \
+sudo="doas " \
 gf="git fetch" \
 gp="git pull" \
+gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/ ' \
+grep="grep --color=auto" \
+la="ls -la" \
+lb="cd ~/.local/bin" \
+ls="ls --color -hNv --group-directories-first" \
+make="make -j\$(nproc)" \
+nb="newsboat && pkill -RTMIN+4 dwmblocks" \
+p="pacman" \
+qc="git add -A && git commit -a -m \"\$(date +'%d.%m.%y %H:%M')\"" \
 rm="rm -I" \
 rr="rm -rfI" \
-grep="grep --color=auto" \
-cp="cp -i" \
-dd="dd status=progress oflag=direct"
+v="nvim" \
 
 cd() { builtin cd "$@" && ls; }
 

@@ -34,7 +34,7 @@ PID=$!
 sleep 1 && [ -d "/proc/$PID" ] && notify-send -u critical "Sync in progress. Do not remove drive" -h string:x-canonical-private-synchronous:umount &
 wait "$PID"
 
-sudo -A umount "$CHOSEN" || err "There was an error unmounting drive $LABEL"
+doas umount "$CHOSEN" || err "There was an error unmounting drive $LABEL"
 
 notify-send "Successfully unmounted $LABEL" "$CHOSEN" -h string:x-canonical-private-synchronous:umount
 

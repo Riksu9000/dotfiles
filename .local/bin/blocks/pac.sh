@@ -4,23 +4,13 @@ SIGNAL=20
 
 refresh() {
 	printf "♻"
-	sh -c "sudo -A pacman -Sy; pkill -RTMIN+$SIGNAL dwmblocks" > /dev/null &
+	sh -c "doas pacman -Sy; pkill -RTMIN+$SIGNAL dwmblocks" > /dev/null &
 	exit
-}
-
-# TODO: This is probably a bad practice. Find a better solution
-liveupdate() {
-	"$TERMINAL" -e sh -c "sudo pacman -Sy
-	PACKAGES=\$(pacman -Qu | sed '/\[ignored\]/d;/^linux/d;/^nvidia/d;/^btrfs-progs/d;/.*-dkms/d;/\n/d;s/\ .*//')
-	sudo pacman -Syuw
-	[ -n \"\$PACKAGES\" ] && sudo pacman -S --noconfirm \$PACKAGES
-	pkill -RTMIN+$SIGNAL dwmblocks" > /dev/null &
 }
 
 case $BLOCK_BUTTON in
 	1) refresh ;;
-	2) "$TERMINAL" -e sh -c "sudo pacman -Syu; pkill -RTMIN+$SIGNAL dwmblocks" > /dev/null & ;;
-	3) liveupdate ;;
+	3) "$TERMINAL" -e sh -c "doas pacman -Syu; pkill -RTMIN+$SIGNAL dwmblocks" > /dev/null & ;;
 esac
 
 UPDATABLE=$(pacman -Qu | grep -v '\[ignored\]')

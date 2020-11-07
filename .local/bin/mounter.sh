@@ -34,9 +34,9 @@ mkdir -p "$HOME/mounts/$LABEL"
 
 if [ "$TYPE" = "vfat" ]
 then
-	sudo -A mount -o uid="$(id -u)" -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
+	doas mount -o uid="$(id -u)" -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
 else
-	sudo -A mount -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
+	doas mount -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
 fi
 
 notify-send "Successfully mounted $LABEL" "$CHOSEN"
