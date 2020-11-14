@@ -2,6 +2,7 @@ alias cp="cp -i" \
 dd="dd status=progress oflag=direct" \
 doas="doas " \
 sudo="doas " \
+s="doas " \
 gf="git fetch" \
 gp="git pull" \
 gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/ ' \
@@ -15,6 +16,7 @@ p="pacman" \
 qc="git add -A && git commit -a -m \"\$(date +'%d.%m.%y %H:%M')\"" \
 rm="rm -I" \
 rr="rm -rfI" \
+unxz="unxz -v" \
 v="nvim" \
 
 cd() { builtin cd "$@" && ls; }
