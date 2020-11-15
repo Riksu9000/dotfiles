@@ -1,0 +1,5 @@
+#!/bin/sh
+
+FT=$(file --mime-type -bL $*)
+
+xclip -selection clipboard -t "$FT" "$*"
