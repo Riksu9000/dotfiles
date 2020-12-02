@@ -2,12 +2,12 @@
 
 case $BLOCK_BUTTON in
 	1) pactl set-sink-mute   @DEFAULT_SINK@ toggle ;;
-	4) pactl set-sink-volume @DEFAULT_SINK@ +5% ;;
-	5) pactl set-sink-volume @DEFAULT_SINK@ -5% ;;
+	4) pactl set-sink-volume @DEFAULT_SINK@ +3db ;;
+	5) pactl set-sink-volume @DEFAULT_SINK@ -3db ;;
 esac
 
-# Requires pulseaudio-alsa
-VOL=$(amixer sget Master 2> /dev/null | sed '/Front Left:/!d;s/.*off.*/muted/;s/%\]\ \[on\]//;s/^.*\[//')
+# set soundcard value below
+VOL=$(amixer -c 1 get Master 2> /dev/null | sed '/%/!d;s/.*off.*/muted/;s/%\].*$//;s/^.*\[//')
 [ -z "$VOL" ] && printf "🔇" && exit 1
 
 if [ "$VOL" = "muted" ]
