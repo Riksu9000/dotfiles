@@ -1,4 +1,4 @@
 #!/bin/sh
 
-scrot -e 'xclip -selection clipboard -t \$(file --mime-type -bL $f) $f && mv $f ~/pics/screenshots/'
+scrot "$*" -e 'xclip -selection clipboard -t \$(file --mime-type -bL $f) $f && mv $f ~/pics/screenshots/'
 
