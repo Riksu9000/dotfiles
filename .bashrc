@@ -5,7 +5,7 @@ sudo="doas " \
 s="doas " \
 gf="git fetch" \
 gp="git pull" \
-gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/ ' \
+gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/' \
 grep="grep --color=auto" \
 la="ls -la" \
 lb="cd ~/.local/bin" \
@@ -18,6 +18,7 @@ rm="rm -I" \
 rr="rm -rfI" \
 unxz="unxz -v" \
 v="nvim" \
+ytdl="youtube-dl" \
 
 cd() { builtin cd "$@" && ls; }
 
