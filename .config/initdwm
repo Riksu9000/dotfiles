@@ -5,6 +5,7 @@ INIT=${1:-"~/bin/dwm/dwm"}
 # Background programs
 dunst &
 ~/bin/dwmblocks/dwmblocks &
+mpd_notify.sh &
 
 # Set settings
 kb.sh
