@@ -10,6 +10,7 @@ set tabstop=4
 set termguicolors
 set wildmode=longest:full,full
 set wildmenu
+:vertical ball
 
 syntax on
 
@@ -30,6 +31,7 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :SyntasticToggleMode<CR>
 nnoremap <Leader>o :call ToggleOverLength()<CR>
+nnoremap <Leader>O :!open %<CR>
 
 command Sudowrite execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
