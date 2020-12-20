@@ -11,7 +11,9 @@ la="ls -la" \
 lb="cd ~/.local/bin" \
 ls="ls --color -hNv --group-directories-first" \
 make="make -j\$(nproc)" \
-nb="newsboat && pkill -RTMIN+4 dwmblocks" \
+myip="curl ipinfo.io/ip" \
+nb="newsboat" \
+nc="ncmpcpp" \
 p="pacman" \
 qc="git add -A && git commit -a -m \"\$(date +'%d.%m.%y %H:%M')\"" \
 rm="rm -I" \
@@ -19,6 +21,8 @@ rr="rm -rfI" \
 unxz="unxz -v" \
 v="nvim" \
 ytdl="youtube-dl" \
+
+test -r ~/.config/dir_colors && eval "$(dircolors ~/.config/dir_colors)"
 
 cd() { builtin cd "$@" && ls; }
 
