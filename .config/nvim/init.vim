@@ -1,4 +1,5 @@
 set backspace=start,indent
+set clipboard=unnamedplus
 set cursorline
 set list
 set listchars+=tab:\⎢\ ,trail:~,extends:>,precedes:<
@@ -34,9 +35,6 @@ nnoremap <Leader>o :call ToggleOverLength()<CR>
 nnoremap <Leader>O :!open %<CR>
 
 command Sudowrite execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
-
-vmap <C-c> "+y
-map <C-p> "+p
 
 call plug#begin()
 
