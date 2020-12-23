@@ -49,18 +49,14 @@ prompt_command() {
 	# SSH server name
 	[ -n "$SSH_CLIENT" ] && PS1+="\[\e[40;32m\] \H"
 
-	GITDIR=$(git rev-parse --show-toplevel --abbrev-ref HEAD --show-prefix 2> /dev/null)
-
 	# If in a git directory, strip working directory and change color
-	if [ -n "$GITDIR" ]
+	if BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 	then
-		DIR=""
-		BRANCH=$(sed -n 2p <<< "$GITDIR")
-		[ "$BRANCH" != "master" ] && DIR+="\[\e[40;96m\] $BRANCH"
-		DIR+="\[\e[40;36m\] $(basename $(head -n 1 <<< "$GITDIR"))/$(tail -n +3 <<< "$GITDIR") "
+		[ "$BRANCH" != "master" ] && PS1+="\[\e[40;96m\] $BRANCH"
+		PS1+="\[\e[40;36m\] $(basename $(git rev-parse --show-toplevel))/$(git rev-parse --show-prefix) "
 	else
-		DIR="\[\e[40;34m\] \w "
+		PS1+="\[\e[40;34m\] \w "
 	fi
-	PS1+="$DIR\[\e[0;40m\]> \[\e[0m\] "
+	PS1+="\[\e[0;40m\]> \[\e[0m\] "
 }
 
