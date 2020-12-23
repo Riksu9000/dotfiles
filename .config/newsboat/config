@@ -1,3 +1,4 @@
+# newsboat config
 bind-key j down
 bind-key k up
 
@@ -21,6 +22,9 @@ bind-key G end
 bind-key a toggle-article-read
 bind-key o open-in-browser-and-mark-read
 
+bind-key ^Y up
+bind-key ^E down
+
 # No accidental deletions
 unbind-key D
 unbind-key ^D
@@ -35,7 +39,7 @@ color listfocus color8 color0
 color listfocus_unread default color0
 
 articlelist-format "%4i %-80t %> %D "
-feedlist-format "%4i %-80t %> %?n?%U unread ?"
+feedlist-format "%4i %t %> %?n?%U unread ?"
 
 itemview-title-format "%T"
 articlelist-title-format " %T %> %U  [%u/%t] "
@@ -45,7 +49,10 @@ highlight feedlist "-.*-" color4 default
 highlight feedlist "--.*--" color6 default
 highlight feedlist "^....." color8 default
 highlight articlelist "^....." color8 default
-highlight article "^(Feed|Title|Author|Link|Date|Links|\[[0-9]*\]): .*" color8 default
+highlight article "^(Feed|Title|Author|Link|Date|Links):" color6 default bold
+highlight article "http.*" color8
+highlight article "https.*" color4
+highlight article "\\[[a-z0-9 ]*\\]" color6 default
 
 goto-next-feed no
 reload-threads 5
