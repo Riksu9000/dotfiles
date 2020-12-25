@@ -10,54 +10,7 @@ visualizer_look = ██
 playlist_disable_highlight_delay = 4
 message_delay_time = 4
 
-##### song format #####
-##
-## For a song format you can use:
-##
-## %l - length
-## %f - filename
-## %D - directory
-## %a - artist
-## %A - album artist
-## %t - title
-## %b - album
-## %y - date
-## %n - track number (01/12 -> 01)
-## %N - full track info (01/12 -> 01/12)
-## %g - genre
-## %c - composer
-## %p - performer
-## %d - disc
-## %C - comment
-## %P - priority
-## $R - begin right alignment
-##
-## If you want to make sure that a part of the format is displayed only when
-## certain tags are present, you can archieve it by grouping them with brackets,
-## e.g. '{%a - %t}' will be evaluated to 'ARTIST - TITLE' if both tags are
-## present or '' otherwise.  It is also possible to define a list of
-## alternatives by providing several groups and separating them with '|',
-## e.g. '{%t}|{%f}' will be evaluated to 'TITLE' or 'FILENAME' if the former is
-## not present.
-##
-## Note: If you want to set limit on maximal length of a tag, just put the
-## appropriate number between % and character that defines tag type, e.g. to
-## make album take max. 20 terminal cells, use '%20b'.
-##
-## In addition, formats support markers used for text attributes.  They are
-## followed by character '$'. After that you can put:
-##
-## - 0 - default window color (discards all other colors)
-## - 1 - black
-## - 2 - red
-## - 3 - green
-## - 4 - yellow
-## - 5 - blue
-## - 6 - magenta
-## - 7 - cyan
-## - 8 - white
-## - 9 - end of current color
-## - b - bold text
+## Not in man pages..
 ## - u - underline text
 ## - r - reverse colors
 ## - a - use alternative character set
@@ -66,9 +19,6 @@ message_delay_time = 4
 ## but this time insert character '/' between '$' and attribute character,
 ## e.g. {$b%t$/b}|{$r%f$/r} will display bolded title tag or filename with
 ## reversed colors.
-##
-## Note: colors can be nested.
-##
 
 song_list_format = {%a - }{%t}|{$(white)%f$(end)}$R{$(magenta)%l$(end)}
 #song_status_format = {{%a{ "%b"{ (%y)}} - }{%t}}|{%f}
@@ -132,10 +82,7 @@ song_window_title_format = ncmpcpp: {%a - }{%t}|{%f}
 
 song_columns_list_format = (3f)[green]{NE} (50)[white]{t|f:Title} (20)[blue]{a} (20)[cyan]{b} (7f)[magenta]{lr}
 
-#execute_on_song_change = ""
-#execute_on_player_state_change = ""
 #playlist_show_mpd_host = no
-#playlist_show_remaining_time = no
 #playlist_shorten_total_times = no
 #playlist_separate_albums = no
 
@@ -147,11 +94,9 @@ song_columns_list_format = (3f)[green]{NE} (50)[white]{t|f:Title} (20)[blue]{a} 
 #playlist_editor_display_mode = classic
 #discard_colors_if_item_is_selected = yes
 #show_duplicate_tags = yes
-#incremental_seeking = yes
-#seek_time = 1
+incremental_seeking = no
+seek_time = 5
 volume_change_step = 5
-#autocenter_mode = no
-#centered_cursor = no
 progressbar_look = ─▶─
 
 ## Available values: database, playlist.
@@ -174,17 +119,12 @@ progressbar_look = ─▶─
 #header_visibility = no
 #statusbar_visibility = yes
 titles_visibility = no
-#header_text_scrolling = yes
-#cyclic_scrolling = no
-#lines_scrolled = 2
-#lyrics_fetchers = lyricwiki, azlyrics, genius, sing365, lyricsmania, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, internet
-#follow_now_playing_lyrics = no
-#fetch_lyrics_for_current_song_in_background = no
-#store_lyrics_in_song_dir = no
-#allow_for_physical_item_deletion = no
+
+# Scroll view rather than cursor?
+lines_scrolled = 3
 
 #lastfm_preferred_language = en
-#space_add_mode = add_remove
+space_add_mode = always_add
 #show_hidden_files_in_local_browser = no
 
 ## How shall screen switcher work?
@@ -199,32 +139,15 @@ screen_switcher_mode = playlist, media_library
 #startup_slave_screen = ""
 #startup_slave_screen_focus = no
 
-## Default width of locked screen (in %).  Acceptable values are from 20 to 80.
-#locked_screen_width_part = 50
-
-#ask_for_locked_screen_width_part = yes
-#jump_to_now_playing_song_at_start = yes
-#ask_before_clearing_playlists = yes
-#clock_display_seconds = no
-#display_volume_level = yes
-#display_bitrate = no
-#display_remaining_time = no
-
 ## Available values: none, basic, extended, perl.
 #regular_expressions = perl
 
 #ignore_leading_the = no
-#ignore_diacritics = no
 #block_search_constraints_change_if_items_found = yes
-
-mouse_support = yes
-mouse_list_scroll_whole_page = no
 
 #empty_tag_marker = <empty>
 #tags_separator = " | "
 #tag_editor_extended_numeration = no
-#media_library_sort_by_mtime = no
-enable_window_title = yes
 
 ## - 1 - use mpd built-in searching (no regexes, pattern matching)
 ## - 2 - use ncmpcpp searching (pattern matching with support for regexes, but
