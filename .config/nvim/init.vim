@@ -7,6 +7,8 @@ set mouse=a
 set noswapfile
 set number relativenumber
 set shiftwidth=4
+set splitright
+set splitbelow
 set tabstop=4
 set termguicolors
 set wildmode=longest:full,full
@@ -33,6 +35,8 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :SyntasticToggleMode<CR>
 nnoremap <Leader>o :call ToggleOverLength()<CR>
 nnoremap <Leader>O :!open %<CR>
+" Set width to min 50% max 80 somehow?
+nnoremap <Leader>n :vsp ~/docs/notes<CR>
 
 command Sudowrite execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
