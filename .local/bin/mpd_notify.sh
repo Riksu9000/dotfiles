@@ -4,6 +4,8 @@
 
 music_library="$HOME/music"
 
+mpc -q || exit 1
+
 while true
 do
 	CURRENT=$(mpc current --wait)
