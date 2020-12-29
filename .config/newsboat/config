@@ -50,8 +50,8 @@ highlight feedlist "--.*--" color6 default
 highlight feedlist "^....." color8 default
 highlight articlelist "^....." color8 default
 highlight article "^(Feed|Title|Author|Link|Date|Links):" color6 default bold
-highlight article "http.*" color8
-highlight article "https.*" color4
+highlight article "http://.*" color8
+highlight article "https://.*" color4
 highlight article "\\[[a-z0-9 ]*\\]" color6 default
 
 goto-next-feed no
