@@ -6,7 +6,9 @@ WM=${1:-d}
 
 case $WM in
 	d*) ~/.config/initdwm ;;
-	g*) ~/.config/initgnome ;;
+	#g*) XDG_SESSION_TYPE=x11 GDK_BACKEND=x11 exec gnome-session ;;
+	g*) exec gnome-session ;;
+	x*) startxfce4 ;;
 	*) exec "$WM" || exit 1 ;;
 esac
 

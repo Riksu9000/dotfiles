@@ -1,7 +1,5 @@
 #!/bin/sh
 
-INIT=${1:-"~/bin/dwm/dwm"}
-
 # Background programs
 dunst &
 ~/bin/dwmblocks/dwmblocks &
@@ -9,7 +7,7 @@ mpd_notify.sh &
 
 # Set settings
 kb.sh
-xrdb -merge -I$HOME ~/.config/Xresources
+xrdb -merge ~/.config/Xresources
 xsetroot -solid "#242933"
 
-exec "$INIT"
+exec dwm
