@@ -9,7 +9,7 @@
 ALBUM=$(basename "$(pwd)")
 ARTIST=$(basename "$(dirname "$(pwd)")")
 
-for file in "$@"
+for file
 do
 	NUMBER=$(echo "$file" | grep -o '^[0-9]*')
 	TITLE=$(echo "${file%.*}" | sed 's/^[0-9]*\.//')

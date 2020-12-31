@@ -2,7 +2,7 @@
 
 # Unarchive
 # Features smart extract here when archive contains a single file
-for a in "$@"
+for a
 do
 	[ ! -f "$a" ] && >&2 echo "File $a not found" && break
 	if [ "$(bsdtar -tf "$a" | sed '/.*\/./d' | wc -l)" -lt 2 ]
