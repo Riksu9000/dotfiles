@@ -1,15 +1,8 @@
 x() { xinit "$1" -- :0 vt"$(fgconsole)"; }
 
-# Run bashrc for login shell
-[ -f ~/.bashrc ] && source ~/.bashrc
+export SUDO=$(command -v doas > /dev/null && echo doas || echo sudo)
 
-PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.local/bin/blocks"
-
-##############################
-# Stop here if login via SSH #
-##############################
-[ -n "$SSH_CLIENT" ] && return 0
-
+PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 
 export BROWSER="firefox" \
 EDITOR="nvim" \
@@ -23,6 +16,7 @@ LESS_TERMCAP_ue=$'\e[0m' \
 LESS_TERMCAP_us=$'\e[1;4;36m' \
 MOZ_USE_XINPUT2=1 \
 QT_QPA_PLATFORMTHEME=gtk2 \
+SSH_ASKPASS=~/.local/bin/askpass \
 SUDO_ASKPASS=~/.local/bin/askpass \
 TERMINAL="st" \
 VISUAL="nvim" \
@@ -46,6 +40,8 @@ WGETRC="$XDG_CONFIG_HOME/wgetrc" \
 WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default \
 XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority \
 _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java \
+
+[ -r ~/.bashrc ] && source ~/.bashrc
 
 # Autostart desktop
 #[ "$TERM" == "linux" ] && startx &> /dev/null

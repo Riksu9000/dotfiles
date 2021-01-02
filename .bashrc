@@ -1,8 +1,8 @@
 alias cp="cp -i" \
 dd="dd status=progress oflag=direct" \
-doas="doas " \
-sudo="doas " \
-s="doas " \
+doas="$SUDO " \
+sudo="$SUDO " \
+s="$SUDO " \
 gf="git fetch" \
 gp="git pull" \
 gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/' \
@@ -22,7 +22,7 @@ unxz="unxz -v" \
 v="nvim" \
 ytdl="youtube-dl" \
 
-test -r ~/.config/dir_colors && eval "$(dircolors ~/.config/dir_colors)"
+[ -r ~/.config/dir_colors ] && eval "$(dircolors ~/.config/dir_colors)"
 
 cd() { builtin cd "$@" && ls; }
 
@@ -35,6 +35,14 @@ up() {
 	done
 
 	ls
+}
+
+c() {
+	for BG in {40..47}
+	do
+		printf "\e[%sm   " "$BG"
+	done
+	printf "\e[0m\n"
 }
 
 # background color is intended to be darker than color0
