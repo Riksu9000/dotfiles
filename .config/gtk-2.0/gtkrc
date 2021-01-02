@@ -1,3 +1,2 @@
 gtk-theme-name="Adwaita-dark"
-gtk-font-name = "Terminus"
-#gtk-font-name = "Cantarell"
+gtk-font-name = "Roboto 11"
