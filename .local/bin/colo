@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# TODO: detect length of text. For now it must be 3 characters
+TEXT=abc
+
+print_row() {
+	BG=40
+	while [ "$BG" -le 48 ]
+	do
+		printf "  %s  \033[49m \033[%sm" "$TEXT" "$BG"
+		BG=$((BG + 1))
+	done
+	printf "\033[0m\n"
+}
+
+# HEADER
+
+printf "%16s" ""
+
+BG=40
+while [ "$BG" -le 47 ]
+do
+	printf "%sm     " "$BG"
+	BG=$((BG + 1))
+done
+
+printf "\n"
+
+# FIRST TWO LINES
+
+printf "    m "
+print_row
+printf "   1m \033[1m"
+print_row
+
+# REST OF THE LINES
+
+FG=30
+while [ "$FG" -le 37 ];
+do
+	printf "  %sm \033[%sm" "$FG" "$FG"
+	print_row
+	printf "1;%sm \033[1;%sm" "$FG" "$FG"
+	print_row
+	FG=$((FG + 1))
+done
