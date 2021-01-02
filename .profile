@@ -1,7 +1,5 @@
 x() { xinit "$1" -- :0 vt"$(fgconsole)"; }
 
-export SUDO=$(command -v doas > /dev/null && echo doas || echo sudo)
-
 PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 
 export BROWSER="firefox" \
@@ -15,7 +13,7 @@ LESS_TERMCAP_so=$'\e[1;33m' \
 LESS_TERMCAP_ue=$'\e[0m' \
 LESS_TERMCAP_us=$'\e[1;4;36m' \
 MOZ_USE_XINPUT2=1 \
-QT_QPA_PLATFORMTHEME=gtk2 \
+QT_QPA_PLATFORMTHEME=qt5ct \
 SSH_ASKPASS=~/.local/bin/askpass \
 SUDO_ASKPASS=~/.local/bin/askpass \
 TERMINAL="st" \

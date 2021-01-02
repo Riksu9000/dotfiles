@@ -1,8 +1,7 @@
 alias cp="cp -i" \
 dd="dd status=progress oflag=direct" \
-doas="$SUDO " \
-sudo="$SUDO " \
-s="$SUDO " \
+doas="doas " \
+gr="$BROWSER \$(git remote get-url origin)" \
 gf="git fetch" \
 gp="git pull" \
 gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/' \
@@ -15,9 +14,10 @@ myip="curl ipinfo.io/ip" \
 nb="newsboat" \
 nc="ncmpcpp" \
 p="pacman" \
-qc="git add -A && git commit -a -m \"\$(date +'%d.%m.%y %H:%M')\"" \
 rm="rm -I" \
 rr="rm -rfI" \
+s="doas " \
+sudo="sudo " \
 unxz="unxz -v" \
 v="nvim" \
 ytdl="youtube-dl" \
