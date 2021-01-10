@@ -72,7 +72,7 @@ inputbar {
 
 element {
 	background-color: transparent;
-	padding: 4px;
+	padding: 2 6 2 6;
 }
 
 element-icon {

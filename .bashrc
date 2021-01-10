@@ -1,7 +1,7 @@
 alias cp="cp -i" \
-dd="dd status=progress oflag=direct" \
+dd="dd status=progress oflag=direct bs=1M" \
 doas="doas " \
-gr="$BROWSER \$(git remote get-url origin)" \
+gr="$BROWSER \$(git remote get-url origin) & disown" \
 gf="git fetch" \
 gp="git pull" \
 gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/' \
@@ -58,8 +58,9 @@ prompt_command() {
 	[ -n "$SSH_CLIENT" ] && PS1+="\[\e[40;32m\] \H"
 
 	# If in a git directory, strip working directory and change color
-	if BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+	if git rev-parse --show-toplevel 2> /dev/null
 	then
+		BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 		[ "$BRANCH" != "master" ] && PS1+="\[\e[40;96m\] $BRANCH"
 		PS1+="\[\e[40;36m\] $(basename $(git rev-parse --show-toplevel))/$(git rev-parse --show-prefix) "
 	else

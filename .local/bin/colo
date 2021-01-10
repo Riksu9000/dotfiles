@@ -32,12 +32,16 @@ printf "    m "
 print_row
 printf "   1m \033[1m"
 print_row
+printf "   2m \033[2m"
+print_row
 
 # REST OF THE LINES
 
 FG=30
 while [ "$FG" -le 37 ];
 do
+	#printf "2;%sm \033[2;%sm" "$FG" "$FG"
+	#print_row
 	printf "  %sm \033[%sm" "$FG" "$FG"
 	print_row
 	printf "1;%sm \033[1;%sm" "$FG" "$FG"
