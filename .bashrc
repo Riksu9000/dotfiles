@@ -58,7 +58,7 @@ prompt_command() {
 	[ -n "$SSH_CLIENT" ] && PS1+="\[\e[40;32m\] \H"
 
 	# If in a git directory, strip working directory and change color
-	if git rev-parse --show-toplevel 2> /dev/null
+	if git rev-parse --show-toplevel &> /dev/null
 	then
 		BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 		[ "$BRANCH" != "master" ] && PS1+="\[\e[40;96m\] $BRANCH"
