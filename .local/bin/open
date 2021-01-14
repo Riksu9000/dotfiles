@@ -4,17 +4,21 @@ BN=$(basename "$*")
 EXT=${BN##*.}
 
 case $EXT in
-	scad) openscad "$*" > /dev/null 2>&1 & exit ;;
-esac
-
-case $(file --mime-type "$*" -bL) in
-	audio/*) mpv "$*" --audio-display=no ;;
-	application/pdf) evince "$*" ;;
-	image/gif) mpv "$*" ;;
-	image/*) eog "$*" ;;
+scad) openscad "$*" & ;;
+stl) prusa-slicer "$*" & ;;
+xcf) gimp "$*" & ;;
+*)
+	case $(file --mime-type "$*" -bL) in
+	audio/*) mpv --audio-display=no "$*" ;;
+	application/pdf) zathura "$*" & ;;
+	image/gif) mpv "$*" & ;;
+	#image/*) eog "$*" ;;
+	image/*) sxiv "$*" ;;
 	inode/directory) pcmanfm "$*" ;;
 	text/html) "$BROWSER" "$*" ;;
 	text/*) "$VISUAL" "$*" ;;
 	video/*) mpv "$*" ;;
-	*) xdg-open "$*" || exit 1 ;;
-esac
+	*) xdg-open "$*" ;;
+	esac
+	;;
+esac > /dev/null 2>&1

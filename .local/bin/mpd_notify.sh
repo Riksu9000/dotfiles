@@ -12,7 +12,7 @@ do
 	pkill -RTMIN+3 dwmblocks
 	[ -z "$CURRENT" ] && continue
 	ffmpeg -y -i "$(mpc --format "$music_library"/%file% | head -n 1)" /tmp/mpd_cover.jpg > /dev/null 2>&1 && \
-	notify-send -i /tmp/mpd_cover.jpg "Now Playing:" "$CURRENT" || \
-	notify-send "Now Playing:" "$CURRENT"
+	notify-send -i /tmp/mpd_cover.jpg "Now Playing:" "$CURRENT" -h string:x-canonical-private-synchronous:mpd_notify || \
+	notify-send "Now Playing:" "$CURRENT" -h string:x-canonical-private-synchronous:mpd_notify
 done
 

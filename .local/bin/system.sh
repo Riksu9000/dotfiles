@@ -23,7 +23,7 @@ Poweroff"
 
 LINECOUNT=$(echo "$OPTIONS" | wc -l)
 
-CHOSEN=$(printf "%s" "$OPTIONS" | dmenu -l "$LINECOUNT")
+CHOSEN=$(printf "$OPTIONS%s" | dmenu -l "$LINECOUNT")
 
 case $CHOSEN in
 	"Install updates") setsid "$TERMINAL" -e doas pacman -Syu ;;

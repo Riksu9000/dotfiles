@@ -8,18 +8,20 @@ esac
 
 # set soundcard value below
 VOL=$(amixer -c 1 get Master 2> /dev/null | sed '/%/!d;s/.*off.*/muted/;s/%\].*$//;s/^.*\[//')
-[ -z "$VOL" ] && printf "🔇" && exit 1
 
-if [ "$VOL" = "muted" ]
+if [ -z "$VOL" ]
+then
+	printf "🔇"
+elif [ "$VOL" = "muted" ]
 then
 	printf "🔇 mute"
 elif [ "$VOL" -lt 25 ]
 then
-	printf "%s" "🔈 $VOL%"
+	printf "🔈 %s%%" "$VOL"
 elif [ "$VOL" -lt 75 ]
 then
-	printf "%s" "🔉 $VOL%"
+	printf "🔉 %s%%" "$VOL"
 else
-	printf "%s" "🔊 $VOL%"
+	printf "🔊 %s%%" "$VOL"
 fi
 

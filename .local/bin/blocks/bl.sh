@@ -7,5 +7,5 @@ do
 
 	PERC=$((BRIGHTNESS * 100 / MAX))
 
-	printf "%s" "BL $PERC%"
+	printf "BL %s%%" "$PERC"
 done
