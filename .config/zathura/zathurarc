@@ -1,0 +1,26 @@
+# zathuraconf
+set guioptions shv
+set scroll-step 100
+set recolor-keephue true
+
+map i recolor
+map <Button3> recolor
+
+# Scrollwheel mappings don't seem to work
+#map <Button4> navigate previous
+#map <Button5> navigate next
+#map <S-Button4> navigate previous
+#map <S-Button5> navigate next
+map <Button8> navigate previous
+map <Button9> navigate next
+
+# nord
+set recolor-darkcolor \#d8dee9
+set recolor-lightcolor \#2e3440
+
+# gruvbox
+#set recolor-darkcolor \#ebdbb2
+#set recolor-lightcolor \#282828
+
+set statusbar-bg \#2e3440
+set statusbar-fg \#d8dee9
