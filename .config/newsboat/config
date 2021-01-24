@@ -21,6 +21,8 @@ bind-key G end
 
 bind-key a toggle-article-read
 bind-key o open-in-browser-and-mark-read
+# above doesn't work in feedlist for whatever reason
+bind-key o open-in-browser feedlist
 
 bind-key ^Y up
 bind-key ^E down
@@ -34,7 +36,7 @@ color info default color0
 color listnormal color8 default
 color listnormal_unread default default
 
-# NOTE: Use underline or other bg color if your terminals bg and color0 are the same
+# NOTE: Use underline or other bg color if bg and color0 are the same
 color listfocus color8 color0
 color listfocus_unread default color0
 
