@@ -1,0 +1,2 @@
+#!/bin/sh
+find "${1:-.}" -maxdepth 2 -name '*.git' -execdir git pull --ff-only \;
