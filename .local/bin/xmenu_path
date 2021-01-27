@@ -1,0 +1,17 @@
+#!/bin/sh
+# Modified from dmenu_path
+
+cachedir="${XDG_CACHE_HOME:-"$HOME/.cache"}"
+cache="$cachedir/xmenu_run"
+
+DATA_DIRS=$HOME/.local/share/applications:/usr/share/applications:/usr/local/share/applications
+
+[ ! -e "$cachedir" ] && mkdir -p "$cachedir"
+
+IFS=:
+# stest command is from dmenu
+if stest -dqr -n "$cache" $DATA_DIRS; then
+	xdg-xmenu | tee "$cache"
+else
+	cat "$cache"
+fi
