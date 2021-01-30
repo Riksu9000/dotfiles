@@ -1,0 +1,5 @@
+#!/bin/sh
+
+BASEDIR=$HOME/.config/nvim
+
+find "$BASEDIR"/pack -maxdepth 4 -name '*.git' -exec sh -c 'printf "Updating %s: " $(basename $(dirname {}))' \; -execdir git pull --ff-only \;

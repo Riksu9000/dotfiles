@@ -1,6 +1,7 @@
 set backspace=start,indent
 set clipboard=unnamedplus
 set cursorline
+set lazyredraw
 set list
 set listchars+=tab:\⎢\ ,trail:~,extends:>,precedes:<
 set mouse=a
@@ -15,6 +16,7 @@ set wildmode=longest:full,full
 set wildmenu
 :vertical ball
 
+" Required for statusline colors?
 syntax on
 
 let mapleader=' '
@@ -25,13 +27,12 @@ map Ö :
 map & ^
 
 "Conflicts with vim-gitgutter
-nnoremap <Leader>h <C-w>h
-nnoremap <Leader>j <C-w>j
-nnoremap <Leader>k <C-w>k
-nnoremap <Leader>l <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :SyntasticToggleMode<CR>
 nnoremap <Leader>o :call ToggleOverLength()<CR>
 nnoremap <Leader>O :!open %<CR>
@@ -40,32 +41,9 @@ nnoremap <Leader>n :vsp ~/docs/notes<CR>
 
 command Sudowrite execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
-call plug#begin()
-
-" Colorscheme
-Plug 'morhetz/gruvbox'
-Plug 'arcticicestudio/nord-vim'
-
-" Syntax checking
-Plug 'scrooloose/syntastic'
-
-" Completion engine
-Plug 'ervandew/supertab'
-
-" Automatically close html tags
-Plug 'alvan/vim-closetag'
-
-" Git
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-
-" Syntax highlighting
-Plug 'maxbane/vim-asm_ca65'
-Plug 'sirtaj/vim-openscad'
-
-Plug 'ap/vim-css-color'
-
-call plug#end()
+"https://vim.fandom.com/wiki/Super_retab
+:command! -range=% -nargs=0 Space2Tab execute '<line1>,<line2>s#^\( \{'.&ts.'\}\)\+#\=repeat("\t", len(submatch(0))/' . &ts . ')'
+:command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
 
 colorscheme nord
 
@@ -83,12 +61,8 @@ function ToggleOverLength()
 endfunction
 match OverLength /\%101v.\+/
 
-" Syntastic options
-set statusline=
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%0*
-
+" Statusline Syntastic warning
+set statusline=%#warningmsg#%{SyntasticStatuslineFlag()}%0*
 " Statusline left
 set statusline+=%1*\ %<%f\ %m%r
 " Middle
@@ -109,5 +83,7 @@ let g:syntastic_asm_checkers = []
 " vim-gitgutter options
 set updatetime=100
 
-au BufReadPost *.asm set filetype=asm_ca65
-au BufReadPost *.rasi set filetype=css
+if $TERM == "linux"
+	set notermguicolors
+	colorscheme default
+endif
