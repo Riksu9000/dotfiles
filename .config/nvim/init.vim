@@ -80,6 +80,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_c_compiler_options = '-include stdint.h -include stdbool.h'
 let g:syntastic_asm_checkers = []
 
+let g:AutoPairsCenterLine = 0
+
 " vim-gitgutter options
 set updatetime=100
 

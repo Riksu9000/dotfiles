@@ -14,10 +14,10 @@ xcf) gimp "$*" & ;;
 	image/gif) mpv "$*" & ;;
 	#image/*) eog "$*" ;;
 	image/*) sxiv "$*" ;;
-	inode/directory) pcmanfm "$*" ;;
-	text/html) "$BROWSER" "$*" ;;
+	inode/directory) pcmanfm "$*" & ;;
+	text/html) "$BROWSER" "$*" & ;;
 	text/*) "$VISUAL" "$*" ;;
-	video/*) mpv "$*" ;;
+	video/*) mpv "$*" & ;;
 	*) xdg-open "$*" ;;
 	esac
 	;;

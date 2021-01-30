@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# required by rofi for .desktop OnlyShowIn= support
+export XDG_CURRENT_DESKTOP=dwm
+
 # Background programs
 dunst &
 ~/bin/dwmblocks/dwmblocks &
