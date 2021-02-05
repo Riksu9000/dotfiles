@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# suckless tabbed is the proper swallow/devour until it gets implemented in st
+# https://tools.suckless.org/tabbed/
+
+ID=$(xdotool getactivewindow)
+
+[ -z "$XEMBED" ] && open "$*" && exit
+
+case $(file --mime-type "$*" -bL) in
+application/pdf) zathura -e "$ID" "$*" ;;
+image/gif|video/*) mpv --wid="$ID" "$*" ;;
+image/*) sxiv -e "$ID" "$*" ;;
+*) open "$*" ;;
+esac > /dev/null 2>&1 &
