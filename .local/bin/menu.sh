@@ -4,6 +4,31 @@ OPTIONS="$(xmenu_path)
 
 "
 
+CLIP=$(xclip -o -selection CLIPBOARD | tr '\n' ' ' | tr '\t' ' ')
+if [ -n "$CLIP" ]
+then
+	OPTIONS=$OPTIONS"Clipboard:
+	$CLIP"
+
+	case "$CLIP" in
+	http*twitch.tv/*)
+		CUT=${CLIP#*twitch.tv/}
+		NAME=${CUT%%/*}
+		OPTIONS=$OPTIONS"
+	Open stream	tw \"$NAME\""
+		;;
+	http*)
+		OPTIONS=$OPTIONS"
+	Open in browser	\$BROWSER \"$CLIP\" &
+	Open in mpv	mpv \"$CLIP\" || notify-send \"Invalid video link\""
+		;;
+	esac
+
+	OPTIONS=$OPTIONS"
+
+"
+fi
+
 PLAYERCTLSTATUS=$(playerctl status 2>/dev/null)
 if [ -n "$PLAYERCTLSTATUS" ] && [ "$PLAYERCTLSTATUS" != "Stopped" ]
 then
