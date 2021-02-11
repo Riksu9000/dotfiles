@@ -1,6 +1,6 @@
 x() { xinit "$1" -- :0 vt"$(fgconsole)"; }
 
-PATH="$PATH:$HOME/bin:$HOME/.local/bin"
+PATH="$PATH:$HOME/.local/bin"
 
 export BROWSER="firefox" \
 EDITOR="nvim" \
