@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for url in "$@"
+do
+	youtube-dl "$url" -o '%(album)s/%(track_number)s.%(track)s.%(ext)s'
+done

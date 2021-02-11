@@ -1,0 +1,9 @@
+#!/bin/sh
+
+VALUE=${1:-0}
+
+case $VALUE in
+0)  nvidia-settings --load-config-only ;;
+-*) nvidia-settings -a Brightness="$VALUE" -a Contrast="$VALUE" ;;
+*)  nvidia-settings -a Brightness="$VALUE" -a Contrast=-"$VALUE" ;;
+esac > /dev/null

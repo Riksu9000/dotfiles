@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mpv https://twitch.tv/"$1" || notify-send "Channel not found or offline" && exit 1 &
+"$BROWSER" https://twitch.tv/popout/"$1"/chat &
