@@ -8,7 +8,8 @@ CLIP=$(xclip -o -selection CLIPBOARD | tr '\n' ' ' | tr '\t' ' ')
 if [ -n "$CLIP" ]
 then
 	OPTIONS=$OPTIONS"Clipboard:
-	$CLIP"
+	$CLIP
+	Clear clipboard	printf '' | xclip -selection CLIPBOARD"
 
 	case "$CLIP" in
 	http*twitch.tv/*)
