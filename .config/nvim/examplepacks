@@ -1,3 +1,4 @@
+# TODO: find simple package manager
 https://github.com/arcticicestudio/nord-vim.git
 https://github.com/maxbane/vim-asm_ca65.git
 https://github.com/alvan/vim-closetag.git
@@ -9,3 +10,4 @@ https://github.com/airblade/vim-gitgutter.git
 https://github.com/ap/vim-css-color.git
 https://github.com/sirtaj/vim-openscad.git
 https://github.com/jiangmiao/auto-pairs.git
+https://github.com/tpope/vim-surround.git
