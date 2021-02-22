@@ -1,3 +1,5 @@
+set completion-ignore-case
+
 set enable-keypad
 
 set editing-mode vi

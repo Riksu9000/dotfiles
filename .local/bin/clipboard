@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# TODO: output to shell or notification
+#[ -t 0 ] && [ -t 1 ] && notify-send yes || notify-send no
+
 PRIMARY=$(xclip -o -selection primary 2> /dev/null | sed 's/-/\\-/')
 CLIPBOARD=$(xclip -o -selection clipboard 2> /dev/null | sed 's/-/\\-/')
 

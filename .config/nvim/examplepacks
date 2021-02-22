@@ -10,4 +10,5 @@ https://github.com/airblade/vim-gitgutter.git
 https://github.com/ap/vim-css-color.git
 https://github.com/sirtaj/vim-openscad.git
 https://github.com/jiangmiao/auto-pairs.git
-https://github.com/tpope/vim-surround.git
+#https://github.com/tpope/vim-surround.git
+https://github.com/tpope/vim-commentary

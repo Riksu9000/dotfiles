@@ -1,2 +1,2 @@
 #!/bin/sh
-find "${1:-.}" -maxdepth 2 -name '*.git' -execdir git pull --ff-only \;
+find "${1:-.}" -maxdepth 2 -name '*.git' -execdir sh -c 'printf "\033[1mUpdating %s: \033[0m" $(basename $(pwd))' \;  -execdir git pull --ff-only \;

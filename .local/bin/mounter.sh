@@ -22,17 +22,14 @@ CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
 
 # Get the label for the partition
 LABEL=$(lsblk "$CHOSEN" -no "LABEL")
-
-# Get the partition type
-TYPE=$(lsblk "$CHOSEN" -no "FSTYPE")
-
-# If there is no label, get UUID
 [ -z "$LABEL" ] && LABEL=$(lsblk "$CHOSEN" -no "UUID")
+[ -z "$LABEL" ] && LABEL=$(shuf -i 1-100000 -n 1)
 
 # Make a directory for mounting the drive
-mkdir -p "$HOME/mounts/$LABEL"
+mkdir -p "$HOME/mounts/$LABEL" || err
 
-if [ "$TYPE" = "vfat" ]
+TYPE=$(lsblk "$CHOSEN" -no "FSTYPE")
+if [ "$TYPE" = "vfat" ] || [ "$TYPE" = "ntfs" ]
 then
 	doas mount -o uid="$(id -u)" -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
 else

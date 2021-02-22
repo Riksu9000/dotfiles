@@ -1,10 +1,17 @@
 #!/bin/sh
 
-OPTIONS="$(xmenu_path)
+OPTIONS="Favourites
+	IMG:/usr/share/icons/Adwaita/24x24/legacy/system-file-manager.png	File Manager	pcmanfm
+	IMG:/usr/share/icons/hicolor/24x24/apps/firefox.png	Firefox	firefox
+	IMG:/usr/share/icons/hicolor/32x32/apps/PrusaSlicer.png	PrusaSlicer	prusa-slicer
+	IMG:/usr/share/icons/hicolor/24x24/apps/steam.png	Steam	steam
+"
+
+OPTIONS=$OPTIONS"$(xmenu_path)
 
 "
 
-CLIP=$(xclip -o -selection CLIPBOARD | tr '\n' ' ' | tr '\t' ' ')
+CLIP=$(xclip -o -selection CLIPBOARD | grep '[[:print:]]' 2>/dev/null | tr '\n' ' ' | tr '\t' ' ')
 if [ -n "$CLIP" ]
 then
 	OPTIONS=$OPTIONS"Clipboard:

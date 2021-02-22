@@ -25,6 +25,7 @@ ytdl="youtube-dl" \
 [ -r ~/.config/dir_colors ] && eval "$(dircolors ~/.config/dir_colors)"
 
 cd() { builtin cd "$@" && ls; }
+di() { diff --color=always "$@" | less; }
 
 up() {
 	COUNT=${1:-1}
