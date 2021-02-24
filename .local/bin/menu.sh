@@ -1,6 +1,6 @@
 #!/bin/sh
 
-OPTIONS="Favourites
+OPTIONS="IMG:/usr/share/icons/Adwaita/24x24/legacy/starred.png	Favourites
 	IMG:/usr/share/icons/Adwaita/24x24/legacy/system-file-manager.png	File Manager	pcmanfm
 	IMG:/usr/share/icons/hicolor/24x24/apps/firefox.png	Firefox	firefox
 	IMG:/usr/share/icons/hicolor/32x32/apps/PrusaSlicer.png	PrusaSlicer	prusa-slicer
@@ -11,7 +11,8 @@ OPTIONS=$OPTIONS"$(xmenu_path)
 
 "
 
-CLIP=$(xclip -o -selection CLIPBOARD | grep '[[:print:]]' 2>/dev/null | tr '\n' ' ' | tr '\t' ' ')
+# xmenu reads literal "\n" and "\t" as newline and tab so they must be converted to "/n" and "/t"
+CLIP=$(xclip -o -selection CLIPBOARD | sed -e 's/\\n/\/n/g' -e 's/\\t/\/t/g' | tr -cds "[:print:]" " ")
 if [ -n "$CLIP" ]
 then
 	OPTIONS=$OPTIONS"Clipboard:
