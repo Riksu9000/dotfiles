@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# Simple replacement for playerctl
+
+method() {
+	dbus-send --print-reply --dest="$PLAYER" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."$1"
+}
+
+PLAYER=$(dbus-send --print-reply --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.ListNames | grep MediaPlayer2 | sed -e 's/^\s*string "//' -e 's/"$//' |head -n 1)
+[ -z "$PLAYER" ] && exit
+
+PLAYERNAME=${PLAYER#org.mpris.MediaPlayer2.}
+
+case $@ in
+status)
+	STATUS=$(dbus-send --print-reply=literal --dest="$PLAYER" /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:PlaybackStatus)
+	echo ${STATUS##* }
+	;;
+play) method Play ;;
+pause) method Pause ;;
+play-pause) method PlayPause ;;
+stop) method Stop ;;
+next) method Next ;;
+previous) method Previous;;
+#volume)
+metadata)
+	dbus-send --print-reply \
+		--dest="$PLAYER" \
+		/org/mpris/MediaPlayer2 \
+		org.freedesktop.DBus.Properties.Get \
+		string:org.mpris.MediaPlayer2.Player \
+		string:Metadata
+		;;
+#open)
+#shuffle)
+#loop)
+esac
+

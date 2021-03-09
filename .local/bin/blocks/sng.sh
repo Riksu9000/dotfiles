@@ -1,13 +1,12 @@
 #!/bin/sh
 
 case $BLOCK_BUTTON in
-	1) playerctl play-pause ;;
-	3) playerctl next ;;
-	4) playerctl volume 0.05+ ;;
-	5) playerctl volume 0.05- ;;
+	1) mprisctl play-pause ;;
+	3) mprisctl next ;;
 esac
 
-[ -z "$(command -v playerctl)" ] && echo "🎵Install playerctl" && exit 1
+# playerctl -V option from manual is unknown and returns 0..
+[ -z "$(playerctl --version)" ] && echo "🎵Install playerctl" && exit 1
 
 # Sleep because resuming playback might take longer than expected
 sleep 0.01s

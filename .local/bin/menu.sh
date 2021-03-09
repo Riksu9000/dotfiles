@@ -38,13 +38,13 @@ then
 "
 fi
 
-PLAYERCTLSTATUS=$(playerctl status 2>/dev/null)
+PLAYERCTLSTATUS=$(mprisctl status 2>/dev/null)
 if [ -n "$PLAYERCTLSTATUS" ] && [ "$PLAYERCTLSTATUS" != "Stopped" ]
 then
 	OPTIONS=$OPTIONS"$(playerctl metadata -f '{{playerName}}: {{title}}' 2> /dev/null)
-	Previous	playerctl previous
-	Play/Pause	playerctl play-pause
-	Next	playerctl next
+	Previous	mprisctl previous
+	Play/Pause	mprisctl play-pause
+	Next	mprisctl next
 
 "
 fi
