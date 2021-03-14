@@ -2,5 +2,5 @@
 
 for url in "$@"
 do
-	youtube-dl "$url" -o '%(album)s/%(track_number)s.%(track)s.%(ext)s'
+	youtube-dl -x --add-metadata --embed-thumbnail -o '%(album)s/%(autonumber)d.%(track)s.%(ext)s' "$url"
 done
