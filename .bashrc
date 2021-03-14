@@ -1,5 +1,5 @@
 alias cp="cp -i" \
-dd="dd status=progress oflag=direct bs=1M" \
+dd="dd status=progress" \
 doas="doas " \
 gr="$BROWSER \$(git remote get-url origin) & disown" \
 gf="git fetch" \
@@ -29,11 +29,14 @@ di() { diff --color=always "$@" | less; }
 
 up() {
 	COUNT=${1:-1}
+	DIR=$PWD
 	while [ "$COUNT" -gt 0 ]
 	do
-		builtin cd ..
+		DIR=${DIR%/*}
 		COUNT=$((COUNT-1))
 	done
+
+	builtin cd "$DIR/"
 
 	ls
 }
