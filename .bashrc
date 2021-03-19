@@ -1,14 +1,14 @@
 alias cp="cp -i" \
 dd="dd status=progress" \
 doas="doas " \
-gr="$BROWSER \$(git remote get-url origin) & disown" \
+gr="git remote get-url origin | xargs xdg-open" \
 gf="git fetch" \
 gp="git pull" \
 gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/' \
 grep="grep --color=auto" \
-la="ls -la" \
+la="ls -alN" \
 lb="cd ~/.local/bin" \
-ls="ls --color -hNv --group-directories-first" \
+ls="ls --color=auto -hv --group-directories-first" \
 make="make -j\$(nproc)" \
 myip="curl ipinfo.io/ip" \
 nb="newsboat" \
@@ -36,9 +36,7 @@ up() {
 		COUNT=$((COUNT-1))
 	done
 
-	builtin cd "$DIR/"
-
-	ls
+	cd "$DIR/"
 }
 
 c() {

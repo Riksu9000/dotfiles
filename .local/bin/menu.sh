@@ -13,7 +13,8 @@ OPTIONS=$OPTIONS"$(xmenu_path)
 
 # xmenu reads literal "\n" and "\t" as newline and tab so they must be converted to "/n" and "/t"
 CLIP=$(xclip -o -selection CLIPBOARD | sed -e 's/\\n/\/n/g' -e 's/\\t/\/t/g' | tr -cds "[:print:]" " ")
-if [ -n "$CLIP" ]
+# Disabled until fixed or removed
+if [ -n "$CLIP" ] && false
 then
 	OPTIONS=$OPTIONS"Clipboard:
 	$CLIP
