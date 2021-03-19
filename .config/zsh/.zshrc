@@ -11,13 +11,18 @@ export KEYTIMEOUT=1
 
 function zle-keymap-select () {
 	case $KEYMAP in
-	vicmd) echo -ne '\e[1 q';; # block
-	viins|main) echo -ne '\e[5 q';; # beam
+	vicmd) printf "\033[1 q" ;; # block
+	viins|main) printf "\033[5 q" ;; # beam
 	esac
 }
 zle -N zle-keymap-select
 
-function zle-line-init() { echo -ne "\e[5 q" }
+function zle-line-init() {
+	# set title of terminal emulator
+	printf "\033]0;%s: %s\007" "${TERM%%-*}" "${PWD/#$HOME/"~"}"
+
+	printf "\033[5 q"
+}
 zle -N zle-line-init
 
 bindkey '^[[P' delete-char
