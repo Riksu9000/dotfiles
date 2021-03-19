@@ -1,0 +1,22 @@
+cd() { builtin cd "$@" && ls; }
+di() { diff --color=always "$@" | less; }
+
+up() {
+	COUNT=${1:-1}
+	DIR=$PWD
+	while [ "$COUNT" -gt 0 ]
+	do
+		DIR=${DIR%/*}
+		COUNT=$((COUNT-1))
+	done
+
+	cd "$DIR/"
+}
+
+c() {
+	for BG in {40..47}
+	do
+		printf "\e[%sm   " "$BG"
+	done
+	printf "\e[0m\n"
+}

@@ -1,51 +1,6 @@
-alias cp="cp -i" \
-dd="dd status=progress" \
-doas="doas " \
-gr="git remote get-url origin | xargs xdg-open" \
-gf="git fetch" \
-gp="git pull" \
-gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/' \
-grep="grep --color=auto" \
-la="ls -alN" \
-lb="cd ~/.local/bin" \
-ls="ls --color=auto -hv --group-directories-first" \
-make="make -j\$(nproc)" \
-myip="curl ipinfo.io/ip" \
-nb="newsboat" \
-nc="ncmpcpp" \
-p="pacman" \
-rm="rm -I" \
-rr="rm -rfI" \
-s="doas " \
-sudo="sudo " \
-unxz="unxz -v" \
-v="nvim" \
-ytdl="youtube-dl" \
-
-[ -r ~/.config/dir_colors ] && eval "$(dircolors ~/.config/dir_colors)"
-
-cd() { builtin cd "$@" && ls; }
-di() { diff --color=always "$@" | less; }
-
-up() {
-	COUNT=${1:-1}
-	DIR=$PWD
-	while [ "$COUNT" -gt 0 ]
-	do
-		DIR=${DIR%/*}
-		COUNT=$((COUNT-1))
-	done
-
-	cd "$DIR/"
-}
-
-c() {
-	for BG in {40..47}
-	do
-		printf "\e[%sm   " "$BG"
-	done
-	printf "\e[0m\n"
-}
+[ -r ~/.config/shell/aliasrc ] && source ~/.config/shell/aliasrc
+[ -r ~/.config/shell/dir_colors ] && eval "$(dircolors ~/.config/shell/dir_colors)"
+[ -r ~/.config/shell/functions ] && source ~/.config/shell/functions
 
 # background color is intended to be darker than color0
 PROMPT_COMMAND=prompt_command

@@ -1,0 +1,23 @@
+alias cp="cp -i" \
+dd="dd status=progress" \
+doas="doas " \
+gr="git remote get-url origin | xargs xdg-open" \
+gf="git fetch" \
+gp="git pull" \
+gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/' \
+grep="grep --color=auto" \
+la="ls -alN" \
+lb="cd ~/.local/bin" \
+ls="ls --color=auto -hv --group-directories-first" \
+make="make -j\$(nproc)" \
+myip="curl ipinfo.io/ip" \
+nb="newsboat" \
+nc="ncmpcpp" \
+p="pacman" \
+rm="rm -I" \
+rr="rm -rfI" \
+s="doas " \
+sudo="sudo " \
+unxz="unxz -v" \
+v="nvim" \
+ytdl="youtube-dl" \
