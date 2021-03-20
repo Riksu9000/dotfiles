@@ -40,8 +40,6 @@ XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority \
 ZDOTDIR="$XDG_CONFIG_HOME"/zsh \
 _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java \
 
-[ -r ~/.bashrc ] && source ~/.bashrc
-
 # Autostart desktop
 #[ "$TERM" == "linux" ] && startx &> /dev/null
 
