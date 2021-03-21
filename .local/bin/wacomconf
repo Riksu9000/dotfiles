@@ -2,7 +2,7 @@
 
 MODE=${1:-normal}
 
-[ -z "$(command -v xsetwacom)" ] && notify-send "You need to install xsetwacom!" && exit 1
+[ -z "$(xsetwacom -V)" ] && notify-send "You need to install xsetwacom!" && exit 1
 [ -z "$(xsetwacom list devices)" ] && notify-send "Tablet was not detected" && exit 1
 
 DEVICE="Wacom Intuos S"

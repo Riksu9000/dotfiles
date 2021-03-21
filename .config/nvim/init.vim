@@ -21,6 +21,8 @@ syntax on
 
 let mapleader=' '
 
+let g:netrw_browsex_viewer="$BROWSER"
+
 " Fix some keys on finnish keyboard layout
 map ¤ $
 map Ö :

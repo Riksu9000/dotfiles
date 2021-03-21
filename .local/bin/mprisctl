@@ -22,6 +22,7 @@ play-pause) method PlayPause ;;
 stop) method Stop ;;
 next) method Next ;;
 previous) method Previous;;
+#position)
 #volume)
 metadata)
 	dbus-send --print-reply \

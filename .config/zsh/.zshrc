@@ -28,9 +28,22 @@ function zle-line-init() {
 }
 zle -N zle-line-init
 
-bindkey '^[[P' delete-char
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
+bindkey '^?' backward-delete-char
+
+bindkey -v "^[[P" delete-char
+bindkey -a "^[[P" delete-char
+
+bindkey -v "^[[1;5C" forward-word
+bindkey -a "^[[1;5C" forward-word
+
+bindkey -v "^[[1;5D" backward-word
+bindkey -a "^[[1;5D" backward-word
+
+bindkey -v "^[[4~" end-of-line
+bindkey -a "^[[4~" end-of-line
+
+bindkey -v "^[[H" beginning-of-line
+bindkey -a "^[[H" beginning-of-line
 
 autoload edit-command-line
 zle -N edit-command-line
