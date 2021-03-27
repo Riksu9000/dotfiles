@@ -1,0 +1,9 @@
+#!/bin/sh
+
+case $1 in
+up)     amixer -c 1 sset Master playback 3dB+ | grep '[[]0%' || amixer cset name='Master Playback Switch' on ;;
+down)   amixer -c 1 sset Master playback 3dB- | grep '[[]0%' && amixer cset name='Master Playback Switch' off ;;
+toggle) amixer -c 1 sset Master toggle ;;
+esac > /dev/null
+
+pkill -RTMIN+2 dwmblocks
