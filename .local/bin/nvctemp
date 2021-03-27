@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# Set color temperature for nvidia gpus
+
+# Algorithm source
+#https://tannerhelland.com/2012/09/18/convert-temperature-rgb-algorithm-code.html
+# This curve doesn't max out at 6500K but at 6600K
+
+# 5500K is like Sepia in firefox read mode 
+
+# This implementation is probably not corrent, but works as a simple filter
+
+[ $# = 0 ] && nvidia-settings --load-config-only && exit
+
+TEMP=${1:-6600}
+
+to_nvidia() {
+	#128 = -0.7
+	#255 = 0
+	echo "($1 - 255) / 183" | bc -l
+}
+
+if [ "$TEMP" -le 6600 ]
+then
+	RED=255
+	GREEN=$(echo "99.4708025861 * l($TEMP / 100) - 161.1195681661" | bc -l)
+else
+	RED=$(echo "329.698727446 * e(-0.1332047592 * l($TEMP / 100 - 60))" | bc -l)
+	GREEN=$(echo "288.1221695283 * e(-0.0755148492 * l($TEMP / 100- 60))" | bc -l)
+fi
+
+if [ "$TEMP" -ge 6600 ]
+then
+	BLUE=255
+elif [ "$TEMP" -le 1900 ]
+then
+	BLUE=0
+else
+	BLUE=$(echo "138.5177312231 * l($TEMP / 100 - 10) - 305.0447927307" | bc -l)
+fi
+
+# Remove decimals
+RED=${RED%.*}
+GREEN=${GREEN%.*}
+BLUE=${BLUE%.*}
+
+# Limit values
+[ "$RED" -lt 0 ] && RED=0 || [ "$RED" -gt 255 ] && RED=255
+[ "$GREEN" -lt 0 ] && GREEN=0 || [ "$GREEN" -gt 255 ] && GREEN=255
+[ "$BLUE" -lt 0 ] && BLUE=0 || [ "$BLUE" -gt 255 ] && BLUE=255
+
+NVRED=$(to_nvidia "$RED")
+NVGREEN=$(to_nvidia "$GREEN")
+NVBLUE=$(to_nvidia "$BLUE")
+
+#echo $RED
+#echo $GREEN
+#echo $BLUE
+
+#echo $NVRED
+#echo $NVGREEN
+#echo $NVBLUE
+
+nvidia-settings -a RedBrightness="$NVRED" -a GreenBrightness="$NVGREEN" -a BlueBrightness="$NVBLUE" -a RedContrast="$NVRED" -a GreenContrast="$NVGREEN" -a BlueContrast="$NVBLUE" > /dev/null
