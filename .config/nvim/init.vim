@@ -40,7 +40,7 @@ nnoremap <Leader>o :call ToggleOverLength()<CR>
 nnoremap <Leader>O :!open %<CR>
 " Set width to min 50% max 80 somehow?
 nnoremap <Leader>n :vsp ~/docs/notes<CR>
-nnoremap <Leader>g :packadd! goyo.vim<CR>:Goyo<CR>
+nnoremap <Leader>g :packadd goyo.vim<CR>:Goyo<CR>
 
 command Sudowrite execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
