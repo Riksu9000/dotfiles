@@ -40,24 +40,27 @@ nnoremap <Leader>o :call ToggleOverLength()<CR>
 nnoremap <Leader>O :!open %<CR>
 " Set width to min 50% max 80 somehow?
 nnoremap <Leader>n :vsp ~/docs/notes<CR>
+nnoremap <Leader>g :packadd! goyo.vim<CR>:Goyo<CR>
 
 command Sudowrite execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
+command Cdhere cd %:p:h
+
 "https://vim.fandom.com/wiki/Super_retab
-:command! -range=% -nargs=0 Space2Tab execute '<line1>,<line2>s#^\( \{'.&ts.'\}\)\+#\=repeat("\t", len(submatch(0))/' . &ts . ')'
-:command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
+:command! -range=% Space2Tab execute '<line1>,<line2>s#^\( \{'.&ts.'\}\)\+#\=repeat("\t", len(submatch(0))/' . &ts . ')'
+:command! -range=% Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
 
 colorscheme nord
 
 " Highlight text over 100 columns
-highlight OverLength guibg=#804147
+highlight OverLength guifg=#ebcb8b gui=undercurl
 let s:overlen=1 " TODO: can the current status be read instead of a variable?
 function ToggleOverLength()
 	if s:overlen
-		highlight OverLength guibg= guifg=
+		highlight OverLength guibg=NONE guifg=NONE gui=NONE
 		let s:overlen=0
 	else
-		highlight OverLength guibg=#804147
+		highlight OverLength guifg=#ebcb8b gui=undercurl
 		let s:overlen=1
 	endif
 endfunction
@@ -83,6 +86,8 @@ let g:syntastic_c_compiler_options = '-include stdint.h -include stdbool.h'
 let g:syntastic_asm_checkers = []
 
 let g:AutoPairsCenterLine = 0
+
+let g:goyo_height="100%"
 
 " vim-gitgutter options
 set updatetime=100
