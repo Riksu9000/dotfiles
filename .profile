@@ -2,9 +2,10 @@ x() { xinit "$1" -- :0 vt"$(fgconsole)"; }
 
 PATH="$PATH:$HOME/.local/bin"
 
-export BROWSER="firefox" \
-EDITOR="nvim" \
-LESS=-R \
+command -v brave > /dev/null && export BROWSER=brave || export BROWSER=firefox
+command -v nvim > /dev/null && export EDITOR=nvim || export EDITOR=vi
+command -v doas > /dev/null && export SUDO=doas || export EDITOR=sudo
+export LESS=-R \
 LESS_TERMCAP_mb=$'\e[1;31m' \
 LESS_TERMCAP_md=$'\e[1;34m' \
 LESS_TERMCAP_me=$'\e[0m' \

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd() { builtin cd "$@" && ls; }
 di() { diff --color=always "$@" | less; }
 

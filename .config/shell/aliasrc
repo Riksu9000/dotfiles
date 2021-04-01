@@ -1,14 +1,13 @@
+#!/bin/sh
+
 alias cp="cp -i" \
 dd="dd status=progress" \
-doas="doas " \
 flash="dd status=progress oflag=direct bs=1M" \
-gr="git remote get-url origin | xargs xdg-open" \
+gr="git remote get-url origin | xargs $BROWSER" \
 gf="git fetch" \
 gp="git pull" \
-gots='git --git-dir=/home/riku/bin/dotfiles --work-tree=/home/riku/' \
 grep="grep --color=auto" \
 la="ls -alN" \
-lb="cd ~/.local/bin" \
 ls="ls --color=auto -hv --group-directories-first" \
 make="make -j\$(nproc)" \
 myip="curl ipinfo.io/ip" \
@@ -16,9 +15,10 @@ nb="newsboat" \
 nc="ncmpcpp" \
 p="pacman" \
 rm="rm -I" \
-rr="rm -rfI" \
-s="doas " \
-sudo="sudo " \
+s="$SUDO " \
 unxz="unxz -v" \
 v="nvim" \
 ytdl="youtube-dl" \
+clb="cd ~/.local/bin" \
+cls="cd ~/.local/share" \
+c3p="cd ~/3d/projects" \

@@ -1,2 +1,5 @@
-Xft.dpi: 96
+#Xft.dpi: 96
 Xcursor.size: 32
+
+Sxiv.background: #2e3440
+Sxiv.foreground: #d8dee9
