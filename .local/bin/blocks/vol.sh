@@ -7,9 +7,12 @@ case $BLOCK_BUTTON in
 esac
 
 # set soundcard value below
-VOL=$(amixer -c 1 get Master 2> /dev/null | sed '/%/!d;s/.*off.*/muted/;s/%\].*$//;s/^.*\[//')
+VOL=$(amixer -c 1 get Master 2> /dev/null | grep -m 1 -o '\[[0-9]*%\]' | tr -dc '[:digit:]')
 
-if [ -z "$VOL" ]
+# Return "on" or "ff"
+#STATE=$(amixer cget name='Speaker Left Switch' 0 | grep '  : values=' | tail -c 3)
+
+if [ -z "$VOL" ] || [ "$STATE" = "ff" ]
 then
 	printf "🔇"
 elif [ "$VOL" = "muted" ]

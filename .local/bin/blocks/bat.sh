@@ -1,9 +1,9 @@
 #!/bin/sh
 
-for battery in /sys/class/power_supply/BAT*
+for battery in /sys/class/power_supply/*
 do
 	CAPACITY=$(cat "$battery/capacity" 2> /dev/null) || break
-	STATUS=$(cat "$battery/status")
+	STATUS=$(cat "$battery/status") || break
 
 	case $STATUS in
 		Charging) printf "🔌" ;;

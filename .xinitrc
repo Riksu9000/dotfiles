@@ -2,7 +2,7 @@
 
 WM=${1:-d}
 
-nvidia-settings --load-config-only
+nvidia-settings -v > /dev/null && nvidia-settings --load-config-only
 
 case $WM in
 	a*) ~/.config/initawesome ;;

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+DEV=/sys/class/backlight/backlight
+BRIGHTNESS=$(cat "$DEV/brightness")
+
+case "$@" in
+"up")   echo $((BRIGHTNESS + 1)) > "$DEV/brightness" ;;
+"down") echo $((BRIGHTNESS - 1)) > "$DEV/brightness" ;;
+esac
