@@ -6,13 +6,15 @@ case $BLOCK_BUTTON in
 	5) pactl set-sink-volume @DEFAULT_SINK@ -3db ;;
 esac
 
+OUTPUT=${@:-Master}
+
 # set soundcard value below
-VOL=$(amixer -c 1 get Master 2> /dev/null | grep -m 1 -o '\[[0-9]*%\]' | tr -dc '[:digit:]')
+VOL=$(amixer get "$@" 2> /dev/null | grep -m 1 -o '\[[0-9]*%\]' | tr -dc '[:digit:]')
 
-# Return "on" or "ff"
-#STATE=$(amixer cget name='Speaker Left Switch' 0 | grep '  : values=' | tail -c 3)
+# For Samsung Chromebook 2 on Arch Linux ARM
+#STATE=$(amixer get "$@ Left" | grep -o '\[[a-z]*\]' | tr -dc '[:alpha:]')
 
-if [ -z "$VOL" ] || [ "$STATE" = "ff" ]
+if [ -z "$VOL" ] || [ "$STATE" = "off" ]
 then
 	printf "🔇"
 elif [ "$VOL" = "muted" ]

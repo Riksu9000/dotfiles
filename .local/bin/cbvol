@@ -22,3 +22,5 @@ else
 	down)   amixer set Speaker 3dB- ;;
 	esac
 fi > /dev/null
+
+pkill -SIGUSR1 bar.sh

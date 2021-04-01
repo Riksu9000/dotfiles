@@ -6,8 +6,9 @@ export XDG_CURRENT_DESKTOP=dwm
 # Background programs
 dunst &
 ~/bin/dwmblocks/dwmblocks &
-mpd_notify.sh &
+mpd -v > /dev/null && mpd_notify.sh &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+#bar.sh &
 
 # Set settings
 kb.sh
