@@ -3,23 +3,23 @@
 # Volume script for Arch Linux ARM on Samsung Chromebook 2
 
 # Return "on" or "ff"
-STATE=$(amixer cget name='Speaker Left Switch' 0 | grep '  : values=' | tail -c 3)
+STATE=$(amixer -c 0 cget name='Speaker Left Switch' 0 | grep '  : values=' | tail -c 3)
 
 if [ "$1" = toggle ]
 then
-	amixer set 'Speaker Left' toggle
-	amixer set 'Speaker Right' toggle
+	amixer -c 0 set 'Speaker Left' toggle
+	amixer -c 0 set 'Speaker Right' toggle
 elif [ "$STATE" = "ff" ]
 then
 	# TODO: implement auto mute
 	case $1 in
-	up)     amixer set Headphone 3dB+ ;;
-	down)   amixer set Headphone 3dB- ;;
+	up)   amixer -c 0 set Headphone 3dB+ ;;
+	down) amixer -c 0 set Headphone 3dB- ;;
 	esac
 else
 	case $1 in
-	up)     amixer set Speaker 3dB+ ;;
-	down)   amixer set Speaker 3dB- ;;
+	up)   amixer -c 0 set Speaker 3dB+ ;;
+	down) amixer -c 0 set Speaker 3dB- ;;
 	esac
 fi > /dev/null
 
