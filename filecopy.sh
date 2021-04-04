@@ -7,8 +7,9 @@ do
 	[ "$file" = "." ] && continue
 	[ "$file" = ".." ] && continue
 	[ "$file" = ".git" ] && continue
-	[ "$file" = "rev_copy.sh" ] && continue
 	[ "$file" = "README.md" ] && continue
+	[ "$file" = "extra" ] && continue
+	[ "$file" = "rev_copy.sh" ] && continue
 	[ "$file" = "$(basename "$0")" ] && continue
 	cp -rv "$file" "$HOME/"
 done

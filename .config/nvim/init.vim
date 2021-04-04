@@ -50,7 +50,7 @@ command Cdhere cd %:p:h
 :command! -range=% Space2Tab execute '<line1>,<line2>s#^\( \{'.&ts.'\}\)\+#\=repeat("\t", len(submatch(0))/' . &ts . ')'
 :command! -range=% Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
 
-colorscheme nord
+silent! colorscheme nord
 
 " Highlight text over 100 columns
 highlight OverLength guifg=#ebcb8b gui=undercurl
