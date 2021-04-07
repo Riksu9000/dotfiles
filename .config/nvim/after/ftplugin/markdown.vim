@@ -1,6 +1,7 @@
 packadd vim-commentary
-au BufWritePost <buffer> silent !markdown -o /tmp/doc.html %
-nnoremap <Leader>p :!markdown -o /tmp/doc.html %; $BROWSER /tmp/doc.html &<CR>
+command MakePreview execute '!echo "<\!DOCTYPE html>" > /tmp/doc.html; markdown -S % >> /tmp/doc.html'
+autocmd BufWritePost <buffer> silent MakePreview
+nnoremap <Leader>p :MakePreview<CR>:!$BROWSER /tmp/doc.html &<CR>
 setlocal linebreak
 setlocal spell
 setlocal commentstring=<!---%s--->
