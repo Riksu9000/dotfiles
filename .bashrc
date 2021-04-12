@@ -25,4 +25,3 @@ prompt_command() {
 	fi
 	PS1+="\[\e[0;40m\]> \[\e[0m\] "
 }
-

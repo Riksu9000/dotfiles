@@ -11,7 +11,7 @@ set shiftwidth=4
 set splitright
 set splitbelow
 set tabstop=4
-set termguicolors
+set notermguicolors
 set wildmode=longest:full,full
 set wildmenu
 :vertical ball
@@ -50,17 +50,17 @@ command Cdhere cd %:p:h
 :command! -range=% Space2Tab execute '<line1>,<line2>s#^\( \{'.&ts.'\}\)\+#\=repeat("\t", len(submatch(0))/' . &ts . ')'
 :command! -range=% Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
 
-silent! colorscheme nord
+silent! colorscheme mynoctu
 
 " Highlight text over 100 columns
-highlight OverLength guifg=#ebcb8b gui=undercurl
+highlight OverLength ctermfg=3 cterm=undercurl gui=undercurl
 let s:overlen=1 " TODO: can the current status be read instead of a variable?
 function ToggleOverLength()
 	if s:overlen
-		highlight OverLength guibg=NONE guifg=NONE gui=NONE
+		highlight OverLength ctermfg=none cterm=none
 		let s:overlen=0
 	else
-		highlight OverLength guifg=#ebcb8b gui=undercurl
+		highlight OverLength ctermfg=3 cterm=undercurl
 		let s:overlen=1
 	endif
 endfunction
@@ -75,8 +75,7 @@ set statusline+=%0*%=
 " Right
 set statusline+=%{&fileformat}\ %{&fileencoding}\ %{&filetype}\ %1*%5.(%p%%%)\ %1*\ %3.l:%-3v
 " Statusline colors
-hi StatusLine guibg=#4c566a guifg=#d8dee9
-hi User1 guibg=#3b4252 guifg=#d8dee9
+hi User1 ctermbg=0
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1

@@ -21,4 +21,9 @@ c() {
 		printf "\e[%sm   " "$BG"
 	done
 	printf "\e[0m\n"
+	for BG in {100..107}
+	do
+		printf "\e[%sm   " "$BG"
+	done
+	printf "\e[0m\n"
 }

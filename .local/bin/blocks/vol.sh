@@ -12,7 +12,7 @@ OUTPUT=${@:-Master}
 VOL=$(amixer -c 0 get "$OUTPUT" 2> /dev/null | grep -m 1 -o '\[[0-9]*%\]' | tr -dc '[:digit:]')
 
 # For Samsung Chromebook 2 on Arch Linux ARM
-STATE=$(amixer -c 0 get "$@ Left" | grep -o '\[[a-z]*\]' | tr -dc '[:alpha:]')
+#STATE=$(amixer -c 0 get "$@ Left" | grep -o '\[[a-z]*\]' | tr -dc '[:alpha:]')
 
 if [ -z "$VOL" ] || [ "$STATE" = "off" ]
 then
