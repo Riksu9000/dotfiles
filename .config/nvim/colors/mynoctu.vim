@@ -1,4 +1,5 @@
-" Changed: Strings, Numbers, PreProc, Todo, CursorLineNr, Statusline, Normal
+" Changed: Strings, Numbers, PreProc, Todo, CursorLineNr, Statusline, Normal,
+" CursorLineNr, Search IncSearch
 " Removed: User1..9
 " Added: Character
 
@@ -10,7 +11,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "noctu"
+let g:colors_name = "mynoctu"
 
 " Added
 hi Character ctermfg=3
@@ -32,10 +33,10 @@ hi SpellRare           ctermfg=11    ctermbg=NONE  cterm=underline
 hi SpellLocal          ctermfg=13    ctermbg=NONE  cterm=underline
 hi NonText             ctermfg=8
 hi LineNr              ctermfg=8     ctermbg=NONE
-hi CursorLineNr        ctermfg=15    ctermbg=0
+hi CursorLineNr        ctermfg=15    ctermbg=none
 hi Visual              ctermfg=none  ctermbg=0
-hi IncSearch           ctermfg=0     ctermbg=13    cterm=NONE
-hi Search              ctermfg=0     ctermbg=10
+hi IncSearch           ctermfg=15    ctermbg=8    cterm=NONE
+hi Search              ctermfg=15    ctermbg=8
 hi StatusLine          ctermfg=7     ctermbg=8     cterm=bold
 hi StatusLineNC        ctermfg=8     ctermbg=0     cterm=bold
 hi VertSplit           ctermfg=0     ctermbg=0     cterm=NONE

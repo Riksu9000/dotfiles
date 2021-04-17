@@ -13,6 +13,7 @@ dunst &
 
 # Set settings
 kb.sh
+#nvidia-settings --load-config-only
 xrdb -merge ~/.config/Xresources
 xsetroot -solid "#111111"
 

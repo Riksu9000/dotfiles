@@ -22,3 +22,4 @@ ytdl="youtube-dl" \
 clb="cd ~/.local/bin" \
 cls="cd ~/.local/share" \
 c3p="cd ~/3d/projects" \
+cws="cd ~/bin/website/site" \
