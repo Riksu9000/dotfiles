@@ -1,4 +1,9 @@
-#Xft.dpi: 96
+! 1.0
+Xft.dpi: 96
+! 1.25
+!Xft.dpi: 120
+! 1.5
+!Xft.dpi: 144
 Xcursor.size: 32
 
 Sxiv.background: #2e3440
