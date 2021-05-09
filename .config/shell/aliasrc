@@ -3,7 +3,7 @@
 alias cp="cp -i" \
 dd="dd status=progress" \
 flash="dd status=progress oflag=direct bs=1M" \
-gr="git remote get-url origin | xargs $BROWSER" \
+gr="git remote get-url origin | xargs ${BROWSER:-firefox}" \
 gf="git fetch" \
 gp="git pull" \
 grep="grep --color=auto" \
@@ -15,7 +15,7 @@ nb="newsboat" \
 nc="ncmpcpp" \
 p="pacman" \
 rm="rm -I" \
-s="$SUDO " \
+s="${SUDO:-sudo} " \
 unxz="unxz -v" \
 v="nvim" \
 ytdl="youtube-dl" \
