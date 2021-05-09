@@ -19,8 +19,8 @@ do
 	#STR="$STR | $(~/.local/bin/blocks/bat.sh)"
 	STR="$STR | $(LANG=fi_FI.UTF-8 date '+%a %-d %b')"
 
-	#xsetroot -name "$STR"
-	echo "$STR"
+	xsetroot -name "$STR"
+	#echo "$STR"
 
 	sleep 30 &
 	wait $!

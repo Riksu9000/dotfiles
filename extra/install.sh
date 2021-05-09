@@ -28,6 +28,17 @@ then
 	passwd "$USERNAME"
 fi
 
+unset ANSWER
+printf "Replace sudo with doas? [y/N] "
+if [ "$ANSWER" = "y" ]
+then
+	pacman -Rns --noconfirm sudo
+	ln -s doas /bin/sudo
+fi
+
+printf "The rest of the installation is automatic, so sit back and relax"
+sleep 2
+
 xargs pacman --needed --noconfirm -S < "$PACKAGELIST"
 
 # Enable color for pacman
@@ -36,10 +47,11 @@ sed -i 's/^#Color/Color/' /etc/pacman.conf
 # Enable local hostname resolution
 systemctl enable avahi-daemon.service
 sed -i 's/resolve\ \[\!UNAVAIL\=return\]\ dns/mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns/' /etc/nsswitch.conf
-
+systemctl enable cups.socket
 systemctl enable transmission
 
 cp 30-touchpad.conf /etc/X11/xorg.conf.d/
+cp backlight.rules /etc/udev/rules.d/
 
 rm /bin/sh
 ln -s dash /bin/sh

@@ -1,9 +1,13 @@
 #!/bin/sh
 
-DEV=/sys/class/backlight/backlight
+# TODO"set limits for step and assigned brightness
+
+DEV=/sys/class/backlight/edp-backlight
 BRIGHTNESS=$(cat "$DEV/brightness")
+MAXBRIGHTNESS=$(cat "$DEV/max_brightness")
+STEP=$((MAXBRIGHTNESS / 10))
 
 case "$@" in
-"up")   echo $((BRIGHTNESS + 1)) > "$DEV/brightness" ;;
-"down") echo $((BRIGHTNESS - 1)) > "$DEV/brightness" ;;
+"up")   echo $((BRIGHTNESS + $STEP)) > "$DEV/brightness" ;;
+"down") echo $((BRIGHTNESS - $STEP)) > "$DEV/brightness" ;;
 esac

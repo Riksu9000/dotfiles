@@ -1,0 +1,17 @@
+#!/bin/sh
+
+OUTPUT="Charge Consumption Remaining\n"
+
+for battery in /sys/class/power_supply/*
+do
+	[ "$(cat "$battery/type")" = "Battery" ] || break
+
+	CAPACITY=$(cat $battery/capacity)
+	VOLTAGE=$(cat $battery/voltage_now)
+	CURRENT=$(cat $battery/current_now)
+	TTE=$(cat $battery/time_to_empty_now)
+
+	OUTPUT="$OUTPUT$(printf "%s%% %smW %sh" "$CAPACITY" "$((VOLTAGE * CURRENT / 1000 / 1000 / 1000))" "$((TTE / 60))")\n"
+done
+
+echo "$OUTPUT" | column -t

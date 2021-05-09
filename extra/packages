@@ -3,6 +3,7 @@ alsa-utils
 avahi
 base-devel
 crda
+cups
 dash
 dialog
 dhcpcd
@@ -12,6 +13,7 @@ firefox
 firefox-i18n-en-us
 firefox-ublock-origin
 git
+gimp
 gnome-sudoku
 gnome-themes-extra
 htop
