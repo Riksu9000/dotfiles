@@ -30,6 +30,7 @@ fi
 
 unset ANSWER
 printf "Replace sudo with doas? [y/N] "
+read -r ANSWER
 if [ "$ANSWER" = "y" ]
 then
 	pacman -Rns --noconfirm sudo
@@ -44,6 +45,8 @@ xargs pacman --needed --noconfirm -S < "$PACKAGELIST"
 # Enable color for pacman
 sed -i 's/^#Color/Color/' /etc/pacman.conf
 
+sed -i 's/^MAKEFLAGS.*/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf
+
 # Enable local hostname resolution
 systemctl enable avahi-daemon.service
 sed -i 's/resolve\ \[\!UNAVAIL\=return\]\ dns/mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns/' /etc/nsswitch.conf
@@ -52,6 +55,7 @@ systemctl enable transmission
 
 cp 30-touchpad.conf /etc/X11/xorg.conf.d/
 cp backlight.rules /etc/udev/rules.d/
+cp locale.conf /etc/
 
 rm /bin/sh
 ln -s dash /bin/sh

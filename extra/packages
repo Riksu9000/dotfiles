@@ -5,8 +5,8 @@ base-devel
 crda
 cups
 dash
-dialog
 dhcpcd
+dialog
 dunst
 ffmpegthumbnailer
 firefox

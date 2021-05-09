@@ -50,5 +50,9 @@ zle -N edit-command-line
 bindkey '^e' edit-command-line
 bindkey -a '^e' edit-command-line
 
+# Without this zsh acts weird with links containing a question mark symbol
+# is zsh not posix compliant by default?
+unsetopt nomatch
+
 # Requires arch package zsh-syntax-highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
