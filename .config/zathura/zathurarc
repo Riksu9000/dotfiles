@@ -14,13 +14,7 @@ map <Button3> recolor
 map <Button8> navigate previous
 map <Button9> navigate next
 
-# nord
-set recolor-darkcolor \#d8dee9
-set recolor-lightcolor \#2e3440
-
-# gruvbox
-#set recolor-darkcolor \#ebdbb2
-#set recolor-lightcolor \#282828
-
-set statusbar-bg \#2e3440
-set statusbar-fg \#d8dee9
+set recolor-darkcolor \#d4d4d4
+set recolor-lightcolor \#262626
+set statusbar-bg \#3b3b3b
+set statusbar-fg \#d4d4d4

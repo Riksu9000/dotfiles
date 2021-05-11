@@ -6,5 +6,5 @@ Xft.dpi: 96
 !Xft.dpi: 144
 Xcursor.size: 32
 
-Sxiv.background: #2e3440
-Sxiv.foreground: #d8dee9
+Sxiv.background: #262626
+Sxiv.foreground: #d4d4d4
