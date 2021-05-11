@@ -7,6 +7,8 @@ err() {
 	exit 1
 }
 
+cd "$(dirname "$0")" || exit 1
+
 set -e
 
 [ "$(id -u)" = "0" ] || err "Run as root"
@@ -26,6 +28,11 @@ then
 	read -r USERNAME
 	useradd -m -G storage transmission uucp vboxusers video wheel -s /bin/zsh "$USERNAME"
 	passwd "$USERNAME"
+
+	unset ANSWER
+	printf "Install dotfiles for user? [y/N] "
+	read -r ANSWER
+	[ "$ANSWER" = "y" ] && HOME=/home/$USERNAME ../filecopy.sh
 fi
 
 unset ANSWER
@@ -56,13 +63,9 @@ systemctl enable transmission
 cp 30-touchpad.conf /etc/X11/xorg.conf.d/
 cp backlight.rules /etc/udev/rules.d/
 cp locale.conf /etc/
+cp doas.conf /etc/
 
 rm /bin/sh
 ln -s dash /bin/sh
-
-echo "permit persist :wheel
-permit nopass :wheel cmd pacman args -Sy
-permit nopass :storage cmd mount
-permit nopass :storage cmd umount" > /etc/doas.conf
 
 echo "Done. Reboot to finish installation."
