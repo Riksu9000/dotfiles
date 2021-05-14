@@ -7,7 +7,7 @@ PACKAGELIST=packages
 ask() {
 	while :
 	do
-		printf "\033[1m%s [y/N]\033[0m" "$@"
+		printf "\033[1m%s [y/N]\033[0m " "$@"
 		read -r ANSWER
 		case "$ANSWER" in
 		[yY]*) return 0 ;;
@@ -62,6 +62,10 @@ systemctl enable avahi-daemon.service
 
 systemctl enable cups.socket
 systemctl enable transmission
+
+mkdir -p /usr/lib/firefox/defaults/pref/
+cp local-settings.js /usr/lib/firefox/defaults/pref/
+cp mozilla.cfg /usr/lib/firefox/
 
 cp 30-touchpad.conf /etc/X11/xorg.conf.d/
 cp backlight.rules /etc/udev/rules.d/
