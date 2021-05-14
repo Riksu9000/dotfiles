@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# https://ncoop.github.io/2017/01/02/enter-passwords-from-dmenu
+# https://unix.stackexchange.com/questions/463773/hide-password-in-dmenu
+
+caller="$(ps -o comm= -p $(ps -o ppid= -p $$))"
+prompt="${1:-[$caller]}"
+promptfg="#d4d4d4"
+promptbg="#3b3b3b"
+hidden="#be8348"
+
+dmenu -p "$prompt" -nf "$hidden" -nb "$hidden" -sf "$promptfg" -sb "$promptbg" <&-

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+qrencode "$@" -o /tmp/qrcode.png && sxiv /tmp/qrcode.png
+rm -f /tmp/qrcode.png
