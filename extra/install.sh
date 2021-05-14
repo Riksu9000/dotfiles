@@ -67,7 +67,7 @@ then
 fi
 
 sed -i 's/^#Color/Color/' /etc/pacman.conf
-sed -i 's/^MAKEFLAGS.*/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf
+sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf
 
 # Enable local hostname resolution
 systemctl enable avahi-daemon.service
