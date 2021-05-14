@@ -23,6 +23,7 @@ libx11
 libxft
 libxinerama
 mpv
+ncdu
 neovim
 netctl
 noto-fonts
@@ -37,6 +38,7 @@ pavucontrol
 pcmanfm-gtk3
 pipewire-pulse
 prusa-slicer
+#pulseaudio
 scrot
 terminus-font
 transmission-cli
