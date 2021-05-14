@@ -44,14 +44,27 @@ fi
 
 if ask "Replace sudo with doas?"
 then
-	pacman -Rns --noconfirm sudo
-	ln -s doas /bin/sudo
+	# TODO: sudo is later reinstalled as a dependency of base-devel
+	pacman -Q sudo > /dev/null 2>&1 && pacman -Rns --noconfirm sudo
+	ln -fs /bin/doas /usr/local/bin/sudo
 fi
+
+ask "Install yay?" && INSTALL_YAY=1
 
 echo "The rest of the installation is automatic, so sit back and relax"
 sleep 2
 
 grep -v '^#' "$PACKAGELIST" | cut -d ' ' -f 1 | xargs pacman --needed --noconfirm -S
+
+if [ "$INSTALL_YAY" = 1 ]
+then
+	runuser -u nobody -- git clone https://aur.archlinux.org/yay.git /tmp/yay
+	cd /tmp/yay
+	GOCACHE=/tmp/yay/.gocache runuser -u nobody -- makepkg -s --noconfirm
+	pacman -U --noconfirm $(runuser -u nobody -- makepkg --packagelist)
+	cd -
+	rm -rf /tmp/yay
+fi
 
 sed -i 's/^#Color/Color/' /etc/pacman.conf
 sed -i 's/^MAKEFLAGS.*/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf
@@ -66,13 +79,13 @@ systemctl enable transmission
 mkdir -p /usr/lib/firefox/defaults/pref/
 cp local-settings.js /usr/lib/firefox/defaults/pref/
 cp mozilla.cfg /usr/lib/firefox/
+echo "DuckDuckGo must be enabled manually in firefox."
 
 cp 30-touchpad.conf /etc/X11/xorg.conf.d/
 cp backlight.rules /etc/udev/rules.d/
 cp locale.conf /etc/
 cp doas.conf /etc/
 
-rm /bin/sh
-ln -s dash /bin/sh
+ln -fs /bin/dash /usr/local/bin/sh
 
 echo "Done. Reboot to finish installation."
