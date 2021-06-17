@@ -14,7 +14,9 @@ DRIVES=$(lsblk -npro "NAME,TYPE,PTTYPE,MOUNTPOINT" | sed '/ \//d;/disk [a-z]/d;s
 DRIVECOUNT=$(echo "$DRIVES" | wc -l)
 
 # Show a menu of mountable drives and put the full path to the variable $CHOSEN
-CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
+#CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE" | \
+CHOSEN=$(lsblk $DRIVES -npro "NAME,LABEL,SIZE,TYPE" | \
+	sed '/crypt$/d' | \
 	dmenu -p "Mount which drive?" -l "$DRIVECOUNT" | \
 	cut -d ' ' -f 1)
 
@@ -29,9 +31,13 @@ LABEL=$(lsblk "$CHOSEN" -no "LABEL")
 mkdir -p "$HOME/mounts/$LABEL" || err
 
 TYPE=$(lsblk "$CHOSEN" -no "FSTYPE")
-if [ "$TYPE" = "vfat" ] || [ "$TYPE" = "ntfs" ]
+if [ "$TYPE" = "vfat" ] || [ "$TYPE" = "ntfs" ] || [ "$TYPE" = "exfat" ]
 then
 	doas mount -o uid="$(id -u)" -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
+elif [ "$TYPE" = "crypto_LUKS" ]
+then
+	askpass "Password:" | su -c "askpass \"Enter passphrase for $CHOSEN:\" | cryptsetup open $CHOSEN $LABEL" || err
+	doas mount -w "/dev/mapper/$LABEL" "$HOME/mounts/$LABEL" || err
 else
 	doas mount -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
 fi

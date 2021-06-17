@@ -36,8 +36,10 @@ wait "$PID"
 
 doas umount "$CHOSEN" || err "There was an error unmounting drive $LABEL"
 
+TYPE=$(lsblk "$CHOSEN" -no "TYPE")
+[ "$TYPE" = crypt ] && askpass "Password:" | su -c "cryptsetup close $(basename "$CHOSEN")"
+
 notify-send "Successfully unmounted $LABEL" "$CHOSEN" -h string:x-canonical-private-synchronous:umount
 
 # Remove the mounting directory
 [ -d "$HOME/mounts/$LABEL" ] && ( rm -r "$HOME/mounts/$LABEL" || err "Couldn\'t remove the mounting directory. Remove $HOME/mounts/$LABEL manually." )
-
