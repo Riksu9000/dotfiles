@@ -40,7 +40,7 @@ then
 fi
 
 PLAYERCTLSTATUS=$(mprisctl status 2>/dev/null)
-if [ -n "$PLAYERCTLSTATUS" ] && [ "$PLAYERCTLSTATUS" != "Stopped" ]
+if [ -n "$PLAYERCTLSTATUS" ] && [ "$PLAYERCTLSTATUS" != Stopped ]
 then
 	OPTIONS=$OPTIONS"$(playerctl metadata -f '{{playerName}}: {{title}}' 2> /dev/null)
 	Previous	mprisctl previous

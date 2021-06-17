@@ -42,4 +42,4 @@ ZDOTDIR="$XDG_CONFIG_HOME"/zsh \
 _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java \
 
 # Autostart desktop
-#[ "$TERM" = "linux" ] && [ "$(fgconsole)" = "1" ] && startx
+#[ "$TERM" = linux ] && [ "$(fgconsole)" = 1 ] && startx

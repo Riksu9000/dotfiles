@@ -24,6 +24,7 @@ MAXBRIGHTNESS=$(cat "$DEV/max_brightness")
 STEP=$(max $((MAXBRIGHTNESS / 10)) 1)
 
 case "$@" in
-"up")   min $((BRIGHTNESS + STEP)) "$MAXBRIGHTNESS" > "$DEV/brightness" ;;
-"down") max $((BRIGHTNESS - STEP)) 0 > "$DEV/brightness" ;;
+up)   min $((BRIGHTNESS + STEP)) "$MAXBRIGHTNESS" > "$DEV/brightness" ;;
+down) max $((BRIGHTNESS - STEP)) 0 > "$DEV/brightness" ;;
+*) echo "$((BRIGHTNESS * 100 / MAXBRIGHTNESS))%" ;;
 esac

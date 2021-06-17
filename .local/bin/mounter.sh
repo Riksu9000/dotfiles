@@ -31,10 +31,10 @@ LABEL=$(lsblk "$CHOSEN" -no "LABEL")
 mkdir -p "$HOME/mounts/$LABEL" || err
 
 TYPE=$(lsblk "$CHOSEN" -no "FSTYPE")
-if [ "$TYPE" = "vfat" ] || [ "$TYPE" = "ntfs" ] || [ "$TYPE" = "exfat" ]
+if [ "$TYPE" = vfat ] || [ "$TYPE" = ntfs ] || [ "$TYPE" = exfat ]
 then
 	doas mount -o uid="$(id -u)" -w "$CHOSEN" "$HOME/mounts/$LABEL" || err
-elif [ "$TYPE" = "crypto_LUKS" ]
+elif [ "$TYPE" = crypto_LUKS ]
 then
 	askpass "Password:" | su -c "askpass \"Enter passphrase for $CHOSEN:\" | cryptsetup open $CHOSEN $LABEL" || err
 	doas mount -w "/dev/mapper/$LABEL" "$HOME/mounts/$LABEL" || err

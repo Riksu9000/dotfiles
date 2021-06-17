@@ -9,7 +9,7 @@ if [ "$1" = toggle ]
 then
 	amixer -c 0 set 'Speaker Left' toggle
 	amixer -c 0 set 'Speaker Right' toggle
-elif [ "$STATE" = "ff" ]
+elif [ "$STATE" = ff ]
 then
 	# TODO: implement auto mute
 	case $1 in

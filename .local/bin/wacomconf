@@ -15,7 +15,7 @@ xsetwacom set "$STYLUS" Area 0 0 15200 6363
 
 xsetwacom set "$STYLUS" MapToOutput HEAD-0
 
-if [ "$MODE" = "perf" ]
+if [ "$MODE" = perf ]
 then
 	notify-send "Setting tablet to perfomance mode"
 	xsetwacom set "$STYLUS" Suppress 1

@@ -21,7 +21,7 @@ prompt_command() {
 	if git rev-parse --show-toplevel &> /dev/null
 	then
 		BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
-		[ "$BRANCH" != "master" ] && PS1+="\[\e[36m\]$BRANCH "
+		[ "$BRANCH" != master ] && PS1+="\[\e[36m\]$BRANCH "
 		PS1+="\[\e[36m\]$(git rev-parse --show-toplevel | xargs basename)/$(git rev-parse --show-prefix) "
 	else
 		PS1+="\[\e[34m\]\w "

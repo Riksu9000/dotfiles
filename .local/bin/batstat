@@ -5,7 +5,7 @@ OUTPUT="Charge Consumption Remaining
 
 for battery in /sys/class/power_supply/*
 do
-	[ "$(cat "$battery/type")" = "Battery" ] || break
+	[ "$(cat "$battery/type")" = Battery ] || break
 
 	CAPACITY=$(cat $battery/capacity)
 	VOLTAGE=$(cat $battery/voltage_now)
