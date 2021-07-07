@@ -42,4 +42,5 @@ TYPE=$(lsblk "$CHOSEN" -no "TYPE")
 notify-send "Successfully unmounted $LABEL" "$CHOSEN" -h string:x-canonical-private-synchronous:umount
 
 # Remove the mounting directory
+# TODO: detect folder for encrypted drive
 [ -d "$HOME/mounts/$LABEL" ] && ( rm -r "$HOME/mounts/$LABEL" || err "Couldn\'t remove the mounting directory. Remove $HOME/mounts/$LABEL manually." )

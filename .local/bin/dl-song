@@ -1,0 +1,8 @@
+#!/bin/sh
+
+OPTS="-x --format=bestaudio --add-metadata --audio-quality 0 --no-playlist"
+
+for url in "$@"
+do
+	youtube-dl --embed-thumbnail $OPTS "$url" || youtube-dl $OPTS "$url"
+done

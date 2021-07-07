@@ -67,7 +67,7 @@ endfunction
 match OverLength /\%101v.\+/
 
 " Statusline Syntastic warning
-set statusline=%#warningmsg#%{SyntasticStatuslineFlag()}%0*
+"set statusline=%#warningmsg#%{SyntasticStatuslineFlag()}%0*
 " Statusline left
 set statusline+=%1*\ %<%f\ %m%r
 " Middle
@@ -87,6 +87,8 @@ let g:syntastic_asm_checkers = []
 let g:AutoPairsCenterLine = 0
 
 let g:goyo_height="100%"
+
+lua require('lspconfig').clangd.setup{}
 
 " vim-gitgutter options
 set updatetime=100

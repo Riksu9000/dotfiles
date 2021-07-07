@@ -1,6 +1,8 @@
 #!/bin/sh
 
+OPTS="-x --format=bestaudio --add-metadata --audio-quality 0 -o '%(album)s/%(autonumber)d.%(track)s.%(ext)s'"
+
 for url in "$@"
 do
-	youtube-dl -x --add-metadata --embed-thumbnail -o '%(album)s/%(autonumber)d.%(track)s.%(ext)s' "$url"
+	youtube-dl --embed-thumbnail $OPTS "$url" || youtube-dl $OPTS "$url"
 done

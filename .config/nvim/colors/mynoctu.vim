@@ -243,5 +243,9 @@ hi! link bladeParen      phpParent
 hi! link bladeEchoDelim  PreProc
 
 "}}}
+" Lsp {{{
+hi! LspDiagnosticsDefaultError ctermfg=1
+hi! LspDiagnosticsDefaultWarning ctermfg=3
+"}}}
 
 " vim: fdm=marker:sw=2:sts=2:et

@@ -86,6 +86,6 @@ cp backlight.rules /etc/udev/rules.d/
 cp locale.conf /etc/
 cp doas.conf /etc/
 
-ln -fs /bin/dash /usr/local/bin/sh
+ln -fs /bin/dash /bin/sh
 
 echo "Done. Reboot to finish installation."
