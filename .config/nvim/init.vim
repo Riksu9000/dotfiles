@@ -35,16 +35,16 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>s :SyntasticToggleMode<CR>
 nnoremap <Leader>o :call ToggleOverLength()<CR>
 nnoremap <Leader>O :!open %<CR>
 " Set width to min 50% max 80 somehow?
 nnoremap <Leader>n :vsp ~/docs/notes<CR>
 nnoremap <Leader>g :packadd goyo.vim<CR>:Goyo<CR>
+nnoremap <Leader>f :Files<CR>
 
 command Sudowrite execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
-
 command Cdhere cd %:p:h
+command Fix execute 'lua vim.lsp.buf.code_action()'
 
 "https://vim.fandom.com/wiki/Super_retab
 :command! -range=% Space2Tab execute '<line1>,<line2>s#^\( \{'.&ts.'\}\)\+#\=repeat("\t", len(submatch(0))/' . &ts . ')'
@@ -53,21 +53,19 @@ command Cdhere cd %:p:h
 silent! colorscheme mynoctu
 
 " Highlight text over 100 columns
-highlight OverLength ctermfg=3 cterm=undercurl gui=undercurl
+highlight OverLength ctermfg=3
 let s:overlen=1 " TODO: can the current status be read instead of a variable?
 function ToggleOverLength()
 	if s:overlen
-		highlight OverLength ctermfg=none cterm=none
+		highlight OverLength ctermfg=none
 		let s:overlen=0
 	else
-		highlight OverLength ctermfg=3 cterm=undercurl
+		highlight OverLength ctermfg=3
 		let s:overlen=1
 	endif
 endfunction
 match OverLength /\%101v.\+/
 
-" Statusline Syntastic warning
-"set statusline=%#warningmsg#%{SyntasticStatuslineFlag()}%0*
 " Statusline left
 set statusline+=%1*\ %<%f\ %m%r
 " Middle
@@ -77,18 +75,18 @@ set statusline+=%{&fileformat}\ %{&fileencoding}\ %{&filetype}\ %1*%5.(%p%%%)\ %
 " Statusline colors
 hi User1 ctermbg=0
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_c_compiler_options = '-include stdint.h -include stdbool.h'
-let g:syntastic_asm_checkers = []
-
-let g:AutoPairsCenterLine = 0
-
 let g:goyo_height="100%"
 
-lua require('lspconfig').clangd.setup{}
+"autocmd BufEnter * lua require'completion'.on_attach()
+set completeopt=menuone,noinsert,noselect
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
+
+lua require'lspconfig'.clangd.setup{on_attach=require'completion'.on_attach}
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
 
 " vim-gitgutter options
 set updatetime=100
